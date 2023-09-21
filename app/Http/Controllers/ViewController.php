@@ -40,35 +40,35 @@ class ViewController extends Controller
     }
 
     public function indexHomestay(){
-        $hs = Homestay::all();
+        $hs = Homestay::paginate(4);
         return view('homestay', compact('hs'));
     }
 
     public function sortHomestay($id){
         if ($id == 1){
-            $hs = Homestay::orderBy('price')->get();
+            $hs = Homestay::orderBy('price')->paginate(4);
         }
         else if ($id == 2){
-            $hs = Homestay::orderBy('price', 'desc')->get();
+            $hs = Homestay::orderBy('price', 'desc')->paginate(4);
         }
         else if ($id == 3){
-            $hs = Homestay::orderBy('like', 'desc')->get();
+            $hs = Homestay::orderBy('like', 'desc')->paginate(4);
         }
         return view('homestay', compact('hs'));
     }
 
     public function filterHomestayFacilities($id){
         if($id == 1){
-             $hs = Homestay::query()->where(['wifi'=> 1])->get();
+             $hs = Homestay::query()->where(['wifi'=> 1])->paginate(4);
         }
         else if($id == 2){
-             $hs = Homestay::query()->where(['parking'=>1])->get();
+             $hs = Homestay::query()->where(['parking'=>1])->paginate(4);
         }
         else if($id == 3){
-             $hs = Homestay::query()->where(['ac'=>1])->get();
+             $hs = Homestay::query()->where(['ac'=>1])->paginate(4);
         }
         else if($id == 4){
-             $hs = Homestay::query()->where(['restaurant'=>1])->get();
+             $hs = Homestay::query()->where(['restaurant'=>1])->paginate(4);
         }
         return view('homestay', compact('hs'));
     }
@@ -98,7 +98,7 @@ class ViewController extends Controller
     }
 
     public function indexCulinary(){
-        $data = Culinary::all();
+        $data = Culinary::paginate(3);
         return view('culinary', ['culi'=>$data]);
     }
 

@@ -162,9 +162,9 @@ Route::get('/destinationDetail/{id}', [ViewController::class, 'indexDestinationD
 Route::get('/contactUs', [ContactUsController::class, 'index']
 )->name('contactUs');
 
-Route::get('/clear', function() {
-    Artisan::call('cache:clear');
-    Artisan::call('config:cache');
-    Artisan::call('view:clear');
-    return "Cleared!";
-});
+// Route::get('/clear', function() {
+//     Artisan::call('cache:clear');
+//     Artisan::call('config:cache');
+//     Artisan::call('view:clear');
+//     return "Cleared!";
+// });

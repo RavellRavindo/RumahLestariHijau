@@ -15,32 +15,42 @@
         font-size: 200%;
     }
 
-    .row {
-  display: -ms-flexbox;
+.row {
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  padding: 0 4px;
 }
 
-.column {
-  -ms-flex: 50%;
+.row .column {
+  width: auto;
   flex: 50%;
-  padding: 0 4px;
+  overflow: hidden;
+  padding: 0px 4px;
 }
 
-.column img {
-  margin-top: 8px;
-  vertical-align: middle;
-}       
+.row .column img {
+  padding: 10px 10px;
+  cursor: pointer;
+  border-radius: 18px;
+}    
+
+.row .column img:hover {
+  transform: translateY(-10px);
+  transition: all 300ms ease;
+} 
+
+@media only screen and (max-width: 600px){
+    .row .column img{
+        border-radius: 15px;
+    }
+}
 </style>
 
 <!-- Kotak 1 Start -->
-<div style="margin-top: 2%; margin-bottom: 2%; padding-left: 10%; padding-right: 10%; display: flex">
-    <div style="width : 100%; height: 100%; border: groove 2px; border-radius:35px">
+<div style="margin-top: 2%; margin-bottom: 4%; padding-left: 10%; padding-right: 10%; display: flex">
+    <div style="width : 100%; height: 100%; border: groove 2px; border-radius:50px">
         <div style="display: flex; margin: 1%;">
             <ul style="width : 25%; border-right: 1px solid; border-color: #25b448; margin: 1%;">
-                <li style="list-style: none; color: #25b448; margin-right: 20%;">
+                <li style="list-style: none; color: #25b448;">
                     Location
                 </li>
 
@@ -50,7 +60,7 @@
             </ul>
 
             <ul style="width : 25%; border-right: 1px solid; border-color: #25b448; margin: 1%;">
-                <li style="list-style: none; margin-right: 20%; color: #25b448;">
+                <li style="list-style: none; color: #25b448;">
                     Check In:
                 </li>
 
@@ -61,8 +71,8 @@
                 </li>
             </ul>
 
-            <ul style="width : 25%; border-right: 1px solid; border-color: #25b448; margin: 1%">
-                <li style="list-style: none; margin-right: 20%; color: #25b448;">
+            <ul style="width : 20%; border-color: #25b448; margin: 1%">
+                <li style="list-style: none; color: #25b448;">
                     Check Out:
                 </li>
 
@@ -87,9 +97,8 @@
 <!-- Kotak 1 End -->
 
 <!-- Price Range Start -->
-<div style="display: flex; box-sizing: border-box; padding: 0 20px;" id="homeStay">
-<!-- <div style="display: flex; box-sizing: border-box; padding: 0 20px; border: 1px solid #ddd; border-radius: 5px;" id="homeStay"> -->
-    <ul style="width : 25%">
+<div class="sectionContainer"style="display: grid; grid-template-columns: 20% 90%; gap: 10%; margin-top: 50px;" id="homeStay">
+    <ul>
         <li style="list-style: none">
             <P style="color: #25b448">
                 <b>
@@ -177,17 +186,13 @@
     <ul id="list-item" style="width : 75%">
         {{---------------- LOOPING HOMESTAY LIST ----------------}}
         @foreach ($hs as $data)
-        <li style="list-style: none; width: 100%; border: outset 3px; border-radius: 35px; margin-bottom: 5%">
+        <li style="list-style: none; width: 100%; border: outset 4px; border-radius: 20px; margin-bottom: 5%">
             <div style="width: 100%; height: 100%">
                 <div style="display: flex">
-                    <ul style="width: 45%; padding-left: 1%">
+                    <ul style="width: 45%; padding: 2%;">
                         <li style="list-style: none; width: 100%;">
-                            <!-- <div style="">
-                                <img src="{{Storage::url($data->thumbnail)}}" alt=""
-                                    style="width: 100%; padding-top: 5%; padding-left: 2%; padding-bottom: 5%">
-                            </div> -->
                             <div style="max-width: 100%; height: auto; text-align: center;">
-                                <img src="{{ Storage::url($data->homestay_photo[0]->path) }}" alt="Thumbnail" style="max-width: 100%; height: 300px; width: 400px">
+                                <img src="{{ Storage::url($data->homestay_photo[0]->path) }}" alt="Thumbnail" style="max-width: 100%; height: 280px; width: 400px; border-radius: 10px; object-fit: cover;">
                             </div>
                         </li>
                     </ul>
@@ -239,10 +244,9 @@
 
                         <li style="list-style: none; display: flex;">
                             <button type="submit"
-                                onclick="document.getElementById('homeStayDetail{{$data->id}}').style.display='block'; document.getElementById('homeStay').style.display='none'"
-                                
-                                class="btn btn-primary mb-2 butto"
-                                style="width: 100%; background: linear-gradient(to right, #27b448, #72b426); border-radius: 15px">
+                                onclick="document.getElementById('homeStayDetail{{$data->id}}').style.display='block'; document.getElementById('homeStay').style.display='none'"            
+                                class="btn btn-primary"
+                                style="width: 100%; background: linear-gradient(to right, #27b448, #72b426); border-radius: 10px">
                                 Details </button>
                         </li>
                     </ul>
@@ -251,13 +255,13 @@
         </li>
 
         @endforeach
-
+        {!! $hs->links('pagination::bootstrap-5') !!}
         {{---------------- LOOPING HOMESTAY LIST END ----------------}}
     </ul>
 </div>
 
 @foreach ($hs as $data)
-<div id="homeStayDetail{{$data->id}}" style="width:100%;box-sizing: border-box;padding: 5%; display: none">
+<div id="homeStayDetail{{$data->id}}" style="width:100%; box-sizing: border-box; padding: 5%; display: none">
     <button type="submit"
         onclick="document.getElementById('homeStayDetail{{$data->id}}').style.display='none'; document.getElementById('homeStay').style.display='flex'"
         class="btn btn-primary mb-2"
@@ -283,52 +287,29 @@
                 <i class="fa fa-thumbs-up"></i>
                 <div style="text-align: right; translate: 0% -110%">
                     <a href="https://api.whatsapp.com/send?phone=6285155488011&text=Saya%20Ingin%20Booking%20Tempat%20{{ $data->name }}" target="_blank"
-                        class="btn btn-success mb-2"
+                        class="btn btn-success"
                         style="background: linear-gradient(to right, #27b448, #72b426); border-radius: 15px; padding: 1%; padding-right: 5%; padding-left: 5%; font-weight: bold; font-size: 125%">
                         Reserve
                     </a>
                 </div>
-
     </div>
 
-    {{--
-    <!-- <div style="display: flex; justify-content:center; align-items: center; width: fit-content; height:fit-content; margin-bottom: 30px"> -->
-    <div>
-        @foreach ($data->homestay_photo as $pho)
-            @if ($pho->index == 1)
-            <img src="{{Storage::url($pho->path)}}"
-                style="height:400px; width:600px; float: left; margin: 1%; border-top-left-radius: 20px; border-bottom-left-radius: 20px">
-            @endif 
-            @if ($pho->index % 2 == 0 )
-            <div class = "row">
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr fr; row-gap: 10px; column-gap: 20px">
-                    <img src="{{Storage::url($pho->path)}}" style="flex:50%; height:200px; width: 300px; float: left; margin: 1%">
-                </div>
-            @if ($pho->index % 2 == 1 && $pho->index != 1)
-                 <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr fr; row-gap: 10px; column-gap: 30px">
-                    <img src="{{Storage::url($pho->path)}}" style="flex:50%; height:200px; width: 300px; float: left; margin: 1%">
-                </div>
-            @endif
-            </div>
-        @endforeach
-    </div>
-    --}}
     
-    <div class = "row">
-        <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
-            <img src="{{Storage::url($data->homestay_photo[0]->path)}}" style="height:350px; width:665px; float: left; margin: 1%">
+    <div class = "row mb-5">
+        <div class="column">
+            <img style="width: 800px; height:500px" src="{{Storage::url($data->homestay_photo[0]->path)}}">
         </div>
 
-        <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
+        <div class="column">
             @isset ($data->homestay_photo[1])
             <div class = "row">
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
-                    <img src="{{Storage::url($data->homestay_photo[1]->path)}}" style="flex:50%; height:170px; width: 340px; float: left; margin: 1%">
+                <div class="column">
+                    <img src="{{Storage::url($data->homestay_photo[1]->path)}}" style="width: 380px; height:250px">
                 </div>
             
                 @isset ($data->homestay_photo[2])
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
-                    <img src="{{Storage::url($data->homestay_photo[2]->path)}}" style="flex:50%; height:170px; width: 340px; float: right; margin: 1%">
+                <div class="column">
+                    <img src="{{Storage::url($data->homestay_photo[2]->path)}}" style="width: 380px; height:250px">
                 </div>
                 @endisset
             </div>
@@ -336,14 +317,14 @@
 
             @isset ($data->homestay_photo[3])
             <div class = "row">
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
-                    <img src="{{Storage::url($data->homestay_photo[3]->path)}}" style="flex:50%; height:170px; width: 340px; float: left; margin: 1%">
+                <div class="column">
+                    <img src="{{Storage::url($data->homestay_photo[3]->path)}}" style="width: 380px; height:250px">
                 </div>
-                @endisset
+            @endisset
 
             @isset ($data->homestay_photo[4])
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
-                    <img src="{{Storage::url($data->homestay_photo[4]->path)}}" style="flex:50%; height:170px; width: 340px; float: right; margin: 1%">
+                <div class="column">
+                    <img src="{{Storage::url($data->homestay_photo[4]->path)}}" style="width: 380px; height:250px">
                 </div>
             </div>
             @endisset

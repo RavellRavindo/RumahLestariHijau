@@ -33,7 +33,7 @@
     {{---------------- LOOPING SPECIAL EVENT LIST ----------------}}
     @foreach ($des as $data)
 
-    <div style="object-fit: contain ;background: linear-gradient(180deg, rgba(9, 66, 34, 0.15) -12.86%, rgba(59, 77, 129, 0.5) 106.85%, rgba(9, 66, 34, 0.5) 106.85%), url({{Storage::url($data->photo)}}); height: 377px; width: 312px;position:relative; border-radius: 10px; box-sizing: border-box; padding: 20px;" class="destinasiSlide">
+    <div style="object-fit: contain ;background: linear-gradient(180deg, rgba(9, 66, 34, 0.15) -12.86%, rgba(59, 77, 129, 0.5) 106.85%, rgba(9, 66, 34, 0.5) 106.85%), url('{{Storage::url($data->photo)}}'); height: 377px; width: 312px;position:relative; border-radius: 10px; box-sizing: border-box; padding: 20px;" class="destinasiSlide">
 
         {{-- <img style="filter: linear-gradient(180deg, rgba(9, 66, 34, 0.15) -12.86%, rgba(59, 77, 129, 0.5) 106.85%, rgba(9, 66, 34, 0.5) 106.85%)" src="{{Storage::url($data->photo)}}" class="destinasiImage"> --}}
         <a style="position:absolute; transform: translate(-50%, -50%); top:50%; left:50%; ;border: 1px solid white; color: white; background-color: transparent; ; font-size: 100%; padding: 4%; padding-left: 10%; padding-right: 10%; border-radius: 10px" href="{{route('destinationDetail', $data->id)}}">
