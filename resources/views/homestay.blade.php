@@ -32,7 +32,7 @@
 .column img {
   margin-top: 8px;
   vertical-align: middle;
-}       
+}
 </style>
 
 <!-- Kotak 1 Start -->
@@ -173,10 +173,10 @@
             </div>
         </li>
     </ul>
-                
+
     <ul id="list-item" style="width : 75%">
         {{---------------- LOOPING HOMESTAY LIST ----------------}}
-        @foreach ($hs as $data)
+        @foreach ($homestays as $data)
         <li style="list-style: none; width: 100%; border: outset 3px; border-radius: 35px; margin-bottom: 5%">
             <div style="width: 100%; height: 100%">
                 <div style="display: flex">
@@ -240,7 +240,7 @@
                         <li style="list-style: none; display: flex;">
                             <button type="submit"
                                 onclick="document.getElementById('homeStayDetail{{$data->id}}').style.display='block'; document.getElementById('homeStay').style.display='none'"
-                                
+
                                 class="btn btn-primary mb-2 butto"
                                 style="width: 100%; background: linear-gradient(to right, #27b448, #72b426); border-radius: 15px">
                                 Details </button>
@@ -256,7 +256,7 @@
     </ul>
 </div>
 
-@foreach ($hs as $data)
+@foreach ($homestays as $data)
 <div id="homeStayDetail{{$data->id}}" style="width:100%;box-sizing: border-box;padding: 5%; display: none">
     <button type="submit"
         onclick="document.getElementById('homeStayDetail{{$data->id}}').style.display='none'; document.getElementById('homeStay').style.display='flex'"
@@ -298,14 +298,14 @@
             @if ($pho->index == 1)
             <img src="{{Storage::url($pho->path)}}"
                 style="height:400px; width:600px; float: left; margin: 1%; border-top-left-radius: 20px; border-bottom-left-radius: 20px">
-            @endif 
+            @endif
             @if ($pho->index % 2 == 0 )
             <div class = "row">
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr fr; row-gap: 10px; column-gap: 20px">
+                <div class="column" style="flex:50%; width:100px; display:grid; grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr fr; row-gap: 10px; column-gap: 20px">
                     <img src="{{Storage::url($pho->path)}}" style="flex:50%; height:200px; width: 300px; float: left; margin: 1%">
                 </div>
             @if ($pho->index % 2 == 1 && $pho->index != 1)
-                 <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr fr; row-gap: 10px; column-gap: 30px">
+                 <div class="column" style="flex:50%; width:100px; display:grid; grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr fr; row-gap: 10px; column-gap: 30px">
                     <img src="{{Storage::url($pho->path)}}" style="flex:50%; height:200px; width: 300px; float: left; margin: 1%">
                 </div>
             @endif
@@ -313,21 +313,21 @@
         @endforeach
     </div>
     --}}
-    
+
     <div class = "row">
-        <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
+        <div class="column" style="flex:50%; width:100px; display:grid;  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
             <img src="{{Storage::url($data->homestay_photo[0]->path)}}" style="height:350px; width:665px; float: left; margin: 1%">
         </div>
 
-        <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
+        <div class="column" style="flex:50%; width:100px; display:grid;  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
             @isset ($data->homestay_photo[1])
             <div class = "row">
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
+                <div class="column" style="flex:50%; width:100px; display:grid;  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
                     <img src="{{Storage::url($data->homestay_photo[1]->path)}}" style="flex:50%; height:170px; width: 340px; float: left; margin: 1%">
                 </div>
-            
+
                 @isset ($data->homestay_photo[2])
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
+                <div class="column" style="flex:50%; width:100px; display:grid;  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
                     <img src="{{Storage::url($data->homestay_photo[2]->path)}}" style="flex:50%; height:170px; width: 340px; float: right; margin: 1%">
                 </div>
                 @endisset
@@ -336,13 +336,13 @@
 
             @isset ($data->homestay_photo[3])
             <div class = "row">
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
+                <div class="column" style="flex:50%; width:100px; display:grid;  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
                     <img src="{{Storage::url($data->homestay_photo[3]->path)}}" style="flex:50%; height:170px; width: 340px; float: left; margin: 1%">
                 </div>
                 @endisset
 
             @isset ($data->homestay_photo[4])
-                <div class="column" style="flex:50%; width:100px; display:grid  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
+                <div class="column" style="flex:50%; width:100px; display:grid;  grid-template-columns: 10fr 1fr ; grid-template-rows: 10fr 1fr; row-gap: 10px; column-gap: 20px">
                     <img src="{{Storage::url($data->homestay_photo[4]->path)}}" style="flex:50%; height:170px; width: 340px; float: right; margin: 1%">
                 </div>
             </div>
@@ -364,7 +364,7 @@
         <ul style="list-style: none; width: 40%">
             <li>
                 <b>
-                    <p style="margin: 1%; font-size: 125%">Entire hotel hosted by {{$data->host}}</p>
+                    <p style="margin: 1%; font-size: 125%">Entire hotel hosted by {{$data->owner}}</p>
                     <p style="margin-bottom: 7%">{{$data->guest}} guest - {{$data->bedroom}} bedrooms - {{$data->bed}}
                         beds - {{$data->bath}} baths</p>
                     <p style="font-size: 125%">What this places offers</p>
@@ -440,7 +440,7 @@
                         <td></td>
                     @endif
                     </tr>
-                @endfor          
+                @endfor
             </table>
         </ul>
 
@@ -521,7 +521,7 @@
         }
     }
 
-    
+
 
         $('input[type=radio][name=asort_by]').on('click', function(e){
             e.preventDefault();

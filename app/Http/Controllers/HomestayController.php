@@ -2,31 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Culinary;
-use App\Models\Destination;
-use App\Models\DestinationPrice;
 use App\Models\Homestay;
-use App\Models\HomestayPhoto;
-use App\Models\NearbyPlace;
-use App\Models\PopularPlace;
-use App\Models\Promo;
-use App\Models\Souvenir;
-
-use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
+class HomestayController extends Controller
+{
+    public function homestayPage()
+    {
+        $attr = request()->validate([
+            'q' => 'regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'sort' => 'in:price,rating',
+            'filter' => 'regex:/^[a-z\,]+$/u|max:32',
+            'asc' => 'in:false,true'
+        ]);
 
+        $q      = request()->get('q');
+        $sort   = request()->get('sort');
+        $filter = request()->get('filter');
+        $asc    = request()->get('asc');
 
-class RegisterController extends Controller {
+        $query = Homestay::selectRaw('*');
 
-    
+        if (!empty($filter)) {
+            $queryFilter = [];
 
-    //helper function for taking first x characters without space for file name purpose
-    public function getName ($string, $length) {
-        return substr(str_replace(' ', '', $string), 0, $length);
+            foreach (explode(',', $filter) as $f) {
+                if (in_array($f, ['wifi', 'parking', 'ac', 'restaurant'])) {
+                    array_push($queryFilter, ['has_'.$f, '=', true]);
+                }
+            }
+
+            $query = $query->where($queryFilter);
+        }
+
+        if (!empty($q)) {
+            $query = $query->search($q);
+        }
+
+        if (!empty($sort)) {
+            $query = $query->orderBy($sort, $asc == 'true' ? 'asc' : 'desc');
+        }
+
+        return view('homestay', [
+            'homestays' => $query->paginate(10)
+        ]);
     }
 
     public function addHomestay(Request $request){
@@ -653,364 +673,17 @@ class RegisterController extends Controller {
         $homestay = Homestay::find($id);
         $homestay->nearby_place->each->delete();
         $homestay->popular_place->each->delete();
-        
+
         // Storage::delete($homestay->thumbnail);
         // foreach ($homestay->photo as $key) {
         //     Storage::delete($key->path);
         // }
         Storage::deleteDirectory('homestay_img/'.$homestay->name);
-        
+
         $homestay->homestay_photo->each->delete();
         $homestay->comment_list->each->delete();
         $homestay->delete();
         return redirect()->back()->with('success', 'Homestay deleted successfully');
-    }
-
-    public function addCulinary(Request $request){
-        // dd($request);
-        $file = $request->file('image');
-
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'like' => 'required',
-            'price' => 'required',
-            'image' => 'required|image',
-        ]);
-
-        $data = new Culinary();
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->like = $request->like;
-        $data->price = $request->price;
-        
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $cul_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::putFileAs('culinary_img/', $file, $cul_path);
-            $cul_path = 'culinary_img/'.$cul_path;
-        }
-
-        $data->photo = $cul_path;
-        $data->save();
-
-        return redirect('/tableCulinary');
-    }
-    public function editCulinary(Request $request, $id){
-        $file = $request->file('image');
-        $data = Culinary::find($id);
-
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'like' => 'required',
-            'image' => 'image',
-        ]);
-
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->like = $request->like;
-        $data->price = $request->price;
-
-        if($file!==null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $cul_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::delete($data->photo);
-            Storage::putFileAs('culinary_img/', $file, $cul_path);
-            //dd($cul_path);
-
-            $cul_path = 'culinary_img/'.$cul_path;
-            
-        }
-
-        $data->photo = $cul_path;
-        $data->save();
-
-        // dd($pho);
-        return redirect('/tableCulinary');
-    }
-    public function deleteCulinary(Request $request, $id){
-        $data = Culinary::find($id);
-        foreach ($data->photo as $key) {
-            Storage::delete($key->path);
-        }
-        $data->photo->each->delete();
-        $data->comment_list->each->delete();
-        $data->delete();
-
-        return redirect()->back()->with('success', 'Culinary deleted successfully');
-    }
-
-    public function addDestination(Request $request){
-        //dd($request);
-        $file = $request->file('image');
-        $request->validate([
-            'name' => 'required',
-            'description'=>'required',
-            'rundown' => 'required',
-            'address' => 'required',
-            'image' => 'required',
-            'price' => 'required'
-        ]);
-
-        $data = new Destination();
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->rundown = $request->rundown;
-        $data->address = $request->address;
-        $data->price = $request->price;
-        
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $des_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::putFileAs('destination_img/', $file, $des_path);
-            // dd($des_path);
-
-            $des_path = 'destination_img/'.$des_path;
-            $data->photo = $des_path;
-        }
-
-        $data->save();
-
-        // $dprice = new DestinationPrice();
-        // $dprice->destination_id = $data->id;
-        // $dprice->min_person = $request->minpnew;
-        // $dprice->max_person = $request->maxpnew;
-        // $dprice->price = $request->pricenew;
-        // $dprice->save();
-
-        return redirect('/tableDestination');
-    }
-    public function editDestination(Request $request, $id) {
-        $file = $request->file('image');
-        $data = Destination::find($id);
-
-        // $arr = $request->toArray();
-        // $rq_arr = array_chunk(array_splice($arr, 5, count($arr)), 3);
-
-        // //check if min and max person value from input have duplicate
-        // $rq_person = array_merge(array_column($rq_arr, '0'), array_column($rq_arr, '1'));
-        // if ( count($rq_person) !== count(array_unique($rq_person)) ){
-        //     return redirect()->back()->with('failed', 'min or max person got duplicate');
-        // }
-
-        // //check if price value from input have duplicate
-        // $rq_price = array_column($rq_arr, '2');
-        // if ( count($rq_price) !== count(array_unique($rq_price)) ){
-        //     return redirect()->back()->with('failed', 'price got duplicate');
-        // }
-
-        // $desprice = DestinationPrice::where('destination_id', $id)->orderBy('min_person', 'asc')->get();
-
-        // $idx = 0;
-        // foreach ($desprice as $dprice){
-        //     if ( $dprice->min_person != $rq_arr[$idx][0] || $dprice->max_person != $rq_arr[$idx][1] 
-        //         || $dprice->price != $rq_arr[$idx][2]) 
-        //         {
-        //             if ($rq_arr[$idx][0] >= $rq_arr[$idx][1]){
-        //                 // min > max person. failed
-        //                 return redirect()->back()->with('failed', 'min person bigger than max person');
-        //             }
-
-        //             $dprice->min_person = $rq_arr[$idx][0];
-        //             $dprice->max_person = $rq_arr[$idx][1];
-        //             $dprice->price = $rq_arr[$idx][2];
-        //             $dprice->save();
-        //         }
-        //     $idx++;
-        // }
-
-        // if (count($rq_arr) > $desprice->count())
-        // {
-        //     $dprice = new DestinationPrice();
-        //     $dprice->destination_id = $id;
-        //     $dprice->min_person = $rq_arr[$idx][0];
-        //     $dprice->max_person = $rq_arr[$idx][1];
-        //     $dprice->price = $rq_arr[$idx][2];
-        //     $dprice->save();
-        // }
-            
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $des_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::delete($data->photo);
-            Storage::putFileAs('destination_img/', $file, $des_path);
-            // dd($des_path);
-
-            $des_path = 'destination_img/'.$des_path;
-            $data->photo = $des_path;
-        }
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->rundown = $request->rundown;
-        $data->address = $request->address;
-        $data->price = $request->price;
-
-        $data->save();
-
-        return redirect('/tableDestination');
-    }
-    public function deleteDestination(Request $request, $id){
-        $data = Destination::find($id);
-        Storage::delete($data->photo);
-        $data->delete();
-
-        return redirect()->back()->with('success', 'Destination deleted successfully');
-    }
-
-    public function addSouvenir(Request $request) {
-        $file = $request->file('image');
-
-        $request->validate([
-            'name'=>'required',
-            'description'=>'required',
-            'image'=>'required',
-            'price'=>'required',
-        ]);
-        // dd($request);
-        $data = new Souvenir();
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->price = $request->price;
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $sou_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::putFileAs('souvenir_img/', $file, $sou_path);
-
-            $sou_path = 'souvenir_img/'.$sou_path;
-            $data->photo = $sou_path;
-        }
-
-        $data->save();
-        return redirect('/tableSouvenir');
-    }
-    public function editSouvenir(Request $request, $id) {
-        $file = $request->file('image');
-
-        $request->validate([
-            'name'=>'required',
-            'description'=>'required',
-            'price'=>'required',
-        ]);
-        // dd($request);
-        $data = Souvenir::find($id);
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->price = $request->price;
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $sou_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::delete($data->photo);
-            Storage::putFileAs('souvenir_img/', $file, $sou_path);
-
-            $sou_path = 'souvenir_img/'.$sou_path;
-            $data->photo = $sou_path;
-        }
-
-        $data->save();
-        return redirect('/tableSouvenir');
-    }
-    public function deleteSouvenir(Request $request, $id){
-        $data = Souvenir::find($id);
-        Storage::delete($data->photo);
-        $data->delete();
-        return redirect()->back()->with('success', 'Souvenir deleted successfully');
-    }
-
-    public function addPromo(Request $request) {
-        $file = $request->file('image');
-
-        $request->validate([
-            'name'=>'required',
-            'image'=>'required',
-        ]);
-        // dd($request);
-        $data = new Promo();
-        $data->name = $request->name;
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $pr_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::putFileAs('promo_img/', $file, $pr_path);
-
-            $pr_path = 'promo_img/'.$pr_path;
-            $data->photo = $pr_path;
-        }
-
-        $data->save();
-        return redirect('/tablePromo');
-    }
-    public function editPromo(Request $request, $id) {
-        $file = $request->file('image');
-
-        $request->validate([
-            'name'=>'required',
-        ]);
-        // dd($request);
-        $data = Promo::find($id);
-        $data->name = $request->name;
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $pr_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::delete($data->photo);
-            Storage::putFileAs('promo_img', $file, $pr_path);
-
-            $pr_path = 'promo_img/'.$pr_path;
-            $data->photo = $pr_path;
-        }
-
-        $data->save();
-        return redirect('/tablePromo');
-    }
-    public function deletePromo(Request $request, $id){
-        $data = Promo::find($id);
-        Storage::delete($data->photo);
-        $data->delete();
-        return redirect()->back()->with('success', 'Promo deleted successfully');
     }
 
 }

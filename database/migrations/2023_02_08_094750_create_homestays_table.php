@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('location');
-            $table->string('host');
-            $table->text('address');
+            $table->string('owner');
+            $table->string('address');
+
             $table->double('rating');
             $table->integer('like');
             $table->integer('price');
@@ -26,12 +27,15 @@ return new class extends Migration
             $table->integer('bedroom');
             $table->integer('bed');
             $table->integer('bath');
-            $table->integer('wifi');
-            $table->integer('parking');
-            $table->integer('restaurant');
-            $table->integer('ac');
+
+            $table->boolean('has_wifi');
+            $table->boolean('has_parking');
+            $table->boolean('has_restaurant');
+            $table->boolean('has_ac');
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE homestays ADD FULLTEXT (name,location,address)');
     }
 
     /**

@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class NearbyPlace extends Model
 {
     use HasFactory;
-    public function homestay(){
+
+    public function homestay()
+    {
         return $this->belongsTo(Homestay::class, "homestay_id", "id");
     }
 }

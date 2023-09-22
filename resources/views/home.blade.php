@@ -108,7 +108,7 @@
         border-radius: 100%;
         padding: 5%
     }
-    
+
   #hero {
   width: 100%;
   height: 100vh;
@@ -193,7 +193,7 @@
 #hero .carousel-inner .carousel-item,
 #hero .carousel-inner .active.carousel-item-start,
 #hero .carousel-inner .active.carousel-item-end {
-  opacity: ;
+  opacity: 0;
 }
 
 #hero .carousel-inner .active,
@@ -272,6 +272,37 @@
   background: #df3740;
 }
 
+.service{
+  margin-bottom: 3rem;
+}
+
+.subTittle{
+  margin-bottom: 1rem;
+}
+
+.serviceTittle{
+  margin-bottom: 1.5rem;
+}
+
+.imgService{
+  width: 500px;
+  height: 300px;
+  border-radius: 0.7rem;
+}
+
+.serviceButton{
+  border-radius: 20px;
+  background: linear-gradient(to right, orange, red);
+  color: white;
+  padding: 2%;
+  padding-left: 7%;
+  padding-right: 7%;
+  position: absolute;
+  top: 280px;
+  right: 70px;
+  cursor: pointer
+}
+
 @media (max-width: 992px) {
   #hero {
     height: 100vh;
@@ -330,8 +361,8 @@
 
     {{-- Carousel Start --}}
     <div id="carousel" style="margin-top: -10%; margin-bottom: 8%">
-        @foreach ($pr as $promo)
-        <div class="slidePromo"><a href="#"><img src="{{Storage::url($promo->photo)}}" style="height:300px; width:300px;" class="homeImage"></a></div>
+        @foreach ($promos as $promo)
+        <div class="slidePromo"><a href="#"><img src="{{Storage::url($promo->photo)}}" style="height:250px; width:400px;" class="homeImage"></a></div>
         @endforeach
 
         <div style="position: absolute; margin-left: 45%">
@@ -426,161 +457,44 @@
 
 
     <!-- Hero Visit Homestay and Culinary Start -->
-    <!-- <div style="text-align: center">
-                <h1 style="font-weight: bold; color: #4CC417">OUR SERVICE PRODUCT</h1>
+
+  // @foreach ($destinations as $destination)
+  // @endforeach
+  //
+  // @foreach ($culinaries as $culinary)
+  // @endforeach
+
+    <div class="service">
+      <div style="text-align: center" class="serviceTittle">
+          <h1 style="font-weight: bold; color: #4CC417">OUR SERVICE PRODUCT</h1>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <h4 class="subTittle" style="text-align: center; font-weight: bold; color: green">
+                Choose The Place Where you want to Visit
+            </h4>
+              <div class="imgContainer">
+                  <img src="{{Storage::url($destination->photo)}}" class="imgService">
+                    <a href="/homestay"><button class="serviceButton">See More</button></a>
+                  <p class="mt-3">   Menjelajahi tempat-tempat wisata yang menyenangkan!</p>
               </div>
-        <section id="hero">
-        <div id="heroCarousel" data-bs-interval="1000" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        
-            <div class="carousel-inner" role="listbox">
-              
-              <h4 style="text-align: center; font-weight: bold; color: green">
-                Choose The Place Where you want to Visit
-              </h4>
-              
-              <div class="carousel-item"> <img src="/gambar/cul.svg"> </div>
-              @foreach ($des as $destination)
-              
-                <div class="carousel-item">
+          </div>
 
-                  <div class="carousel-container">
-                    
-                    <p style="white-space: pre-line;" style="font-weight: bold">  </p>
-                  </div>
-                </div>
-              @endforeach
-              <a href="/destination"><button style="border-radius: 20px; background: linear-gradient(to right, orange, red); color: white; padding: 2%; padding-left: 5%; padding-right: 5%; translate: 125% -150%">See More</button></a>
-                
-              <h4 style="text-align: center; font-weight: bold; color: green">
-                Explore a Different Way Culinary Experience
-              </h4> -->
-
-              
-
-              
-              <!-- <a href="/culinary"><button style="border-radius: 20px; background: linear-gradient(to right, orange, red); color: white; padding: 2%; padding-left: 5%; padding-right: 5%; translate: 125% -150%">See More</button></a>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- <div id="descarousel">
-      @foreach ($cul as $culinary)
-        <div class="slidePromo"><a href="#"><img src="{{Storage::url($culinary->photo)}}" style="height:100px; width:100px;"></a></div>          
-      @endforeach
-
-        <div style="position: absolute; margin-left: 45%">
-          <button id="desprev" style="float: left; font-size:50%; background-color: rgba(255, 255, 255, 0)"><div class="homeArrow" style="border: 1px solid white; border-radius: 100%; padding: 5%"><i class="fa fa-arrow-left" style="font-size: 150%"></i></div></button>
-          <a class="homeSeeAllPromo" href="http://localhost:8000/culinary">See All Culinary</a>
-          <button id="desnext" style="float: left; font-size:50%; background-color: rgba(255, 255, 255, 0)"><div class="homeArrow" style="border: 1px solid white; border-radius: 100%; padding: 5%"><i class="fa fa-arrow-right" style="font-size: 150%"></i></div></button>
-        </div>
-    </div>
-
-    <script>
-        const carousel2 = document.querySelector('#descarousel');
-        const indicators2 = document.querySelectorAll('.indicator2');
-        let currentSlide2 = 0;
-
-        function updateIndicators2() {
-          indicators2.forEach((indicator2) => indicator2.classList.remove('active2'));
-          indicators2[currentSlide2].classList.add('active2');
-        }
-
-        carousel2.addEventListener('scroll', () => {
-          currentSlide2 = Math.round(carousel2.scrollLeft2 / carousel2.offsetWidth);
-          updateIndicators2();
-        });
-
-        indicators2.forEach((indicator2, index) => {
-          indicator2.addEventListener('click', () => {
-            carousel2.scrollLeft2 = index * carousel2.offsetWidth;
-            currentSlide2 = index;
-            updateIndicators2();
-          });
-        });
-        const prevButton2 = document.querySelector('#desprev');
-        const nextButton2 = document.querySelector('#desnext');
-        let isDown2 = false;
-        let startX2;
-        let scrollLeft2;
-
-        carousel2.addEventListener('mousedown', (e) => {
-          isDown2 = true;
-          carousel2.classList.add('active2');
-          startX2 = e.pageX - carousel2.offsetLeft;
-          scrollLeft2 = carousel2.scrollLeft2;
-        });
-        carousel2.addEventListener('mouseleave', () => {
-          isDown2 = false;
-          carousel2.classList.remove('active2');
-        });
-        carousel2.addEventListener('mouseup', () => {
-          isDown2 = false;
-          carousel2.classList.remove('active2');
-        });
-        carousel2.addEventListener('mousemove', (e) => {
-          if(!isDown2) return;
-          e.preventDefault();
-          const x = e.pageX - carousel2.offsetLeft;
-          const walk = (x - startX2) * 3;
-          carousel2.scrollLeft2 = scrollLeft2 - walk;
-        });
-
-        prevButton2.addEventListener('click', () => {
-          carousel2.scrollLeft2 -= carousel2.offsetWidth;
-        });
-
-        nextButton2.addEventListener('click', () => {
-          carousel2.scrollLeft2 += carousel2.offsetWidth;
-        });
-      </script>
-
-    {{-- Carousel2 End --}} -->
-
-
-  <!-- Visit Homestay and Culinary End -->
-
-    <div style="text-align: center">
-        <h1 style="font-weight: bold; color: #4CC417">OUR SERVICE PRODUCT</h1>
-    </div>
-
-    <div style="display: flex; text-align: justify; justify-content: center;">
-        <div style="padding: 5%">
-            <h4 style="text-align: center; font-weight: bold; color: green">
-                Choose The Place Where you want to Visit
-            </h4>
-            <div style="text-align:center; width: 50vh;">
-                {{-- <img src="{{Storage::url($des->photo)}}"  style="height:300px; width: 395px;"> --}}
-                <div id="carousel2" style="margin-top: 10%; margin-bottom: 6%">
-                
-                  
-                    <div class="slidePromo"><a href="#"><img src="{{Storage::url($destination->photo)}}" style="height:200px; width:200px;" class="homeImage"></a></div>
-                  
-                </div>
-                
-                <a href="/homestay"><button style="border-radius: 20px; background: linear-gradient(to right, orange, red); color: white; padding: 2%; padding-left: 7%; padding-right: 7%; translate: 125% -150%">See More</button></a>
-            </div>
-
-            <p style="white-space: pre-line;" style="font-weight: bold">
-                Menjelajahi tempat-tempat wisata yang menyenangkan!
-            </p>
-        </div>
-
-        <div style="padding:5%">
-            <h4 style="text-align: center; font-weight: bold; color: green">
+          <div class="col-6">
+            <h4 class="subTittle" style="text-align: center; font-weight: bold; color: green">
                 Explore a Different Way Culinary Experience
             </h4>
-            <div style="text-align:center; width: 50vh;">
-                {{-- <img src="{{Storage::url($cul->photo)}}" style="height:300px; width:410px"> --}}
-                <div id="carousel2" style="margin-top: 10%; margin-bottom: 6%">
-                  
-                    <div class="slidePromo"><img src="{{Storage::url($culinary->photo)}}" style="height:200px; width:200px;" class="promoImage"></div>
-                  
-                </div>
-                <a href="/culinary"><button style="border-radius: 20px; background: linear-gradient(to right, orange, red); color: white; padding: 2%; padding-left: 8%; padding-right: 8%; translate: 125% -150%">See More</button></a>
-            </div>
-            <p style="white-space: pre-line;" style="font-weight: bold">
-                Menjelajahi makanan-makanan yang enak!
-            </p> 
+              <div class="imgContainer">
+                  <img src="{{Storage::url($culinary->photo)}}"  class="imgService">
+                    <a href="/homestay"><button class="serviceButton">See More</button></a>
+                  <p class="mt-3"> Menjelajahi makanan-makanan yang enak!</p>
+              </div>
+          </div>
         </div>
+      </div>
     </div>
 @endsection
+
+  <!-- Visit Homestay and Culinary End -->

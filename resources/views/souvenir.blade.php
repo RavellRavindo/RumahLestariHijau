@@ -18,7 +18,7 @@
         <div style="padding: 4%">
             <div style="text-align: justify; margin-bottom: 3%">{{$data->name}}</div>
             <div class="hargaSouvenir">Rp. {{$data->price}}</div>
-            <button id="openModal" class="checkButtonSouvenir" onclick="openForm({{$data->id}})">Check</button>
+            <button id="openModal" class="checkButtonSouvenir" onclick="openForm('{{$data->id}}')">Check</button>
         </div>
     </div>
     @endforeach
@@ -31,7 +31,7 @@
 <div id="myOverlay {{$data->id}}" class="overlayCulinary">
 
     <div class="wrapSouvenir">
-        <span class="closebtnCulinary" onclick="closeForm({{$data->id}})" title="Close"> X </span>
+        <span class="closebtnCulinary" onclick="closeForm('{{$data->id}}')" title="Close"> X </span>
         <img src="{{Storage::url($data->photo)}}"
             style="margin-left: auto; margin-right: auto; width: 50%; display: block; border-radius: 10px; margin-bottom: 5%">
         <div style="text-align: center; font-weight: bold; color: green; margin-bottom: 3%">{{$data->name}}</div>

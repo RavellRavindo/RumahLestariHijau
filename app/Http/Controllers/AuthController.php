@@ -3,89 +3,71 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-
-    public function login(Request $request){
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        
-
-        $credential = $request->only('email', 'password');
-        $user = User::where(['email'=>$request->email])->first();
-
-        if(Auth::attempt($credential)){
-            $request->session()->put('user', $user);
-            Auth::login($user);
-
-            if ($user->isAdmin) return redirect('/admin');
-            else return redirect ('/');
-        }
-        return redirect()->back()->withErrors([
-            'email' => "Email not registered",
-            'password' => "Wrong Password"
-        ]);
-        
-    }
-
-    public function registration(Request $request){
+    public function registerPage()
+    {
         return view('registration');
     }
-    
-    public function registerUser(Request $request)
+
+    public function loginPage()
     {
-
-        $validateData = $request->validate([
-            'name' => 'required|regex:/^[a-z A-Z]+$/u',
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ]);
-
-        $data = $request->all();
-        $check = $this->create($data);
-        return redirect("/")->withSuccess('You have signed-in');
-
-    }
-    
-    public function create(array $data)
-    {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password']),
-        'isAdmin' => '0',
-      ]);
-    }  
-
-    public function editUser(Request $request) {
-        $validateData = $request->validate([
-            'name' => 'required|regex:/^[a-z A-Z]+$/u',
-            'email' => 'required|email',
-        ]);
-
-        $user = Auth::user();
-        $data = User::where(['email'=>$user->email])->first();
-        $data->name = $request->name;
-        $data->email = $request->email;
-
-        $data->save();
-        return redirect('/profile');
+        return view('login');
     }
 
-    public function logout(Request $request) 
+    public function register()
     {
-        Session:flush();
+        $attr = request()->validate([
+            'name' => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:7|max:255',
+        ]);
+
+        $user = User::create([
+            'name' => $attr['name'],
+            'email' => $attr['email'],
+            'password' => bcrypt($attr['password']),
+            'isAdmin' => '0',
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home')->withSuccess('Successfully signed in');
+    }
+
+    public function login()
+    {
+        $attr = request()->validate([
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:7|max:255',
+        ]);
+
+        $auth = $attr->only('email', 'password');
+
+        if(!Auth::attempt($auth)){
+            throw ValidationException::withMessages([
+                'email' => "Email is not registered",
+                'password' => "Wrong Password"
+            ]);
+        }
+
+        if (Auth::user()->userType == 'admin')
+            return redirect()->route('admin');
+
+        return redirect()->route('home');
+    }
+
+    public function logout()
+    {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
 
-        return redirect('/login');
+        $session = request()->session();
+        $session->invalidate();
+        $session->regenerateToken();
+
+        return redirect()->route('home');
     }
 }

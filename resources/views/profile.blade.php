@@ -8,7 +8,7 @@
         </script>
     @endif
 
-<form method='POST' action="{{ route('editprofile') }}">
+<form method='POST' action="/editProfile">
 @csrf
 <div class="container">
     <div class="row justify-content-center">
