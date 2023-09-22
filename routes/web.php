@@ -39,8 +39,6 @@ use Illuminate\Support\Facades\Session;
 // });
 
 Route::get('/', [ViewController::class, 'index']);
-Route::get('/resp', [ViewController::class, 'indexresp']);
-
 
 // Route::get('/homestay', function () {
 //     return view('homestay');

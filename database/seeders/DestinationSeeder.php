@@ -24,6 +24,7 @@ class DestinationSeeder extends Seeder
                 'rundown' => "1. Berkumpul 2. Berenang",
                 'address' => "Jl. Pantai Kuta, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361",
                 'photo' => "destination_img/OutbondBal_seeder.jpg",
+                'price' => 40000,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -34,6 +35,7 @@ class DestinationSeeder extends Seeder
                 'rundown' => "1. Berkumpul 2. Berenang sendiri",
                 'address' => "Jl. Pantai Kuta, Kuta, Kec. Kuta, Kabupaten Badung, Bali 80361",
                 'photo' => "destination_img/OutbondPan_seeder.jpg",
+                'price' => 40000,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],

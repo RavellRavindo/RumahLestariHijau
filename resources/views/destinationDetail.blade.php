@@ -39,9 +39,9 @@
                 onclick="document.getElementById('Rundown').style.display='block'; document.getElementById('Description').style.display='none'; document.getElementById('Location').style.display='none'; document.getElementById('Price').style.display='none'">Rundown</button>
             <button class="buttonDestinationDetail"
                 onclick="document.getElementById('Location').style.display='block'; document.getElementById('Description').style.display='none'; document.getElementById('Rundown').style.display='none'; document.getElementById('Price').style.display='none'">Location</button>
-            <!-- <button class="buttonDestinationDetail"
+            <button class="buttonDestinationDetail"
                 onclick="document.getElementById('Price').style.display='block'; document.getElementById('Description').style.display='none'; document.getElementById('Location').style.display='none'; document.getElementById('Rundown').style.display='none'">Price</button>
-            -->
+           
         </div> 
         <div id="Description" style="display:none">
             <p>{{$des->description}}</p>
