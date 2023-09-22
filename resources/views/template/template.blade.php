@@ -21,13 +21,13 @@
 
     <!-- Header  -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sectionContainer">
             <a class="navbar-brand" href="/"><img src="/gambar/logo_white.jpeg" style="height:50px; width:100%"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                  </button>
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse justify-content-end " id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
                         <a class="nav-link font-weight-bold text-success" href="/"> Home <span class="sr-only">(current)</span></a>
@@ -92,7 +92,7 @@
     </main>
 
     <!-- Footer  -->
-    <footer style="background: linear-gradient(rgb(42 180 70), rgb(98 180 38))" id="footer">
+    <footer style="background: linear-gradient(rgb(42 180 70), rgb(98 180 38)); margin-top:2%;" id="footer">
         <div style="max-width: 100%; margin: auto; display: flex">
                 <ul>
                 <li style="list-style: none;">

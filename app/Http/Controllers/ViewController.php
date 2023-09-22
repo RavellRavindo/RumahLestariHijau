@@ -18,9 +18,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ViewController extends Controller
 {
-
-
-
     public function indexSouvenir(){
         $data = Souvenir::all();
         return view('souvenir', ['sou'=>$data]);

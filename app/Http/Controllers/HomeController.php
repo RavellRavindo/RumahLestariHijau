@@ -11,9 +11,9 @@ class HomeController extends Controller
     public function index()
     {
         return view('home', [
-            'promos' => Promo::all(),
-            'culinaries' => Culinary::all(),
-            'destinations' => Destination::all()
+            'promos' => Promo::limit(10)->get(),
+            'culinary' => Culinary::first(),
+            'destination' => Destination::first()
         ]);
     }
 }

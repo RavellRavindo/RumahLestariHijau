@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\CulinaryController;
 
 use App\Http\Controllers\ViewController;
 use App\Models\Listing;
@@ -40,7 +41,7 @@ Route::get('/contactUs', [ContactUsController::class, 'index']
 // ' API '
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::post('/editProfile', [ProfileController::class, 'editProfile']);
 
@@ -120,9 +121,6 @@ Route::get('/editPromo/{id}', [ViewController::class, 'indexAdminEditPromo']);
 Route::post('editPromo/{id}/edit', [RegisterController::class, 'editPromo'])->name('editp');
 
 Route::delete('/deleteTablePromo/{id}', [RegisterController::class, 'deletePromo'])->name('deletep');
-
-// -----------------------------------
-
 
 // Route::get('/clear', function() {
 //     Artisan::call('cache:clear');

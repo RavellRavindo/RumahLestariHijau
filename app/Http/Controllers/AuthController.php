@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -29,8 +30,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $attr['name'],
             'email' => $attr['email'],
-            'password' => bcrypt($attr['password']),
-            'isAdmin' => '0',
+            'password' => bcrypt($attr['password'])
         ]);
 
         Auth::login($user);
@@ -45,7 +45,7 @@ class AuthController extends Controller
             'password' => 'required|min:7|max:255',
         ]);
 
-        $auth = $attr->only('email', 'password');
+        $auth = Arr::only($attr, ['email', 'password']);
 
         if(!Auth::attempt($auth)){
             throw ValidationException::withMessages([

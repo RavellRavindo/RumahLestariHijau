@@ -16,6 +16,11 @@ body{
     min-height:100vh !important;
 }
 
+.sectionContainer{
+  width: 78%;
+  margin: 0 auto;
+}
+
 .HomestayPage1{
     margin-top: 50px;
     margin-bottom: 50px;
@@ -122,9 +127,9 @@ img {vertical-align: middle;}
 
 .homeImage{
   width: 100%;
-  border-radius: 30px;
-  border: 2px solid #202020;
-  box-shadow: 2px 8px 10px black;
+  border-radius: 10px;
+  border: 0px solid #202020;
+  box-shadow: 1px 2px 1px 1px black;
 }
 
 /* --------------------------------------- Home End ----------------------------------- */
@@ -140,13 +145,15 @@ img {vertical-align: middle;}
 
 .slidePromo {
   display: inline-block;
-  width: 30%;
-  margin-left: 5%;
+  width: 25%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
 }
 .promoImage{
   width: 100%;
-  border-radius: 30px;
-  border: 3px solid black;
+  border-radius: 10px;
+  border: 0px solid #202020;
+  box-shadow: 1px 2px 1px 1px black;
 }
 
 /* ----------------------------------------Untuk Promo End---------------------------------------- */
@@ -166,7 +173,7 @@ img {vertical-align: middle;}
   border-color: green;
   border-radius: 10px;
   color:green;
-  padding: 1%;
+  padding: 4%;
   float: left;
   margin-bottom: 4%;
   font-weight: bold;
@@ -174,6 +181,7 @@ img {vertical-align: middle;}
 
 .openbtnCulinary:hover{
   background: orangered;
+  transition: 150ms ease;
   font-size: 100%;
   cursor: pointer;
   text-decoration: none;
@@ -181,7 +189,7 @@ img {vertical-align: middle;}
   border-color: orangered;
   border-radius: 10px;
   color:white;
-  padding: 1%;
+  padding: 4%;
   float: left;
   margin-bottom: 4%;
   font-weight: bold;

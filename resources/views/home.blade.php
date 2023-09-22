@@ -272,16 +272,19 @@
   background: #df3740;
 }
 
+/* Start Service CSS */
 .service{
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .subTittle{
   margin-bottom: 1rem;
+  font-weight: bold;
+  color: green
 }
 
 .serviceTittle{
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .imgService{
@@ -302,6 +305,8 @@
   right: 70px;
   cursor: pointer
 }
+
+/* End Service CSS */
 
 @media (max-width: 992px) {
   #hero {
@@ -344,7 +349,7 @@
 <!-- Promo End -->
 
     <!-- Home 2 Start -->
-    <div>
+    <!-- <div>
         <div>
             <ul>
                 <li style="list-style: none; padding: 25px">
@@ -356,16 +361,16 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> -->
 
 
     {{-- Carousel Start --}}
-    <div id="carousel" style="margin-top: -10%; margin-bottom: 8%">
+    <div id="carousel" style="margin-bottom: 8%">
         @foreach ($promos as $promo)
-        <div class="slidePromo"><a href="#"><img src="{{Storage::url($promo->photo)}}" style="height:250px; width:400px;" class="homeImage"></a></div>
+        <div class="slidePromo"><a href="#"><img src="{{Storage::url($promo->photo)}}" style="height:220px; width:400px;" class="homeImage"></a></div>
         @endforeach
 
-        <div style="position: absolute; margin-left: 45%">
+        <div style="position: absolute; margin-left: 45%; margin-top: 1%;">
             <button id="prev" style="float: left; font-size:50%; background-color: rgba(255, 255, 255, 0)"><div class="homeArrow" style="border: 1px solid white; border-radius: 100%; padding: 5%"><i class="fa fa-arrow-left" style="font-size: 150%"></i></div></button>
             <a class="homeSeeAllPromo" href="http://localhost:8000/promo">See All Promo</a>
             <button id="next" style="float: left; font-size:50%; background-color: rgba(255, 255, 255, 0)"><div class="homeArrow" style="border: 1px solid white; border-radius: 100%; padding: 5%"><i class="fa fa-arrow-right" style="font-size: 150%"></i></div></button>
@@ -430,7 +435,8 @@
         nextButton.addEventListener('click', () => {
           carousel.scrollLeft += carousel.offsetWidth;
         });
-      </script>
+
+    </script>
 
     {{-- Carousel End --}}
 
@@ -447,7 +453,7 @@
                 <img src="gambar/home2.svg" style="width: 25%; margin: 2%">
                 <img src="gambar/home3.svg" style="width: 25%; margin: 2%">
             </div>
-            <a href="/destination"><button style="border-radius: 20px; background: linear-gradient(to right, orange, red); color: white; padding: 1%; padding-left: 3%; padding-right: 3%; translate: 0% -50%">See More</button></a>
+            <a href="/destination"><button style="border-radius: 20px; background: linear-gradient(to right, orange, red); color: white; padding: 1%; padding-left: 3%; padding-right: 3%; translate: 0% -50%; cursor: pointer;">See More</button></a>
             <p style="border-radius: 20px; color: white; translate: 0% -400%; font-size: 300%; font-weight:bold">A Truly EXtraordinary Experience</p>
             {{-- Style= "Translate: X Y" --}}
         </div>
@@ -457,13 +463,6 @@
 
 
     <!-- Hero Visit Homestay and Culinary Start -->
-
-  // @foreach ($destinations as $destination)
-  // @endforeach
-  //
-  // @foreach ($culinaries as $culinary)
-  // @endforeach
-
     <div class="service">
       <div style="text-align: center" class="serviceTittle">
           <h1 style="font-weight: bold; color: #4CC417">OUR SERVICE PRODUCT</h1>
@@ -472,18 +471,18 @@
       <div class="container">
         <div class="row">
           <div class="col-6">
-            <h4 class="subTittle" style="text-align: center; font-weight: bold; color: green">
+            <h4 class="subTittle">
                 Choose The Place Where you want to Visit
             </h4>
               <div class="imgContainer">
                   <img src="{{Storage::url($destination->photo)}}" class="imgService">
-                    <a href="/homestay"><button class="serviceButton">See More</button></a>
+                    <a href="/culinary"><button class="serviceButton">See More</button></a>
                   <p class="mt-3">   Menjelajahi tempat-tempat wisata yang menyenangkan!</p>
               </div>
           </div>
 
           <div class="col-6">
-            <h4 class="subTittle" style="text-align: center; font-weight: bold; color: green">
+            <h4 class="subTittle">
                 Explore a Different Way Culinary Experience
             </h4>
               <div class="imgContainer">

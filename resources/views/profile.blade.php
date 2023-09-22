@@ -10,7 +10,7 @@
 
 <form method='POST' action="/editProfile">
 @csrf
-<div class="container">
+<div class="container" style="height: 800px;  align-items: center;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
