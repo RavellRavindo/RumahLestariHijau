@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
            [
             'name' => "Admin",
             'email' => 'admin@admin.com',
-            'password' => Hash::make('12345678'),
+            'password' => bcrypt('12345678'),
             'is_admin' => true,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
            [
             'name' => "User",
             'email' => 'user@user.com',
-            'password' => Hash::make('12345678'),
+            'password' => bcrypt('12345678'),
             'is_admin' => false,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
