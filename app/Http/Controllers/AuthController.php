@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -30,7 +31,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $attr['name'],
             'email' => $attr['email'],
-            'password' => bcrypt($attr['password'])
+            'password' => Hash::make($attr['password'])
         ]);
 
         Auth::login($user);
