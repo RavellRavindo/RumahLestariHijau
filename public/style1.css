@@ -294,11 +294,11 @@ img {vertical-align: middle;}
   background-color: green;
   color:white;
   padding: 4%;
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 5%;
+  padding-right: 5%;
   float:right;
-  margin-top: -10%;
-  margin-bottom: 5%;
+  margin-top: -12%;
+  margin-bottom: 7%;
 }
 
 .checkButtonSouvenir:hover{
@@ -307,11 +307,11 @@ img {vertical-align: middle;}
   background-color: orangered;
   color:white;
   padding: 4%;
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 5%;
+  padding-right: 5%;
   float:right;
-  margin-top: -10%;
-  margin-bottom: 5%;
+  margin-top: -12%;
+  margin-bottom: 7%;
 }
 
 .hargaSouvenir{

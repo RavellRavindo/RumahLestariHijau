@@ -12,6 +12,7 @@
     /* background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
     width: 100%;
     padding: 5%;
+    cursor: pointer;
 }
 
 .destinasiCheckDetail:hover{
