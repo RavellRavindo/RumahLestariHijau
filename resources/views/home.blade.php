@@ -5,11 +5,14 @@
 @section('content')
 
 <!-- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_slideshow_auto -->
+<style>
 
+
+</style>
     {{-- Carousel Start --}}
     <div id="carousel" style="margin-bottom: 8%">
         @foreach ($promos as $promo)
-        <div class="slidePromo"><a href="#"><img src="{{Storage::url($promo->photo)}}" style="height:220px; width:400px;" class="homeImage"></a></div>
+        <div class="slideHomePromo"><a href="#"><img class="homeImage" src="{{Storage::url($promo->photo)}}" alt="fotoimage"></a></div>
         @endforeach
 
         <div style="position: absolute; margin-left: 45%; margin-top: 1%;">
@@ -96,7 +99,7 @@
                 <img src="gambar/home3.svg" style="width: 25%; margin: 2%">
             </div>
             <a href="/destination"><button style="border-radius: 20px; background: linear-gradient(to right, orange, red); color: white; padding: 1%; padding-left: 3%; padding-right: 3%; translate: 0% -50%; cursor: pointer;">See More</button></a>
-            <p style="border-radius: 20px; color: white; translate: 0% -400%; font-size: 300%; font-weight:bold">A Truly EXtraordinary Experience</p>
+            <p class="paja" style="border-radius: 20px; color: white; translate: 0% -400%; font-size: 300%; font-weight:bold">A Truly EXtraordinary Experience</p>
             {{-- Style= "Translate: X Y" --}}
         </div>
     </div>
