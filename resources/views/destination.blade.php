@@ -4,27 +4,6 @@
 
 @section('content')
 
-<style>
-.destinasiCheckDetail{
-    font-weight: bold;
-    color: white;
-    background: green;
-    /* background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); */
-    width: 100%;
-    padding: 5%;
-    cursor: pointer;
-}
-
-.destinasiCheckDetail:hover{
-    font-weight: bold;
-    color: white;
-    background: green;
-    /* background: linear-gradient(to right, red, orange); */
-    width: 100%;
-    padding: 5%;
-}
-</style>
-
 <div style="text-align: center; font-weight: bold; padding: 2%; padding-left: 20%; padding-right: 20%">
     <p style="color:rgb(17, 187, 17); font-size: 200%">Special Event</p>
     <p style="color:rgb(0, 87, 0); font-size: 150%">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quis amet animihic eveniet </p>
@@ -42,8 +21,8 @@
         </a>
         <label style="background-color: green; padding: 2%; padding-left: 5%; padding-right: 5%;">Hot Offer</label>
         <div class="testt" style="width: 80%; display: flex; justify-content: space-between; position: absolute; bottom: 10px;">
-            <label style=""><i class="fa fa-map-marker" style="font-size: 150%"></i>&nbsp;&nbsp;&nbsp;Jakarta</label>
-            <label style=""><i class="fa fa-arrows-alt" style="font-size: 150%"></i>&nbsp;&nbsp;&nbsp;10 pax</label>
+            <label><i class="fa fa-map-marker" style="font-size: 150%"></i>&nbsp;&nbsp;&nbsp;Jakarta</label>
+            <label><i class="fa fa-arrows-alt" style="font-size: 150%"></i>&nbsp;&nbsp;&nbsp;10 pax</label>
         </div>
     </div>
     @endforeach

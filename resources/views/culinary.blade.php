@@ -3,13 +3,6 @@
 @section('title', 'Culinary - Rumah Hijau')
 
 @section('content')
-<style>
-    .culinaryBtn {
-        border-radius: 30px;
-        padding: 8px;
-    }
-</style>
-
 <!-------------------------- Sort-Start -------------------------------->
 <div class="sectionContainer" style="display: grid; grid-template-columns: 20% 80%; gap: 10%; margin-top: 80px;">
     <ul>
@@ -94,22 +87,24 @@
 
         <!-------------------------- Menu-Start -------------------------------->
         <li style="list-style: none; width:75%;">
-            <h3>
-                <div style="width: 50%; float: left;">
-                    <b style="color: #25b448; font-size: 40px;">
+            <div style="display:flex; justify-content:space-between;">
+                <div>
+                    <strong style="color: #25b448; font-size: 40px;">
                         What's
-                    </b>
-                    <b style="color: #094222; font-size: 40px;">
+                    </strong>
+                    <strong style="color: #094222; font-size: 40px;">
                         NEW!
-                    </b>
+                    </strong>
                 </div>
-                <div class="culinarySearch" style="width: 50%; float: left;">
-                    <form class="example" action="/action_page.php" style="margin:auto;">
-                        <input type="text" placeholder="What you looking for.." name="search2" style="width: 250px; padding:8px; border-radius:30px; ">
-                        <button class="culinaryBtn" type="submit">Search</button>
+                <div class="searchWrap">
+                    <form class="searchBox" action="/action_page.php">
+                        <input type="text" class="input" placeholder="Search Culinary.."  name="search2">
+                        <div class="btn">
+                            <button type="submit">Search</button>
+                        </div>
                     </form>
                 </div>
-            </h3>
+            </div>
             <div class="imgContainer">
                 <img src="/gambar/cul.svg" width="100%" style="border-radius: 10px; margin-top:20px; margin-bottom:20px; object-fit: cover;">
             </div>
