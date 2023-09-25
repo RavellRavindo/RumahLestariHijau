@@ -16,10 +16,10 @@ class CulinaryController extends Controller
             'asc' => 'in:false,true'
         ]);
 
-        $q      = request()->get('q');
-        $sort   = request()->get('sort');
-        $filter = request()->get('filter');
-        $asc    = request()->get('asc');
+        $q      = $attr['q'] ?? null;
+        $sort   = $attr['sort'] ?? null;
+        $filter = $attr['filter'] ?? null;
+        $asc    = $attr['asc'] ?? null;
 
         $query = Culinary::selectRaw('*');
 

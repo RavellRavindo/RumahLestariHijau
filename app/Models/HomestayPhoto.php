@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class HomestayPhoto extends Model
 {
     use HasFactory;
+
     public function homestay(){
         return $this->belongsTo(Homestay::class, "homestay_id", "id");
     }

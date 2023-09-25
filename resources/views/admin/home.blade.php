@@ -5,10 +5,10 @@
     <link rel="stylesheet" href="/css/adminhome.css">
     <div class="kontainer">
         <a href="/">Home</a>
-        <a href="/tableHomestay">Homestay</a>
-        <a href="/tableCulinary">Culinary</a>
-        <a href="/tableDestination">Destination</a>
-        <a href="/tablePromo">Promo</a>
-        <a href="/tableSouvenir">Souvenirs</a>
+        <a href="/homestay">Homestay</a>
+        <a href="/culinary">Culinary</a>
+        <a href="/destination">Destination</a>
+        <a href="/promo">Promo</a>
+        <a href="/souvenir">Souvenirs</a>
     </div>
 @endsection

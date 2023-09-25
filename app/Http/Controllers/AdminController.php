@@ -7,11 +7,196 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    public function homePage()
+    {
+        return view('admin.home');
+    }
+
+    public function tablePage($table)
+    {
+        switch ($table) {
+        case 'homestay':    return view('admin.tableHomestayPage',    ['homestays'    => Homestay::paginate(10)]);
+        case 'culinary':    return view('admin.tableCulinaryPage',    ['culinaries'   => Culinary::paginate(10)]);
+        case 'destination': return view('admin.tableDestinationPage', ['destinations' => Destination::paginate(10)]);
+        case 'souvenir':    return view('admin.tableSouvenirPage',    ['souvenirs'    => Souvenir::paginate(10)]);
+        case 'promo':       return view('admin.tablePromoPage',       ['promos'       => Promo::paginate(10)]);
+        default:            return response([], 404);
+        }
+    }
+
+    public function addTablePage($table)
+    {
+        switch ($table) {
+        case 'homestay':    return view('admin.createHomestayPage');
+        case 'culinary':    return view('admin.createCulinaryPage');
+        case 'destination': return view('admin.createDestinationPage');
+        case 'souvenir':    return view('admin.createSouvenirPage');
+        case 'promo':       return view('admin.createPromoPage');
+        default:            return response([], 404);
+        }
+    }
+
+    public function editTablePage($table, $id)
+    {
+        switch ($table) {
+        case 'homestay':    return view('admin.editHomestayPage',    ['homestay'    => Homestay::findOrFail($id))]);
+        case 'culinary':    return view('admin.editCulinaryPage',    ['culinary'    => Culinary::findOrFail($id))]);
+        case 'destination': return view('admin.editDestinationPage', ['destination' => Destination::findOrFail($id))]);
+        case 'souvenir':    return view('admin.editSouvenirPage',    ['souvenir'    => Souvenir::findOrFail($id))]);
+        case 'promo':       return view('admin.editPromoPage',       ['promo'       => Promo::findOrFail($id))]);
+        default:            return response([], 404);
+        }
+    }
+
     private function saveImage($image)
     {
         $savefile = Str::orderedUuid().'.'.$image->getClientOriginalExtension();
         Storage::putFileAs('assets/', $image, $savefile);
         return $savefile;
+    }
+
+    private function deleteImage($imagePath)
+    {
+        Storage::delete($imagePath);
+    }
+
+    public function addHomestay()
+    {
+        $attr = request()->validate([
+            'name'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'location'  => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'host'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'address'   => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'rating'    => 'required',
+            'like'      => 'required',
+            'price'     => 'required',
+            'guest'     => 'required',
+            'bedroom'   => 'required',
+            'bed'       => 'required',
+            'bath'      => 'required',
+            'thumbnail' => 'required',
+            'images'    => 'required'
+        ]);
+
+        $thumb  = request()->file('thumbnail');
+        $images = request()->file('images');
+
+        $hs                 = new Homestay();
+        $hs->name           = $attr->name;
+        $hs->location       = $attr->location;
+        $hs->host           = $attr->host;
+        $hs->address        = $attr->address;
+        $hs->rating         = $attr->rating;
+        $hs->like           = $attr->like;
+        $hs->price          = $attr->price;
+        $hs->guest          = $attr->guest;
+        $hs->bedroom        = $attr->bedroom;
+        $hs->bed            = $attr->bed;
+        $hs->bath           = $attr->bath;
+
+        $hs->has_wifi       = $attr->has_wifi;
+        $hs->has_parking    = $attr->has_parking;
+        $hs->has_restaurant = $attr->has_restaurant;
+        $hs->has_ac         = $attr->has_ac;
+        $hs->save();
+
+        $photo              = new HomestayPhoto();
+        $photo->homestay_id = $hs->id;
+        $photo->index       = 0;
+        $photo->path        = $this->saveImage($thumb);
+        $photo->save();
+
+        foreach ($images as $key => $img) {
+            $photo              = new HomestayPhoto();
+            $photo->homestay_id = $hs->id;
+            $photo->index       = $key + 1;
+            $photo->path        = $this->saveImage($img);
+            $photo->save();
+        }
+
+        return redirect('/admin/homestay/' . $hs->id);
+    }
+
+    public function editHomestay($id)
+    {
+        $hs = Homestay::findOrFail($id);
+
+        $attr = request()->validate([
+            'name'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'location'  => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'host'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'address'   => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'rating'    => 'required',
+            'like'      => 'required',
+            'price'     => 'required',
+            'guest'     => 'required',
+            'bedroom'   => 'required',
+            'bed'       => 'required',
+            'bath'      => 'required',
+            'thumbnail' => 'required',
+            'images'    => 'required'
+        ]);
+
+        $thumb  = request()->file('thumbnail');
+        $images = request()->file('images');
+
+        $hs->name           = $attr->name;
+        $hs->location       = $attr->location;
+        $hs->host           = $attr->host;
+        $hs->address        = $attr->address;
+        $hs->rating         = $attr->rating;
+        $hs->like           = $attr->like;
+        $hs->price          = $attr->price;
+        $hs->guest          = $attr->guest;
+        $hs->bedroom        = $attr->bedroom;
+        $hs->bed            = $attr->bed;
+        $hs->bath           = $attr->bath;
+
+        $hs->has_wifi       = $attr->has_wifi;
+        $hs->has_parking    = $attr->has_parking;
+        $hs->has_restaurant = $attr->has_restaurant;
+        $hs->has_ac         = $attr->has_ac;
+        $hs->save();
+
+        foreach ($hs->homestay_photo as $photo) {
+            $this->deleteImage($photo->path);
+        }
+        $hs->homestay_photo->each->delete();
+
+        $photo              = new HomestayPhoto();
+        $photo->homestay_id = $hs->id;
+        $photo->index       = 0;
+        $photo->path        = $this->saveImage($thumb);
+        $photo->save();
+
+        foreach ($images as $key => $img) {
+            $photo              = new HomestayPhoto();
+            $photo->homestay_id = $hs->id;
+            $photo->index       = $key + 1;
+            $photo->path        = $this->saveImage($img);
+            $photo->save();
+        }
+
+        return redirect('/admin/homestay/' . $hs->id);
+    }
+
+    public function deleteHomestay($id)
+    {
+        $hs = Homestay::find($id);
+
+        $hs->nearby_place->each->delete();
+        $hs->popular_place->each->delete();
+
+        foreach ($hs->homestay_photo as $photo) {
+            $this->deleteImage($photo->path);
+        }
+
+        $hs->homestay_photo->each->delete();
+        $hs->comment_list->each->delete();
+
+        $hs->delete();
+
+        return redirect()->back()->with('success', 'Homestay deleted successfully');
     }
 
     public function addDestination()
@@ -43,7 +228,7 @@ class AdminController extends Controller
         // $dprice->price = $request->pricenew;
         // $dprice->save();
 
-        return redirect('/tableDestination');
+        return redirect('/admin/destination/' . $data->id);
     }
 
     public function editDestination($id)
@@ -70,52 +255,7 @@ class AdminController extends Controller
         $data->photo = $savedImage;
         $data->save();
 
-        // $arr = $request->toArray();
-        // $rq_arr = array_chunk(array_splice($arr, 5, count($arr)), 3);
-
-        // //check if min and max person value from input have duplicate
-        // $rq_person = array_merge(array_column($rq_arr, '0'), array_column($rq_arr, '1'));
-        // if ( count($rq_person) !== count(array_unique($rq_person)) ){
-        //     return redirect()->back()->with('failed', 'min or max person got duplicate');
-        // }
-
-        // //check if price value from input have duplicate
-        // $rq_price = array_column($rq_arr, '2');
-        // if ( count($rq_price) !== count(array_unique($rq_price)) ){
-        //     return redirect()->back()->with('failed', 'price got duplicate');
-        // }
-
-        // $desprice = DestinationPrice::where('destination_id', $id)->orderBy('min_person', 'asc')->get();
-
-        // $idx = 0;
-        // foreach ($desprice as $dprice){
-        //     if ( $dprice->min_person != $rq_arr[$idx][0] || $dprice->max_person != $rq_arr[$idx][1]
-        //         || $dprice->price != $rq_arr[$idx][2])
-        //         {
-        //             if ($rq_arr[$idx][0] >= $rq_arr[$idx][1]){
-        //                 // min > max person. failed
-        //                 return redirect()->back()->with('failed', 'min person bigger than max person');
-        //             }
-
-        //             $dprice->min_person = $rq_arr[$idx][0];
-        //             $dprice->max_person = $rq_arr[$idx][1];
-        //             $dprice->price = $rq_arr[$idx][2];
-        //             $dprice->save();
-        //         }
-        //     $idx++;
-        // }
-
-        // if (count($rq_arr) > $desprice->count())
-        // {
-        //     $dprice = new DestinationPrice();
-        //     $dprice->destination_id = $id;
-        //     $dprice->min_person = $rq_arr[$idx][0];
-        //     $dprice->max_person = $rq_arr[$idx][1];
-        //     $dprice->price = $rq_arr[$idx][2];
-        //     $dprice->save();
-        // }
-
-        return redirect('/tableDestination');
+        return redirect('/admin/destination/' . $data->id);
     }
 
     public function deleteDestination($id)
@@ -147,7 +287,7 @@ class AdminController extends Controller
         $data->photo = $savedImage;
         $data->save();
 
-        return redirect('/tableCulinary');
+        return redirect('/admin/culinary/' . $data->id);
     }
 
     public function editCulinary($id)
@@ -171,7 +311,7 @@ class AdminController extends Controller
         $data->photo = $savedImage;
         $data->save();
 
-        return redirect('/tableCulinary');
+        return redirect('/admin/culinary/' . $data->id);
     }
 
     // Photo culinary tiba" ada banyak (:

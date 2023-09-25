@@ -8,7 +8,7 @@ use App\Models\Promo;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function homePage()
     {
         return view('home', [
             'promos' => Promo::limit(10)->get(),

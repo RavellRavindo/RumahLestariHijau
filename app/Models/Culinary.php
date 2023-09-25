@@ -16,7 +16,7 @@ class Culinary extends Model
         'description'
     ];
 
-    public function comment_list()
+    public function commentList()
     {
         return $this->hasMany(CommentList::class, "table_id", "id");
     }

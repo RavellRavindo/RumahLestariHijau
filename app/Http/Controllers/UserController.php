@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class ProfileController extends Controller
+class UserController extends Controller
 {
     public function profilePage()
     {
@@ -19,10 +19,7 @@ class ProfileController extends Controller
             'email' => 'required|email|max:255|unique:users,email',
         ]);
 
-        $user = Auth::user();
-        $user->name  = $attr['name'];
-        $user->email = $attr['email'];
-        $user->save();
+        Auth::user($attr)->save();
 
         return redirect()->route('profile');
     }

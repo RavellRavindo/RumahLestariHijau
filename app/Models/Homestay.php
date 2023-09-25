@@ -17,22 +17,22 @@ class Homestay extends Model
         'address'
     ];
 
-    public function nearby_place()
+    public function nearbyPlace()
     {
         return $this->hasMany(NearbyPlace::class, "homestay_id", "id");
     }
 
-    public function popular_place()
+    public function popularPlace()
     {
         return $this->hasMany(PopularPlace::class, "homestay_id", "id");
     }
 
-    public function homestay_photo()
+    public function homestayPhoto()
     {
         return $this->hasMany(HomestayPhoto::class, "homestay_id", "id");
     }
 
-    public function comment_list()
+    public function commentList()
     {
         return $this->hasMany(CommentList::class, "table_id", "id");
     }

@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function comment_list()
+    public function commentList()
     {
         return $this->hasOne(Photo::class, "category_id", "id");
     }

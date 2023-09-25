@@ -28,11 +28,9 @@ class AuthController extends Controller
             'password' => 'required|min:7|max:255',
         ]);
 
-        $user = User::create([
-            'name' => $attr['name'],
-            'email' => $attr['email'],
-            'password' => Hash::make($attr['password'])
-        ]);
+        $attr['password'] = Hash::make($attr['password']);
+
+        $user = User::create($attr);
 
         Auth::login($user);
 
@@ -46,9 +44,7 @@ class AuthController extends Controller
             'password' => 'required|min:7|max:255',
         ]);
 
-        $auth = Arr::only($attr, ['email', 'password']);
-
-        if(!Auth::attempt($auth)){
+        if(!Auth::attempt($attr)){
             throw ValidationException::withMessages([
                 'email' => "Email is not registered",
                 'password' => "Wrong Password"
