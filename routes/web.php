@@ -14,6 +14,17 @@ use App\Http\Controllers\AdminController;
 
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
 // ' Homepage '
 Route::get('/', [HomeController::class, 'homePage'])->name('homePage');
 
@@ -45,14 +56,14 @@ Route::middleware('auth')->group(function() {
 
     // ' Admin '
     Route::middleware('admin')->group(function() {
-        Route::get('/admin', [AdminController::class, 'adminHomePage']);
+        Route::get('/admin', [AdminController::class, 'homePage'])->name('adminHomePage');
 
-        Route::get('/admin/{table}', [AdminController::class, 'tablePage']);
-        Route::get('/admin/{table}/add', [AdminController::class, 'addTablePage']);
-        Route::get('/admin/{table}/{id}', [AdminController::class, 'editTablePage']);
+        Route::get('/admin/{table}', [AdminController::class, 'tablePage'])->name('adminTablePage');
+        Route::get('/admin/{table}/add', [AdminController::class, 'addTablePage'])->name('adminAddTablePage');
+        Route::get('/admin/{table}/{id}', [AdminController::class, 'editTablePage'])->name('adminEditTablePage');
 
-        Route::post('/admin/{table}/add', [AdminController::class, 'addTable']);
-        Route::post('/admin/{table}/{id}/edit', [AdminController::class, 'editTable']);
-        Route::delete('/admin/{table}/{id}/delete', [AdminController::class, 'deleteTable']);
+        Route::post('/admin/{table}/add', [AdminController::class, 'addTable'])->name('adminAddTable');
+        Route::post('/admin/{table}/{id}/edit', [AdminController::class, 'editTable'])->name('adminEditTable');
+        Route::delete('/admin/{table}/{id}/delete', [AdminController::class, 'deleteTable'])->name('adminDeleteTable');
     });
 });

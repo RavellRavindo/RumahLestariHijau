@@ -11,9 +11,7 @@
 
 </style>
 
-
-@if(Auth::check())
-<form method='POST' enctype="multipart/form-data" action="{{ route('stored') }}">
+<form method='POST' enctype="multipart/form-data" action="{{ route('adminAddTable', 'destination') }}">
     @csrf
     <div class="form-group">
         <label for="name">Name Destination</label>
@@ -66,21 +64,21 @@
     <!--
     <div class="form-group">
         <label for="personnew"> Add new Price Destination for </label>
-            
+
         <div id="parent" style="display: flex;">
             <div id="left" style="flex-basis: 50%; flex-grow: 1; flex-shrink: 10; border: 1px;">
-                <input id="minpnew" type="number" class="form-control" name='minpnew' 
+                <input id="minpnew" type="number" class="form-control" name='minpnew'
                 style='width:10em' placeholder="2">
             </div>
             -
             <div id="right" style="flex-basis: 50%; flex-grow: 1; flex-shrink: 1; border: 1px;">
-                <input id="maxpnew" type="number" class="form-control" name='maxpnew' 
+                <input id="maxpnew" type="number" class="form-control" name='maxpnew'
                 style='width:10em' placeholder="3">
             </div>
             Pax
         </div>
-         
-        <input id="pricenew" type="number" class="form-control" name='pricenew' 
+
+        <input id="pricenew" type="number" class="form-control" name='pricenew'
             placeholder="100000">
         @error('pricenew')
         <div class="alert alert-danger">{{ $message }}</div>
@@ -88,9 +86,7 @@
     </div>
     -->
     <button type="submit" class="btn btn-primary">{{ __('Add Destination') }}</button>
-    @endif
-    
-</form>
 
+</form>
 
 @endsection

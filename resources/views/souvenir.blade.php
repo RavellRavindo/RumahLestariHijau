@@ -13,7 +13,7 @@
 {{-- Kotak Gambar dan Deskripsi Souvenir --}}
 <div class="sectionContainer">
     <div style="display:flex; flex-wrap:wrap; width: 80%; margin-left: 15%; ">
-        @foreach ($sou as $data)
+        @foreach ($souvenirs as $data)
         <div class="kotakSouvenir" style="margin-bottom: 4%;">
             <img src="{{Storage::url($data->photo)}}" style="border-radius:5%; width: 100%; height: 250px; object-fit: cover;">
             <div style="padding: 4%;">
@@ -23,13 +23,13 @@
             </div>
         </div>
         @endforeach
-    
+
     </div>
 
 </div>
 
 {{-- Untuk Function Button Check Souvenir --}}
-@foreach ($sou as $data)
+@foreach ($souvenirs as $data)
 
 <div id="myOverlay {{$data->id}}" class="overlayCulinary">
 

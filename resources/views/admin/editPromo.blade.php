@@ -12,12 +12,11 @@
 </style>
 
 
-@if(Auth::check())
-<form method='POST' enctype="multipart/form-data" action="{{ route('editp', $data->id) }}">
+<form method='POST' enctype="multipart/form-data" action="{{ route('adminEditTable', ['promo', $promo->id]) }}">
     @csrf
     <div class="form-group">
         <label for="name">Name Promo</label>
-        <input id="name" value="{{$data->name}}" type="text" class="form-control" name='name' placeholder="Promo diskon">
+        <input id="name" value="{{$promo->name}}" type="text" class="form-control" name='name' placeholder="Promo diskon">
         @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -32,7 +31,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">{{ __('Edit Promo') }}</button>
-    @endif
 </form>
 
 

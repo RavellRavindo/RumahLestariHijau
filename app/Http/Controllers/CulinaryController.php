@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Culinary;
-use Illuminate\Http\Request;
 
 class CulinaryController extends Controller
 {

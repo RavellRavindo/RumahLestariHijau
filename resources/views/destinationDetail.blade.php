@@ -6,8 +6,8 @@
 
 <div style=" height:fit-content; padding: 40px; ">
     <div style="width: 60%; box-shadow: 1px 2px 4px 6px gray; padding: 3%; float: left; border-radius: 10px">
-        <p style="text-align:center; font-size: 150%; font-weight: bold; color: green">{{$des->name}}</p>
-        <img src="{{Storage::url($des->photo)}}" style="width: 693px; height: 309px; object-fit: cover;">
+        <p style="text-align:center; font-size: 150%; font-weight: bold; color: green">{{$destination->name}}</p>
+        <img src="{{Storage::url($destination->photo)}}" style="width: 693px; height: 309px; object-fit: cover;">
         <div class="ets">
             <button id="DescriptionButton" class="buttonDestinationDetail"
                 onclick="document.getElementById('Description').style.display='block'; document.getElementById('Rundown').style.display='none'; document.getElementById('Location').style.display='none'; document.getElementById('Price').style.display='none'">Description</button>
@@ -17,19 +17,19 @@
                 onclick="document.getElementById('Location').style.display='block'; document.getElementById('Description').style.display='none'; document.getElementById('Rundown').style.display='none'; document.getElementById('Price').style.display='none'">Location</button>
             <button class="buttonDestinationDetail"
                 onclick="document.getElementById('Price').style.display='block'; document.getElementById('Description').style.display='none'; document.getElementById('Location').style.display='none'; document.getElementById('Rundown').style.display='none'">Price</button>
-           
-        </div> 
+
+        </div>
         <div id="Description" style="display:none">
-            <p>{{$des->description}}</p>
-            <p>Price : Rp. {{$des->price}} / person</p>
+            <p>{{$destination->description}}</p>
+            <p>Price : Rp. {{$destination->price}} / person</p>
         </div>
         <div id="Rundown" style="display:none">
-            {{$des->rundown}}
+            {{$destination->rundown}}
         </div>
         <div id="Location" style="display:none">
             <div class="mapouter">
                 <div class="gmap_canvas"><iframe width="100%" height="510" id="gmap_canvas"
-                        src="https://maps.google.com/maps?q={{$des->maps}}&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        src="https://maps.google.com/maps?q={{$destination->maps}}&t=&z=13&ie=UTF8&iwloc=&output=embed"
                         frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a
                         href="https://2yu.co">2yu</a><br>
                     <style>
@@ -59,7 +59,7 @@
                     <td>Jumlah Peserta Tour</td>
                     <td>Harga/pax</td>
                 </tr>
-                @foreach ($des->destination_price as $data)
+                @foreach ($destination->destination_price as $data)
                 <tr>
                     <td>{{$data->min_person}}-{{$data->max_person}}</td>
                     <td>Rp. {{$data->price}}</td>
@@ -118,7 +118,7 @@
 <script>
     // Supaya saat halaman pertama dibuka, button deskripsi aktif
     document.getElementById('DescriptionButton').click();
-    
+
      // Ambil referensi ke masing-masing elemen input dan tombol "Reverse Now"
     const nameInput = document.getElementById("name");
     const numberInput = document.getElementById("number");

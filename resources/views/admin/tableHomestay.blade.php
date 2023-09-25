@@ -53,8 +53,6 @@
 
 </style>
 
-@if(Auth::check())
-
 @if (session()->has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>Homestay Deleted Successfully!!</strong>
@@ -65,7 +63,7 @@
 @endif
 
 <div class="table">
-    <a class="add" href="/createHomestay"><i class="bi bi-plus"></i> Add Homestay</a>
+    <a class="add" href="{{ route('adminAddTablePage', 'homestay') }}"><i class="bi bi-plus"></i> Add Homestay</a>
     <h3>
         List Table Homestay
     </h3>
@@ -82,7 +80,7 @@
         </tr>
         </thead>
 
-        @foreach($productHomestay as $data)
+        @foreach($homestays as $data)
         <tbody>
             <tr>
                 <td>{{$data->id}}</td>
@@ -106,13 +104,13 @@
                 </td>
                 <td>Rp. {{$data->price}}</td>
                 <td>
-                    @foreach ($data->homestay_photo as $pho)
+                    @foreach ($data->homestayPhoto as $pho)
                     <img src="{{Storage::url($pho->path)}}" height="80px" width="100px">
                     @endforeach
                 </td>
 
                 <td>
-                    <a href="/editTableHomestay/{{$data->id}}" class="btn btn-secondary"> Edit</a>
+                    <a href="{{ route('adminEditTablePage', ['homestay', $data->id]) }}" class="btn btn-secondary"> Edit</a>
                     <!-- <button type="submit" class="btn btn-primary"></button> -->
                     {{-- @method('DELETE') --}}
                     {{-- <a href="{{url('editTableHomestay/'.$data->id) }}" class="btn btn-secondary"> Delete </a> --}}
@@ -124,7 +122,7 @@
     </table>
 </div>
 
-@foreach ($productHomestay as $dt)
+@foreach ($homestays as $dt)
 <div class="modal fade" id="exampleModal{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -139,7 +137,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form action="{{route('deletehs', $dt->id)}}" method="POST">
+                <form action="{{route('adminDeleteTable', ['homestay', $dt->id])}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Confirm</button>
@@ -149,7 +147,5 @@
     </div>
 </div>
 @endforeach
-
-@endif
 
 @endsection

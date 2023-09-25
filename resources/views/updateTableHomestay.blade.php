@@ -5,12 +5,12 @@
 @section('content')
 
     @foreach ($errors->all() as $error)
-        <div class="alert alert-danger">  
+        <div class="alert alert-danger">
             <p>{{ $error }}</p>
         </div>
     @endforeach
 
-<form action="{{ route('updateHomestay', $product->id) }} " method="POST">
+<form action="{{ route('editTable', 'homestay', $product->id) }} " method="POST">
     @csrf
     @method('PUT')
     <div class="form-group">
@@ -36,7 +36,7 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
     </div>
-    
+
     <button type="submit" class="btn btn-primary">Update</button>
 
     <!-- @method('DELETE')
@@ -44,7 +44,7 @@
 </form>
 
 
-<form action="{{ route('homestay.destroy', $product->id) }}" method="POST">
+<form action="{{ route('deleteTable', 'homestay', $product->id) }}" method="POST">
     @csrf
     @method('DELETE')
     <button type="submit" class="btn btn-danger">Delete</button>

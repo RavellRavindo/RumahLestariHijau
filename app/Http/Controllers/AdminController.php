@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Homestay;
+use App\Models\Culinary;
+use App\Models\Destination;
+use App\Models\Souvenir;
+use App\Models\Promo;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -15,11 +21,11 @@ class AdminController extends Controller
     public function tablePage($table)
     {
         switch ($table) {
-        case 'homestay':    return view('admin.tableHomestayPage',    ['homestays'    => Homestay::paginate(10)]);
-        case 'culinary':    return view('admin.tableCulinaryPage',    ['culinaries'   => Culinary::paginate(10)]);
-        case 'destination': return view('admin.tableDestinationPage', ['destinations' => Destination::paginate(10)]);
-        case 'souvenir':    return view('admin.tableSouvenirPage',    ['souvenirs'    => Souvenir::paginate(10)]);
-        case 'promo':       return view('admin.tablePromoPage',       ['promos'       => Promo::paginate(10)]);
+        case 'homestay':    return view('admin.tableHomestay',    ['homestays'    => Homestay::paginate(10)]);
+        case 'culinary':    return view('admin.tableCulinary',    ['culinaries'   => Culinary::paginate(10)]);
+        case 'destination': return view('admin.tableDestination', ['destinations' => Destination::paginate(10)]);
+        case 'souvenir':    return view('admin.tableSouvenir',    ['souvenirs'    => Souvenir::paginate(10)]);
+        case 'promo':       return view('admin.tablePromo',       ['promos'       => Promo::paginate(10)]);
         default:            return response([], 404);
         }
     }
@@ -27,11 +33,11 @@ class AdminController extends Controller
     public function addTablePage($table)
     {
         switch ($table) {
-        case 'homestay':    return view('admin.createHomestayPage');
-        case 'culinary':    return view('admin.createCulinaryPage');
-        case 'destination': return view('admin.createDestinationPage');
-        case 'souvenir':    return view('admin.createSouvenirPage');
-        case 'promo':       return view('admin.createPromoPage');
+        case 'homestay':    return view('admin.createHomestay');
+        case 'culinary':    return view('admin.createCulinary');
+        case 'destination': return view('admin.createDestination');
+        case 'souvenir':    return view('admin.createSouvenir');
+        case 'promo':       return view('admin.createPromo');
         default:            return response([], 404);
         }
     }
@@ -39,11 +45,47 @@ class AdminController extends Controller
     public function editTablePage($table, $id)
     {
         switch ($table) {
-        case 'homestay':    return view('admin.editHomestayPage',    ['homestay'    => Homestay::findOrFail($id))]);
-        case 'culinary':    return view('admin.editCulinaryPage',    ['culinary'    => Culinary::findOrFail($id))]);
-        case 'destination': return view('admin.editDestinationPage', ['destination' => Destination::findOrFail($id))]);
-        case 'souvenir':    return view('admin.editSouvenirPage',    ['souvenir'    => Souvenir::findOrFail($id))]);
-        case 'promo':       return view('admin.editPromoPage',       ['promo'       => Promo::findOrFail($id))]);
+        case 'homestay':    return view('admin.editHomestay',    ['homestay'    => Homestay::findOrFail($id)]);
+        case 'culinary':    return view('admin.editCulinary',    ['culinary'    => Culinary::findOrFail($id)]);
+        case 'destination': return view('admin.editDestination', ['destination' => Destination::findOrFail($id)]);
+        case 'souvenir':    return view('admin.editSouvenir',    ['souvenir'    => Souvenir::findOrFail($id)]);
+        case 'promo':       return view('admin.editPromo',       ['promo'       => Promo::findOrFail($id)]);
+        default:            return response([], 404);
+        }
+    }
+
+    public function addTable($table)
+    {
+        switch ($table) {
+        case 'homestay':    return view('admin.createHomestay');
+        case 'culinary':    return view('admin.createCulinary');
+        case 'destination': return view('admin.createDestination');
+        case 'souvenir':    return view('admin.createSouvenir');
+        case 'promo':       return view('admin.createPromo');
+        default:            return response([], 404);
+        }
+    }
+
+    public function editTable($table, $id)
+    {
+        switch ($table) {
+        case 'homestay':    return $this->editHomestay($id);
+        case 'culinary':    return $this->editCulinary($id);
+        case 'destination': return $this->editDestination($id);
+        case 'souvenir':    return $this->editSouvenir($id);
+        case 'promo':       return $this->editPromo($id);
+        default:            return response([], 404);
+        }
+    }
+
+    public function deleteTable($table, $id)
+    {
+        switch ($table) {
+        case 'homestay':    return $this->deleteHomestay($id);
+        case 'culinary':    return $this->deleteCulinary($id);
+        case 'destination': return $this->deleteDestination($id);
+        case 'souvenir':    return $this->deleteSouvenir($id);
+        case 'promo':       return $this->deletePromo($id);
         default:            return response([], 404);
         }
     }

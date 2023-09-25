@@ -53,11 +53,10 @@
 
 </style>
 
-@if(Auth::check())
 <br>
 <div class="table">
 
-    <a class="add" href="/createCulinary"><i class="bi bi-plus"></i> Add Culinary</a>
+    <a class="add" href="{{ route('adminAddTablePage', 'culinary') }}"><i class="bi bi-plus"></i> Add Culinary</a>
     <h3>
         List Table Culinary
     </h3>
@@ -75,7 +74,7 @@
         </tr>
         </thead>
 
-        @foreach($foodCulinary as $data)
+        @foreach($culinaries as $data)
         <tbody>
             <tr>
                 <td>{{$loop->index+1}}</td>
@@ -85,7 +84,7 @@
                 <td>{{$data->like/1000}}K</td>
                 <td><img src="{{Storage::url($data->photo)}}" alt="" height="80px" width="100px"></td>
                 <td>
-                    <a href="/editCulinary/{{$data->id}}" class="btn btn-secondary"> Edit</a>
+                    <a href="{{ route('adminEditTablePage', ['culinary', $data->id]) }}" class="btn btn-secondary"> Edit</a>
                     <!-- <button type="submit" class="btn btn-primary"></button> -->
                     {{-- @method('DELETE') --}}
                     {{-- <a href="{{url('editTableHomestay/'.$data->id) }}" class="btn btn-secondary"> Delete </a> --}}
@@ -97,7 +96,7 @@
     </table>
 </div>
 
-@foreach ($foodCulinary as $dt)
+@foreach ($culinaries as $dt)
 <div class="modal fade" id="exampleModal{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -112,7 +111,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form action="{{route('deletec', $dt->id)}}" method="POST">
+                <form action="{{route('adminDeleteTable', ['culinary', $dt->id])}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Confirm</button>
@@ -122,6 +121,5 @@
     </div>
 </div>
 @endforeach
-@endif
 
 @endsection

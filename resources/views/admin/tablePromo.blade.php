@@ -53,11 +53,10 @@
 
 </style>
 
-@if(Auth::check())
 <br>
 <div class="table">
 
-    <a class="add" href="/createPromo"><i class="bi bi-plus"></i> Add Promo</a>
+    <a class="add" href="{{ route('adminAddTablePage', 'promo') }}"><i class="bi bi-plus"></i> Add Promo</a>
     <h3>
         List Table Promo
     </h3>
@@ -72,7 +71,7 @@
         </tr>
         </thead>
 
-        @foreach($tes as $data)
+        @foreach($promos as $data)
         <tbody>
             <tr>
                 <td>{{$loop->index+1}}</td>
@@ -80,7 +79,7 @@
                 <td><img src="{{Storage::url($data->photo)}}" alt="" height="80px" width="100px"></td>
                 {{-- <td>{{$data->photo[0]->path}}</td> --}}
                 <td>
-                    <a href="/editPromo/{{$data->id}}" class="btn btn-secondary"> Edit</a>
+                    <a href="{{ route('adminEditTablePage', ['promo', $data->id]) }}" class="btn btn-secondary"> Edit</a>
                     <!-- <button type="submit" class="btn btn-primary"></button> -->
                     {{-- @method('DELETE') --}}
                     {{-- <a href="{{url('editTableHomestay/'.$data->id) }}" class="btn btn-secondary"> Delete </a> --}}
@@ -92,7 +91,7 @@
     </table>
 </div>
 
-@foreach ($tes as $dt)
+@foreach ($promos as $dt)
 <div class="modal fade" id="exampleModal{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -107,7 +106,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form action="{{route('deletep', $dt->id)}}" method="POST">
+                <form action="{{route('adminDeleteTable', ['promo', $dt->id])}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Confirm</button>
@@ -117,6 +116,5 @@
     </div>
 </div>
 @endforeach
-@endif
 
 @endsection

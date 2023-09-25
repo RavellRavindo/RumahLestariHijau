@@ -57,7 +57,7 @@
 <br>
 <div class="table">
 
-    <a class="add" href="/createDestination"><i class="bi bi-plus"></i> Add Destination</a>
+    <a class="add" href="{{ route('adminAddTablePage', 'destination') }}"><i class="bi bi-plus"></i> Add Destination</a>
     <h3>
         List Table Destination
     </h3>
@@ -74,7 +74,7 @@
         </tr>
         </thead>
 
-        @foreach($tes as $data)
+        @foreach($destinations as $data)
         <tbody>
             <tr>
                 <td>{{$loop->index+1}}</td>
@@ -84,7 +84,7 @@
                 <td><img src="{{Storage::url($data->photo)}}" alt="" height="80px" width="100px"></td>
                 {{-- <td>{{$data->photo[0]->path}}</td> --}}
                 <td>
-                    <a href="/editDestination/{{$data->id}}" class="btn btn-secondary"> Edit</a>
+                    <a href="{{ route('adminEditTablePage', ['destination', $data->id]) }}" class="btn btn-secondary"> Edit</a>
                     <!-- <button type="submit" class="btn btn-primary"></button> -->
                     {{-- @method('DELETE') --}}
                     {{-- <a href="{{url('editTableHomestay/'.$data->id) }}" class="btn btn-secondary"> Delete </a> --}}
@@ -95,9 +95,8 @@
         @endforeach
     </table>
 </div>
-{{-- {{$data->id}} --}}
-@foreach ($tes as $dt)
-{{-- {{$dt}} --}}
+
+@foreach ($destinations as $dt)
 <div class="modal fade" id="exampleModal{{$dt->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -112,7 +111,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form action="{{route('deleted', $dt->id)}}" method="POST">
+                <form action="{{route('adminDeleteTable', ['destination', $dt->id])}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Confirm</button>

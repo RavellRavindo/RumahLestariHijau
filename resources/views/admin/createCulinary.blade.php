@@ -11,9 +11,7 @@
 
 </style>
 
-
-@if(Auth::check())
-<form method='POST' enctype="multipart/form-data" action="{{ route('storec') }}">
+<form method='POST' enctype="multipart/form-data" action="{{ route('adminAddTable', 'culinary') }}">
     @csrf
     <div class="form-group">
         <label for="name">Name Culinary</label>
@@ -54,8 +52,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">{{ __('Add Culinary') }}</button>
-    @endif
 </form>
-
 
 @endsection

@@ -13,8 +13,7 @@
 
 </style>
 
-@if(Auth::check())
-<form method='POST' action="{{ route('storehs') }}" enctype="multipart/form-data">
+<form method='POST' action="{{ route('adminAddTable', 'homestay') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="name">Homestay Name</label>
@@ -238,7 +237,7 @@
 
 
     <div class="form-group">
-        <label for="thumbnail">Upload Gambar Thumbnail</label>
+        <label for="thumbnail">Upload Thumbnail Homestay</label>
         <input id="thumbnail" type="file" class="form-control" name='thumbnail' placeholder="Example input"
             accept=".png,.jpg,.jpeg">
         @error('thumbnail')
@@ -246,41 +245,17 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="upload">Upload Gambar 1</label>
-        <input id="upload" type="file" class="form-control" name='upload' placeholder="Example input"
+        <label for="upload">Upload Foto Homestay</label>
+        <input id="upload" type="file" multiple class="form-control" name='upload' placeholder="Example input"
             accept=".png,.jpg,.jpeg">
         @error('upload')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="form-group">
-        <label for="upload2">Upload Gambar 2</label>
-        <input id="upload2" type="file" class="form-control" name='upload2' placeholder="Example input"
-            accept=".png,.jpg,.jpeg">
-        @error('upload2')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="form-group">
-        <label for="upload3">Upload Gambar 3</label>
-        <input id="upload3" type="file" class="form-control" name='upload3' placeholder="Example input"
-            accept=".png,.jpg,.jpeg">
-        @error('upload3')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="form-group">
-        <label for="upload4">Upload Gambar 4</label>
-        <input id="upload4" type="file" class="form-control" name='upload4' placeholder="Example input"
-            accept=".png,.jpg,.jpeg">
-        @error('upload4')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
 
     <button type="submit" class="btn btn-primary">{{ __('Add Homestay') }}</button>
 </form>
-@endif
+
 {{-- <div class="mapouter">
     <div class="gmap_canvas">
         <iframe width="770" height="510" id="gmap_canvas" src="https://maps.google.com/maps?q=Jalan Asia Afrika Senayan, RT.1/RW.3, Gelora, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10270&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>

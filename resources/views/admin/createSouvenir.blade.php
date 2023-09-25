@@ -11,9 +11,7 @@
 
 </style>
 
-
-@if(Auth::check())
-<form method='POST' enctype="multipart/form-data" action="{{ route('stores') }}">
+<form method='POST' enctype="multipart/form-data" action="{{ route('adminAddTable', 'souvenir') }}">
     @csrf
     <div class="form-group">
         <label for="name">Name Souvenir</label>
@@ -48,8 +46,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">{{ __('Add Souvenir') }}</button>
-    @endif
 </form>
-
 
 @endsection

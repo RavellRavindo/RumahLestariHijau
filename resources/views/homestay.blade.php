@@ -160,7 +160,7 @@
                     <ul style="width: 45%; padding: 2%;">
                         <li style="list-style: none; width: 100%;">
                             <div style="max-width: 100%; height: auto; text-align: center;">
-                                <img src="{{ Storage::url($data->homestay_photo[0]->path) }}" alt="Thumbnail" style="max-width: 100%; height: 280px; width: 400px; border-radius: 10px; object-fit: cover;">
+                                <img src="{{ Storage::url($data->homestayPhoto[0]->path) }}" alt="Thumbnail" style="max-width: 100%; height: 280px; width: 400px; border-radius: 10px; object-fit: cover;">
                             </div>
                         </li>
                     </ul>
@@ -265,34 +265,34 @@
 
     <div class = "row mb-5">
         <div class="column">
-            <img style="width: 800px; height:500px" src="{{Storage::url($data->homestay_photo[0]->path)}}">
+            <img style="width: 800px; height:500px" src="{{Storage::url($data->homestayPhoto[0]->path)}}">
         </div>
 
         <div class="column">
-            @isset ($data->homestay_photo[1])
+            @isset ($data->homestayPhoto[1])
             <div class = "row">
                 <div class="column">
-                    <img src="{{Storage::url($data->homestay_photo[1]->path)}}" style="width: 380px; height:250px">
+                    <img src="{{Storage::url($data->homestayPhoto[1]->path)}}" style="width: 380px; height:250px">
                 </div>
 
-                @isset ($data->homestay_photo[2])
+                @isset ($data->homestayPhoto[2])
                 <div class="column">
-                    <img src="{{Storage::url($data->homestay_photo[2]->path)}}" style="width: 380px; height:250px">
+                    <img src="{{Storage::url($data->homestayPhoto[2]->path)}}" style="width: 380px; height:250px">
                 </div>
                 @endisset
             </div>
             @endisset
 
-            @isset ($data->homestay_photo[3])
+            @isset ($data->homestayPhoto[3])
             <div class = "row">
                 <div class="column">
-                    <img src="{{Storage::url($data->homestay_photo[3]->path)}}" style="width: 380px; height:250px">
+                    <img src="{{Storage::url($data->homestayPhoto[3]->path)}}" style="width: 380px; height:250px">
                 </div>
             @endisset
 
-            @isset ($data->homestay_photo[4])
+            @isset ($data->homestayPhoto[4])
                 <div class="column">
-                    <img src="{{Storage::url($data->homestay_photo[4]->path)}}" style="width: 380px; height:250px">
+                    <img src="{{Storage::url($data->homestayPhoto[4]->path)}}" style="width: 380px; height:250px">
                 </div>
             </div>
             @endisset
@@ -357,16 +357,16 @@
                 </tr>
 
                 @php
-                $np_count = $data->nearby_place->count();
-                $pp_count = $data->popular_place->count();
+                $np_count = $data->nearbyPlace->count();
+                $pp_count = $data->popularPlace->count();
                 $count = max($np_count, $pp_count);
 
                 // sort by distance. jika distance sama, sort by name
-                $tnp = $data->nearby_place->sortBy('name')->sortBy('distance')->toArray();
+                $tnp = $data->nearbyPlace->sortBy('name')->sortBy('distance')->toArray();
                 $snp_name = array_column($tnp, 'name');
                 $snp_distance = array_column($tnp, 'distance');
 
-                $tpp = $data->popular_place->sortBy('name')->sortBy('distance')->toArray();
+                $tpp = $data->popularPlace->sortBy('name')->sortBy('distance')->toArray();
                 $spp_name = array_column($tpp, 'name');
                 $spp_distance = array_column($tpp, 'distance');
                 @endphp

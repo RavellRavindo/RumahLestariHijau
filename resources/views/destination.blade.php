@@ -11,12 +11,12 @@
 
 <div id="carousel">
     {{---------------- LOOPING SPECIAL EVENT LIST ----------------}}
-    @foreach ($des as $data)
+    @foreach ($destinations as $data)
 
     <div style="object-fit: contain ;background: linear-gradient(180deg, rgba(9, 66, 34, 0.15) -12.86%, rgba(59, 77, 129, 0.5) 106.85%, rgba(9, 66, 34, 0.5) 106.85%), url('{{Storage::url($data->photo)}}'); height: 377px; width: 312px;position:relative; border-radius: 10px; box-sizing: border-box; padding: 20px;" class="destinasiSlide">
 
         {{-- <img style="filter: linear-gradient(180deg, rgba(9, 66, 34, 0.15) -12.86%, rgba(59, 77, 129, 0.5) 106.85%, rgba(9, 66, 34, 0.5) 106.85%)" src="{{Storage::url($data->photo)}}" class="destinasiImage"> --}}
-        <a style="position:absolute; transform: translate(-50%, -50%); top:50%; left:50%; ;border: 1px solid white; color: white; background-color: transparent; ; font-size: 100%; padding: 4%; padding-left: 10%; padding-right: 10%; border-radius: 10px" href="{{route('destinationDetail', $data->id)}}">
+        <a style="position:absolute; transform: translate(-50%, -50%); top:50%; left:50%; ;border: 1px solid white; color: white; background-color: transparent; ; font-size: 100%; padding: 4%; padding-left: 10%; padding-right: 10%; border-radius: 10px" href="{{route('destinationDetailPage', $data->id)}}">
             View Detail
         </a>
         <label style="background-color: green; padding: 2%; padding-left: 5%; padding-right: 5%;">Hot Offer</label>
@@ -37,13 +37,13 @@
 
 <div style="padding: 5%; padding-left: 7%">
     {{---------------- LOOPING OPEN TRIP LIST ----------------}}
-    @foreach ($des as $data)
+    @foreach ($destinations as $data)
 
     <div style="width: 30%; box-shadow: 1px 8px 8px 4px gray; padding: 1%; display: inline-block; margin: 1%">
         <p style="text-align: center; font-weight: bold; color: green">{{$data->name}}</p>
         <img src="{{Storage::url($data->photo)}}" style="width: 100%">
         <p style="text-align: justify; padding: 3%; padding-top: 7%">{{$data->description}}</p>
-        <a href="{{route('destinationDetail', $data->id)}}"><button class="destinasiCheckDetail">Check Detail</button></a>
+        <a href="{{route('destinationDetailPage', $data->id)}}"><button class="destinasiCheckDetail">Check Detail</button></a>
     </div>
     @endforeach
     {{---------------- LOOPING OPEN TRIP LIST END ----------------}}

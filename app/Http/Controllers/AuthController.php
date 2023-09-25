@@ -34,7 +34,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('home')->withSuccess('Successfully signed in');
+        return redirect()->route('homePage')->withSuccess('Successfully signed in');
     }
 
     public function login()
@@ -54,7 +54,7 @@ class AuthController extends Controller
         if (Auth::user()->userType == 'admin')
             return redirect()->route('admin');
 
-        return redirect()->route('home');
+        return redirect()->route('homePage');
     }
 
     public function logout()
@@ -65,6 +65,6 @@ class AuthController extends Controller
         $session->invalidate();
         $session->regenerateToken();
 
-        return redirect()->route('home');
+        return redirect()->route('homePage');
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
 
 @php
-                
+
 @endphp
 
 
@@ -22,7 +22,7 @@
 
       @php
           // sort by created_on
-          $cre = $pro->sortByDesc('created_at');
+          $cre = $promos->sortByDesc('created_at');
       @endphp
 
       @foreach ($cre as $data)
@@ -43,7 +43,7 @@
 
     @php
         // sort by updated_on
-        $upd = $pro->sortByDesc('updated_at');
+        $upd = $promos->sortByDesc('updated_at');
     @endphp
 
     @foreach ($upd as $data)
