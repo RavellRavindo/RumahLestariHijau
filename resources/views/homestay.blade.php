@@ -5,38 +5,6 @@
 @section('content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 <style>
-    .untukBorderHomeStayDetail {
-        border-left: 1px solid gray;
-        padding-left: 5%;
-    }
-
-    .untukIconHomeStay {
-        text-align: center;
-        font-size: 200%;
-    }
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.row .column {
-  width: auto;
-  flex: 50%;
-  overflow: hidden;
-  padding: 0px 4px;
-}
-
-.row .column img {
-  padding: 10px 10px;
-  cursor: pointer;
-  border-radius: 18px;
-}
-
-.row .column img:hover {
-  transform: translateY(-10px);
-  transition: all 300ms ease;
-}
 
 @media only screen and (max-width: 600px){
     .row .column img{

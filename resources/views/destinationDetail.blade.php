@@ -4,30 +4,6 @@
 
 @section('content')
 
-<style>
-    .buttonDestinationDetail {
-        width: 20%;
-        padding: 2%;
-        margin: 2%;
-        border: none;
-        background: linear-gradient(to bottom, green, lime);
-        color: white;
-        border-radius: 10px
-    }
-
-    .buttonDestinationDetail:active,
-    .buttonDestinationDetail:hover {
-        width: 20%;
-        padding: 2%;
-        margin: 2%;
-        border: none;
-        background: linear-gradient(to bottom, green, rgb(0, 54, 0));
-        color: white;
-        border-radius: 10px
-    }
-
-</style>
-
 <div style=" height:fit-content; padding: 40px; ">
     <div style="width: 60%; box-shadow: 1px 2px 4px 6px gray; padding: 3%; float: left; border-radius: 10px">
         <p style="text-align:center; font-size: 150%; font-weight: bold; color: green">{{$des->name}}</p>
