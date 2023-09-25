@@ -6,22 +6,25 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 {{-- Tulisan Besar Souvenir --}}
+
 <div style="text-align: center; font-size: 250%; font-weight: bold; margin-top: 10%; margin-bottom: 5%; color:#3bb143">
     Choose The Perfect <b style="color: #FF6700">Souvenir</b><br>for Your Family</div>
 
 {{-- Kotak Gambar dan Deskripsi Souvenir --}}
-
-<div style="width: 100%; margin-left: 6%; margin-bottom: 50%">
-    @foreach ($sou as $data)
-    <div class="kotakSouvenir">
-        <img src="{{Storage::url($data->photo)}}" style="width: 100%; border-radius: 20px 20px 0px 0px">
-        <div style="padding: 4%">
-            <div style="text-align: justify; margin-bottom: 3%">{{$data->name}}</div>
-            <div class="hargaSouvenir">Rp. {{$data->price}}</div>
-            <button id="openModal" class="checkButtonSouvenir" onclick="openForm('{{$data->id}}')">Check</button>
+<div class="sectionContainer">
+    <div style="display:flex; flex-wrap:wrap; width: 80%; margin-left: 15%; ">
+        @foreach ($sou as $data)
+        <div class="kotakSouvenir" style="margin-bottom: 4%;">
+            <img src="{{Storage::url($data->photo)}}" style="border-radius:5%; width: 100%; height: 250px; object-fit: cover;">
+            <div style="padding: 4%;">
+                <div style="text-align: justify; margin-bottom: 3%">{{$data->name}}</div>
+                <div class="hargaSouvenir">Rp. {{$data->price}}</div>
+                <button id="openModal" class="checkButtonSouvenir" onclick="openForm('{{$data->id}}')">Check</button>
+            </div>
         </div>
+        @endforeach
+    
     </div>
-    @endforeach
 
 </div>
 

@@ -45,7 +45,7 @@ class HomestayController extends Controller
         }
 
         return view('homestay', [
-            'homestays' => $query->paginate(10)
+            'homestays' => $query->paginate(4)
         ]);
     }
 }
