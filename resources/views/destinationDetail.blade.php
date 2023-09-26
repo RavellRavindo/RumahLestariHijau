@@ -59,7 +59,7 @@
                     <td>Jumlah Peserta Tour</td>
                     <td>Harga/pax</td>
                 </tr>
-                @foreach ($destination->destination_price as $data)
+                @foreach ($destination->destinationPrice as $data)
                 <tr>
                     <td>{{$data->min_person}}-{{$data->max_person}}</td>
                     <td>Rp. {{$data->price}}</td>
