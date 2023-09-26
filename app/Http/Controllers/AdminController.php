@@ -57,11 +57,11 @@ class AdminController extends Controller
     public function addTable($table)
     {
         switch ($table) {
-        case 'homestay':    return view('admin.createHomestay');
-        case 'culinary':    return view('admin.createCulinary');
-        case 'destination': return view('admin.createDestination');
-        case 'souvenir':    return view('admin.createSouvenir');
-        case 'promo':       return view('admin.createPromo');
+        case 'homestay':    return $this->addHomestay($id);
+        case 'culinary':    return $this->addCulinary($id);
+        case 'destination': return $this->addDestination($id);
+        case 'souvenir':    return $this->addSouvenir($id);
+        case 'promo':       return $this->addPromo($id);
         default:            return response([], 404);
         }
     }
@@ -357,7 +357,7 @@ class AdminController extends Controller
     }
 
     // Photo culinary tiba" ada banyak (:
-    public function deleteCulinary(Request $request, $id){
+    public function deleteCulinary($id){
         $data = Culinary::find($id);
         foreach ($data->photo as $key) {
             Storage::delete($key->path);
@@ -369,138 +369,97 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Culinary deleted successfully');
     }
 
-
-    public function addSouvenir(Request $request) {
-        $file = $request->file('image');
-
-        $request->validate([
+    public function addSouvenir()
+    {
+        $attr = request()->validate([
             'name'=>'required',
             'description'=>'required',
-            'image'=>'required',
+            'image'=>'required|image',
             'price'=>'required',
         ]);
-        // dd($request);
+
+        $savedImage = $this->saveImage($attr->file('image'));
+
         $data = new Souvenir();
         $data->name = $request->name;
         $data->description = $request->description;
         $data->price = $request->price;
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $sou_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::putFileAs('souvenir_img/', $file, $sou_path);
-
-            $sou_path = 'souvenir_img/'.$sou_path;
-            $data->photo = $sou_path;
-        }
-
+        $data->photo = $savedImage;
         $data->save();
-        return redirect('/tableSouvenir');
-    }
-    public function editSouvenir(Request $request, $id) {
-        $file = $request->file('image');
 
-        $request->validate([
+        return redirect('/admin/souvenir');
+    }
+
+    public function editSouvenir($id)
+    {
+        $attr = request()->validate([
             'name'=>'required',
             'description'=>'required',
             'price'=>'required',
         ]);
-        // dd($request);
+
         $data = Souvenir::find($id);
+        $savedImage = $this->saveImage($attr->file('image'));
+
+        Storage::delete($data->photo);
+
         $data->name = $request->name;
         $data->description = $request->description;
         $data->price = $request->price;
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $sou_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::delete($data->photo);
-            Storage::putFileAs('souvenir_img/', $file, $sou_path);
-
-            $sou_path = 'souvenir_img/'.$sou_path;
-            $data->photo = $sou_path;
-        }
-
+        $data->photo = $savedImage;
         $data->save();
+
         return redirect('/tableSouvenir');
     }
-    public function deleteSouvenir(Request $request, $id){
+
+    public function deleteSouvenir($id)
+    {
         $data = Souvenir::find($id);
         Storage::delete($data->photo);
         $data->delete();
+
         return redirect()->back()->with('success', 'Souvenir deleted successfully');
     }
 
-    public function addPromo(Request $request) {
-        $file = $request->file('image');
-
-        $request->validate([
+    public function addPromo()
+    {
+        $attr = request()->validate([
             'name'=>'required',
             'image'=>'required',
         ]);
-        // dd($request);
+
+        $savedImage = $this->saveImage($attr->file('image'));
+
         $data = new Promo();
         $data->name = $request->name;
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $pr_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::putFileAs('promo_img/', $file, $pr_path);
-
-            $pr_path = 'promo_img/'.$pr_path;
-            $data->photo = $pr_path;
-        }
-
+        $data->photo = $savedImage;
         $data->save();
-        return redirect('/tablePromo');
-    }
-    public function editPromo(Request $request, $id) {
-        $file = $request->file('image');
 
-        $request->validate([
+        return redirect('/admin/promo');
+    }
+
+    public function editPromo($id)
+    {
+        $attr = request()->validate([
             'name'=>'required',
         ]);
-        // dd($request);
+
+        $savedImage = $this->saveImage($attr->file('image'));
+
         $data = Promo::find($id);
         $data->name = $request->name;
-
-        if($file!=null){
-            $request->validate([
-                'image' => 'image'
-            ]);
-            $dt = new DateTime();
-            $dt = $dt->format('Ymd_His');
-            $temp = $this->getName($data->name, 10);
-            $pr_path = $temp.'_'.$dt.'.'.$file->getClientOriginalExtension();
-            Storage::delete($data->photo);
-            Storage::putFileAs('promo_img', $file, $pr_path);
-
-            $pr_path = 'promo_img/'.$pr_path;
-            $data->photo = $pr_path;
-        }
-
+        $data->photo = $savedImage;
         $data->save();
-        return redirect('/tablePromo');
+
+        return redirect('/admin/promo');
     }
-    public function deletePromo(Request $request, $id){
+
+    public function deletePromo($id)
+    {
         $data = Promo::find($id);
         Storage::delete($data->photo);
         $data->delete();
+
         return redirect()->back()->with('success', 'Promo deleted successfully');
     }
 
