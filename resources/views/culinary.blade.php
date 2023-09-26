@@ -14,9 +14,9 @@
                 </P>
 
                 <div style="width: 100%; display: flex">
-                    <input type="text" class="form-control" id="inputPrice1" placeholder="min"
+                    <input type="text" class="query form-control" id="inputPrice1" placeholder="min"
                         style="width: 100px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
-                    <input type="text" class="form-control" id="inputPrice2" placeholder="max"
+                    <input type="text" class="query form-control" id="inputPrice2" placeholder="max"
                         style="margin-left: 20px; width: 100px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
                 </div>
 
@@ -26,28 +26,28 @@
                     </b>
                 </p>
 
-                <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
-                    <input type="radio" class="form-control" name="sort_by" id="1" placeholder="min"
+                <div style="width: 100%; margin-top: -5%; display: flex;">
+                    <input type="radio" class="query form-control" name="sort" {{ $sort == "price_asc" ? "checked" : ""}} value="price_asc" id="1" placeholder="min"
                         style="width: 15px;" value="1">
                     <p style="margin-top: 2.2%; margin-left: 3%">
-                        Lower Price
+                        Lowest Price
                     </p>
                 </div>
 
-                <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
-                    <input type="radio" class="form-control" name="sort_by" id="2" placeholder="min"
+                <div style="width: 100%; margin-top: -5%; display: flex;">
+                    <input type="radio" class="query form-control" name="sort" {{ $sort == "price" ? "checked" : ""}} value="price" id="2" placeholder="min"
                         style="width: 15px;" value="2">
                     <p style="margin-top: 2.2%; margin-left: 3%">
-                        High Price
+                        Highest Price
                     </p>
                 </div>
 
 
-                <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
-                    <input type="radio" class="form-control" name="sort_by" id="3" placeholder="min"
+                <div style="width: 100%; margin-top: -5%; display: flex;">
+                    <input type="radio" class="query form-control" name="sort" {{ $sort == "rating" ? "checked" : ""}} value="rating" id="3" placeholder="min"
                         style="width: 15px;" value="3">
                     <p style="margin-top: 2.2%; margin-left: 3%">
-                        Most Likes
+                        Highest Rating
                     </p>
                 </div>
 
@@ -58,7 +58,7 @@
                 </p>
 
                 <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
-                    <input type="radio" class="form-control" name="facilities" id="1" placeholder="min"
+                    <input type="checkbox" class="query form-control" {{ in_array("side_dish", $filters) ? "checked" : "" }} id="1" name="filter" value="side_dish" placeholder="min"
                         style="width: 15px;" value="1">
                     <p style="margin-top: 2.2%; margin-left: 3%">
                         Side dishes
@@ -66,7 +66,7 @@
                 </div>
 
                 <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
-                    <input type="radio" class="form-control" name="facilities" id="2" placeholder="min"
+                    <input type="checkbox" class="query form-control" {{ in_array("dessert", $filters) ? "checked" : "" }} name="filter" value="dessert" id="2" placeholder="min"
                         style="width: 15px;" value="2">
                     <p style="margin-top: 2.2%; margin-left: 3%">
                         Dessert
@@ -74,7 +74,7 @@
                 </div>
 
                 <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
-                    <input type="radio" class="form-control" name="facilities" id="3" placeholder="min"
+                    <input type="checkbox" class="query form-control" {{ in_array("main_course", $filters) ? "checked" : "" }} name="filter" value="main_course" id="3" placeholder="min"
                         style="width: 15px;" value="3">
                     <p style="margin-top: 2.2%; margin-left: 3%">
                         Main Course
@@ -97,14 +97,13 @@
                     </strong>
                 </div>
                 <div class="searchWrap">
-                    <form class="searchBox" action="/action_page.php">
-                        <input type="text" class="input" placeholder="Search Culinary.."  name="search2">
+                    <div class="searchBox">
+                        <input type="text" class="input" placeholder="Search Culinary.." id="searchBox">
                         <div class="btn">
-                            <button type="submit">Search</button>
+                            <button onclick="search()">Search</button>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
             <div class="imgContainer">
                 <img src="/gambar/cul.svg" width="100%" style="border-radius: 10px; margin-top:20px; margin-bottom:20px; object-fit: cover;">
             </div>
@@ -170,16 +169,71 @@
 
 
 <script>
-    function openForm(id) {
-        console.log(id);
-        namess = "myOverlay" + id;
-        document.getElementById(namess).style.display = "block";
+function openForm(id) {
+    console.log(id);
+    namess = "myOverlay" + id;
+    document.getElementById(namess).style.display = "block";
+}
+
+function closeForm(id) {
+    namess = "myOverlay" + id;
+    document.getElementById(namess).style.display = "none";
+}
+
+function search() {
+    var searchBox = document.getElementById('searchBox');
+    var searchParams = new URLSearchParams(window.location.search);
+
+    if (searchBox.value) {
+        searchParams.set("q", searchBox.value);
+    }
+    else {
+        searchParams.delete("q");
     }
 
-    function closeForm(id) {
-        namess = "myOverlay" + id;
-        document.getElementById(namess).style.display = "none";
+    window.location.search = searchParams;
+}
+
+function updateQuery(c) {
+    var searchParams = new URLSearchParams(window.location.search);
+
+    switch (c.target.name) {
+    case "min_price":
+        searchParams.set("min_price", c.target.value);
+        break;
+    case "max_price":
+        searchParams.set("max_price", c.target.value);
+        break;
+    case "sort":
+        searchParams.set("sort", c.target.value);
+        break;
+    case "filter":
+        const filters = document.getElementsByName("filter");
+        let fs = [];
+        for (let i = 0; i < filters.length; i++) {
+            if (filters[i].checked) {
+                fs.push(filters[i].value);
+            }
+        }
+        if (fs.length > 0) {
+            searchParams.set("filter", fs.toString());
+        }
+        else {
+            searchParams.delete("filter");
+        }
+        break;
+    default:
+        break;
     }
+
+    window.location.search = searchParams;
+}
+
+var controls = document.getElementsByClassName("query");
+for (var i = 0; i < controls.length; i++) {
+    controls[i].onchange = updateQuery;
+}
+</script>
 </script>
 <!------------------------------------- Popup-Gambar-End -------------------------->
 @endsection

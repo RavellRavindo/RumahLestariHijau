@@ -25,7 +25,7 @@
                 </li>
 
                 <li style="list-style: none">
-                    <form action="/action_page.php">
+                    <form>
                         <input type="date" id="birthday" name="birthday" style="border: solid 0px;">
                     </form>
                 </li>
@@ -37,7 +37,7 @@
                 </li>
 
                 <li style="list-style: none">
-                    <form action="/action_page.php">
+                    <form>
                         <input type="date" id="birthday" name="birthday" style="border: solid 0px;">
                     </form>
                 </li>
@@ -49,12 +49,12 @@
                         style="width : 200px; margin-top: 20px; margin-left: 50px; background: linear-gradient(to right, #f0572e, #f0312e); border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px">
                         Search </button> -->
                     <div class="searchWrap-2">
-                        <form class="searchBox-2">
-                            <input type="text" class="input" placeholder="Search Culinary.." id="searchBox" name="q">
+                        <div class="searchBox-2">
+                            <input type="text" class="input" placeholder="Search Culinary.." id="searchBox">
                             <div class="btn">
                                 <button onclick="search()">Search</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -75,9 +75,9 @@
             </P>
 
             <div style="width: 100%; display: flex">
-                <input type="text" class="form-control" id="inputPrice1" placeholder="min"
+                <input type="text" class="query form-control" name="min_price" id="inputPrice1" placeholder="min"
                     style="width: 100px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
-                <input type="text" class="form-control" id="inputPrice2" placeholder="max"
+                <input type="text" class="query form-control" name="max_price" id="inputPrice2" placeholder="max"
                     style="margin-left: 20px; width: 100px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px">
             </div>
 
@@ -88,27 +88,27 @@
             </p>
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
-                <input type="radio" class="form-control" name="sort_by" id="1" placeholder="min"
+                <input type="radio" class="query form-control" name="sort" {{ $sort == "price_asc" ? "checked" : ""}} value="price_asc" id="1" placeholder="min"
                     style="width: 15px;" value="1">
                 <p style="margin-top: 2.2%; margin-left: 3%">
-                    Lower Price
+                    Lowest Price
                 </p>
             </div>
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
-                <input type="radio" class="form-control" name="sort_by" id="2" placeholder="min"
+                <input type="radio" class="query form-control" name="sort" {{ $sort == "price" ? "checked" : ""}} value="price" id="2" placeholder="min"
                     style="width: 15px;" value="2">
                 <p style="margin-top: 2.2%; margin-left: 3%">
-                    High Price
+                    Highest Price
                 </p>
             </div>
 
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
-                <input type="radio" class="form-control" name="sort_by" id="3" placeholder="min"
+                <input type="radio" class="query form-control" name="sort" {{ $sort == "rating" ? "checked" : ""}} value="rating" id="3" placeholder="min"
                     style="width: 15px;" value="3">
                 <p style="margin-top: 2.2%; margin-left: 3%">
-                    Most Likes
+                    Highest Rating
                 </p>
             </div>
 
@@ -119,7 +119,7 @@
             </p>
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
-                <input type="radio" class="form-control" name="facilities" id="1" placeholder="min"
+                <input type="checkbox" class="query form-control" {{ in_array("wifi", $filters) ? "checked" : ""}} name="filter" value="wifi" id="1" placeholder="min"
                     style="width: 15px;" value="1">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     Wifi
@@ -127,7 +127,7 @@
             </div>
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
-                <input type="radio" class="form-control" name="facilities" id="2" placeholder="min"
+                <input type="checkbox" class="query form-control" {{ in_array("parking", $filters) ? "checked" : ""}} name="filter" value="parking" id="2" placeholder="min"
                     style="width: 15px;" value="2">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     Parking
@@ -135,14 +135,14 @@
             </div>
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
-                <input type="radio" class="form-control" name="facilities" id="3" placeholder="min"
+                <input type="checkbox" class="query form-control" {{ in_array("ac", $filters) ? "checked" : ""}} name="filter" value="ac" id="3" placeholder="min"
                     style="width: 15px;" value="3">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     AC
                 </p>
             </div>
             <div style="width: 100%; margin-top: -5%; display: flex;">
-                <input type="radio" class="form-control" name="facilities" id="4" placeholder="min"
+                <input type="checkbox" class="query form-control" {{ in_array("restaurant", $filters) ? "checked" : ""}} name="filter" value="restaurant" id="4" placeholder="min"
                     style="width: 15px;" value="4">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     Restaurant
@@ -186,16 +186,16 @@
                         </li>
                         <li style="list-style: none;">
                             <h5>
-                                @if ($data->wifi==1)
+                                @if ($data->has_wifi==1)
                                 <i class="fa fa-wifi"></i>
                                 @endif
-                                @if ($data->restaurant==1)
+                                @if ($data->has_restaurant==1)
                                 <i class="fa fa-cutlery"></i>
                                 @endif
-                                @if ($data->parking==1)
+                                @if ($data->has_parking==1)
                                 <i class="fa fa-product-hunt"></i>
                                 @endif
-                                @if ($data->ac==1)
+                                @if ($data->has_ac==1)
                                 <img width="18px" src="/gambar/Vector.svg" alt="">
                                 @endif
                             </h5>
@@ -428,4 +428,59 @@
 </div>
 @endforeach
 
+<script>
+function search() {
+    var searchBox = document.getElementById('searchBox');
+    var searchParams = new URLSearchParams(window.location.search);
+
+    if (searchBox.value) {
+        searchParams.set("q", searchBox.value);
+    }
+    else {
+        searchParams.delete("q");
+    }
+
+    window.location.search = searchParams;
+}
+
+function updateQuery(c) {
+    var searchParams = new URLSearchParams(window.location.search);
+
+    switch (c.target.name) {
+    case "min_price":
+        searchParams.set("min_price", c.target.value);
+        break;
+    case "max_price":
+        searchParams.set("max_price", c.target.value);
+        break;
+    case "sort":
+        searchParams.set("sort", c.target.value);
+        break;
+    case "filter":
+        const filters = document.getElementsByName("filter");
+        let fs = [];
+        for (let i = 0; i < filters.length; i++) {
+            if (filters[i].checked) {
+                fs.push(filters[i].value);
+            }
+        }
+        if (fs.length > 0) {
+            searchParams.set("filter", fs.toString());
+        }
+        else {
+            searchParams.delete("filter");
+        }
+        break;
+    default:
+        break;
+    }
+
+    window.location.search = searchParams;
+}
+
+var controls = document.getElementsByClassName("query");
+for (var i = 0; i < controls.length; i++) {
+    controls[i].onchange = updateQuery;
+}
+</script>
 @endsection

@@ -16,12 +16,15 @@ return new class extends Migration
         Schema::create('culinaries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->integer('like');
+            $table->string('type');
+            $table->string('description');
+            $table->double('rating');
             $table->integer('price');
             $table->string('photo');
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE culinaries ADD FULLTEXT (name,description)');
     }
 
     /**

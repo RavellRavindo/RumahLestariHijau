@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('souvenirs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->string('description');
             $table->string('photo');
             $table->integer('price');
             $table->timestamps();

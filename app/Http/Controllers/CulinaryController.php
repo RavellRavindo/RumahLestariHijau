@@ -10,8 +10,8 @@ class CulinaryController extends Controller
     {
         $attr = request()->validate([
             'q' => 'regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'sort' => 'in:price,rating',
-            'filter' => 'regex:/^[a-z\,]+$/u|max:32',
+            'sort' => 'in:price_asc,price,rating',
+            'filter' => 'regex:/^[a-z\,_]+$/u|max:32',
             'asc' => 'in:false,true'
         ]);
 
@@ -21,29 +21,47 @@ class CulinaryController extends Controller
         $asc    = $attr['asc'] ?? null;
 
         $query = Culinary::selectRaw('*');
+        $filterList = [];
 
-        // if (!empty($filter)) {
-        //     $queryFilter = [];
-        //
-        //     foreach (explode(',', $filter) as $f) {
-        //         if (in_array($f, ['wifi', 'parking', 'ac', 'restaurant'])) {
-        //             array_push($queryFilter, ['has_'.$f, '=', true]);
-        //         }
-        //     }
-        //
-        //     $query = $query->where($queryFilter);
-        // }
+        if (!empty($filter)) {
+            $firstWhere = true;
+
+            foreach (explode(',', $filter) as $f) {
+                if (in_array($f, ['main_course', 'side_dish', 'dessert'])) {
+                    if ($firstWhere) {
+                        $firstWhere = false;
+                        $query = $query->where('type', '=', $f);
+                    }
+                    else {
+                        $query = $query->orWhere('type', '=', $f);
+                    }
+                    array_push($filterList, $f);
+                }
+            }
+        }
 
         if (!empty($q)) {
             $query = $query->search($q);
         }
 
         if (!empty($sort)) {
-            $query = $query->orderBy($sort, $asc == 'true' ? 'asc' : 'desc');
+            $asc = false;
+            $sortc = $sort;
+
+            if (str_ends_with($sort, '_asc')) {
+                $sortc = substr($sort, 0, -4);
+                $asc = true;
+            }
+
+            if (in_array($sortc, ['price', 'rating'])) {
+                $query = $query->orderBy($sortc, $asc == 'true' ? 'asc' : 'desc');
+            }
         }
 
         return view('culinary', [
-            'culinaries' => $query->paginate(10)
+            'culinaries' => $query->paginate(10),
+            'sort' => $sort,
+            'filters' => $filterList
         ]);
     }
 }

@@ -71,10 +71,10 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="nav-link font-weight-bold text-success" href="/profile" align="center">Profile</a>
 
-                                @if(Auth::user()->isAdmin == true)
+                                @if(Auth::user()->is_admin == true)
                                 <a class="nav-link font-weight-bold text-success" href="/admin" align="center">Admin Table</a>
                                 @endif
-                                
+
                                 <a class="nav-link font-weight-bold text-success" href="/logout" align="center">
                                     {{ __('Logout') }}
 

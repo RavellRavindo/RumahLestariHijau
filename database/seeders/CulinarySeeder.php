@@ -20,8 +20,9 @@ class CulinarySeeder extends Seeder
             [
                 'id'=> 1,
                 'name' => "Ikan Goreng",
+                'type' => "side_dish",
                 'description' => "Ikan Goreng rasa ikannya enak",
-                'like' => 3000,
+                'rating' => 5,
                 'price' => 40000,
                 'photo' => "culinary_img/IkanGoreng_Seeder.jpg",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -30,8 +31,9 @@ class CulinarySeeder extends Seeder
             [
                 'id'=> 2,
                 'name' => "Sop Buntut",
+                'type' => "main_course",
                 'description' => "Sop buntut rasa sopnya enak",
-                'like' => 1234,
+                'rating' => 4.9,
                 'price' => 50000,
                 'photo' => "culinary_img/SopBuntut_Seeder.jpg",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
@@ -40,8 +42,9 @@ class CulinarySeeder extends Seeder
             [
                 'id'=> 3,
                 'name' => "Ayam Goreng",
+                'type' => "side_dish",
                 'description' => "Ayam Goreng rasa ayamnya enak",
-                'like' => 23456,
+                'rating' => 4.8,
                 'price' => 20000,
                 'photo' => "culinary_img/AyamGoreng_Seeder.jpeg",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

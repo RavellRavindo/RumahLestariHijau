@@ -10,7 +10,7 @@ class HomestayController extends Controller
     {
         $attr = request()->validate([
             'q' => 'regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'sort' => 'in:price,rating',
+            'sort' => 'in:price_asc,price,rating',
             'filter' => 'regex:/^[a-z\,]+$/u|max:32',
             'asc' => 'in:false,true'
         ]);
@@ -18,9 +18,9 @@ class HomestayController extends Controller
         $q      = $attr['q'] ?? null;
         $sort   = $attr['sort'] ?? null;
         $filter = $attr['filter'] ?? null;
-        $asc    = $attr['asc'] ?? null;
 
         $query = Homestay::selectRaw('*');
+        $filterList = [];
 
         if (!empty($filter)) {
             $queryFilter = [];
@@ -28,6 +28,7 @@ class HomestayController extends Controller
             foreach (explode(',', $filter) as $f) {
                 if (in_array($f, ['wifi', 'parking', 'ac', 'restaurant'])) {
                     array_push($queryFilter, ['has_'.$f, '=', true]);
+                    array_push($filterList, $f);
                 }
             }
 
@@ -39,11 +40,23 @@ class HomestayController extends Controller
         }
 
         if (!empty($sort)) {
-            $query = $query->orderBy($sort, $asc == 'true' ? 'asc' : 'desc');
+            $asc = false;
+            $sortc = $sort;
+
+            if (str_ends_with($sort, '_asc')) {
+                $sortc = substr($sort, 0, -4);
+                $asc = true;
+            }
+
+            if (in_array($sortc, ['price', 'rating'])) {
+                $query = $query->orderBy($sortc, $asc == 'true' ? 'asc' : 'desc');
+            }
         }
 
         return view('homestay', [
-            'homestays' => $query->paginate(4)
+            'homestays' => $query->paginate(4),
+            'sort' => $sort,
+            'filters' => $filterList
         ]);
     }
 }
