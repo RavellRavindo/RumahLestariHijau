@@ -323,7 +323,7 @@ background: #df3740;
 margin-bottom: 4rem;
 }
 
-.subTittle{
+.serviceSubTittle{
 margin-bottom: 1rem;
 font-weight: bold;
 color: green
@@ -366,9 +366,22 @@ cursor: pointer
   margin-right: 2.5%;
 }
 
+.paja{
+  border-radius: 20px; 
+  color: white; 
+  translate: 0% -400%; 
+  font-size: 300%; 
+  font-weight:bold
+}
+
 img {vertical-align: middle;}
 
 @media screen and (max-width: 1200px) {
+
+  .paja{
+    translate: 0% -400%;
+    font-size: 250%;
+  }
 
   .imgService{
     width: 410px;
@@ -377,16 +390,11 @@ img {vertical-align: middle;}
   }
 
   .serviceButton{
-    border-radius: 20px;
-    background: linear-gradient(to right, orange, red);
-    color: white;
     padding: 2%;
     padding-left: 7%;
     padding-right: 7%;
-    position: absolute;
     top: 220px;
     right: 80px;        
-    cursor: pointer
   }  
 
   .homeImage{
@@ -400,23 +408,23 @@ img {vertical-align: middle;}
 
 @media screen and (max-width: 992px) {
 
+  .paja{
+    translate: 0% -400%;
+    font-size: 200%;
+  }
+
   .imgService{
     width: 290px;
     height: 200px;
-    border-radius: 0.7rem;
   }
 
   .serviceButton{
-    border-radius: 20px;
-    background: linear-gradient(to right, orange, red);
-    color: white;
     padding: 2%;
     padding-left: 7%;
     padding-right: 7%;
-    position: absolute;
     top: 205px;
     right: 75px;        
-    cursor: pointer
+
   }  
 
   .homeImage{
@@ -428,86 +436,133 @@ img {vertical-align: middle;}
 
   .sectionContainer{
     width: 85%;
-    margin: 0 auto;
   }
+
+    .promoButton{
+      display: none;
+    }
+    
 }
 
 @media screen and (max-width: 768px) {
 
+    .subTitleHome h1{
+      font-size: 200%;
+    }
+
+    .subTitleHome h3{
+      font-size: 130%;
+    }
+
+    .paja{
+      translate: 0% -400%;
+      font-size: 150%;
+    }
+
     .imgService{
       width: 230px;
       height: 160px;
-      border-radius: 0.7rem;
     }
 
     .serviceButton{
-      border-radius: 20px;
-      background: linear-gradient(to right, orange, red);
-      color: white;
       padding: 2%;
       padding-left: 6%;
       padding-right: 6%;
-      position: absolute;
       top: 180px;
       right: 40px;        
-      cursor: pointer
     }  
 
     .homeImage{
       height:110px; width:190px;
       border-radius: 10px;
-      border: 0px solid #202020;
-      box-shadow: 1px 2px 1px 1px black;
     }
 
     .sectionContainer{
       width: 90%;
-      margin: 0 auto;
+    }
+
+    .promoButton{
+      display: none;
     }
 }
 
-/* Media queries 600px*/
-@media screen and (max-width: 600px) {
-    /* .paja{
-      translate: 0% -44%;
-      color: black;
-    } */
+/* Media queries 400px*/
+@media screen and (max-width: 400px) {
+
+    .subTitleHome h1{
+      font-size: 140%;
+    }
+
+    .subTitleHome h3{
+      font-size: 100%;
+    }
+
+    .serviceSubTittle{
+      font-size: 100%;
+    }
+
+    .paja{
+      translate: 0% -400%;
+      font-size: 100%;
+    }
 
     .imgService{
-      width: 200px;
-      height: 130px;
-      border-radius: 0.7rem;
+      width: 150px;
+      height: 110px;
+    }
+
+    .imgContainer p{
+      font-size: 80%;
     }
 
     .serviceButton{
-      border-radius: 20px;
-      background: linear-gradient(to right, orange, red);
-      color: white;
       padding: 2%;
-      padding-left: 4%;
-      padding-right: 4%;
-      position: absolute;
+      padding-left: 3%;
+      padding-right: 3%;
       top: 150px;
-      right: 70px;        
-      cursor: pointer
+      right: 30px;        
+      font-size: 12px;
     }  
 
     .homeImage{
-      height:90px; width:155px;
-      border-radius: 10px;
-      border: 0px solid #202020;
-      box-shadow: 1px 2px 1px 1px black;
+      height:62px; width:100px;
+      border-radius: 5px;
     }
 
+    .serviceTittle h1{
+      font-size: 140%;
+    }
+
+    .promoButton{
+      display: none;
+    }
+
+    #carousel{
+      padding-top: 3.5%;
+      padding-bottom: 4.5%;
+    }
+
+    .sectionContainer{
+      width: 100%;
+    }
 }
 
 /* --------------------------------------- Untuk Home End ----------------------------------- */
 
 /* ----------------------------------------Untuk Promo---------------------------------------- */
 
-#carousel, #carousel2 {
+#carouselPromo, #carousel2 {
   overflow: hidden;
   white-space: nowrap;
+}
+
+.promoTitle{
+  text-align: center; 
+  font-size: 250%; 
+  font-weight: bold; 
+  margin-top: 10%; 
+  margin-bottom: 5%; 
+  color:#3bb143
 }
 
 .slidePromo {
@@ -517,15 +572,93 @@ img {vertical-align: middle;}
   margin-right: 2.5%;
 }
 .promoImage{
-  width: 100%;
+  height:220px; width:400px;
   border-radius: 10px;
   border: 0px solid #202020;
   box-shadow: 1px 2px 1px 1px black;
 }
 
+.promoSubTittle-2 {
+  font-size: 250%; 
+  margin-left: 5%; 
+  color: #3bb143; 
+  font-weight: bold; 
+  margin-bottom: 2%
+}
+
+@media screen and (max-width: 1200px) {
+
+  .promoImage{
+    height:140px; width:250px;
+    border-radius: 10px;
+    border: 0px solid #202020;
+    box-shadow: 1px 2px 1px 1px black;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .promoImage{
+    height:140px; width:250px;
+    border-radius: 10px;
+    border: 0px solid #202020;
+    box-shadow: 1px 2px 1px 1px black;
+  }
+
+  .promoTitle{
+    font-size: 220%; 
+  }
+
+
+}
+
+@media screen and (max-width: 768px) {
+
+
+    .promoImage{
+      height:110px; width:190px;
+      border-radius: 10px;
+      border: 0px solid #202020;
+      box-shadow: 1px 2px 1px 1px black;
+    }
+
+    .promoTitle{
+      font-size: 200%; 
+    }
+
+}
+
+/* Media queries 600px*/
+@media screen and (max-width: 400px) {
+
+    .promoImage{
+      height:62px; width:100px;
+      border-radius: 5px;
+    }
+
+    .promoTitle{
+      font-size: 140%; 
+      margin-bottom: 10%;
+    }
+
+    .promoSubTittle-2{
+      font-size: 130%;
+    }
+
+    .slidePromo{
+      margin-bottom: 4%;
+    }
+}
 /* ----------------------------------------Untuk Promo End---------------------------------------- */
 
 /* ----------------------------------------Untuk Homestay Start---------------------------------------- */
+.homestayContainer{
+  display: grid; 
+  grid-template-columns: 20% 90%; 
+  gap: 10%; 
+  margin-top: 50px;
+}
+
 .untukBorderHomeStayDetail {
   border-left: 1px solid gray;
   padding-left: 5%;
@@ -557,6 +690,61 @@ border-radius: 18px;
 .row .column img:hover {
 transform: translateY(-10px);
 transition: all 300ms ease;
+}
+
+.searchBox-2{
+  margin-top: 4%;
+  position: relative;
+  width: 300px;
+  height: 50px;
+  border: solid 1px black;
+  border-radius: 30px;
+}
+
+.searchBox-2 .input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 18px;
+  border: 0;
+  outline: none;
+}
+
+.searchBox-2 button{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(to right, orange, red);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.searchWrap-2 button{
+  width: 85px;
+  height: 30px;
+  top: 8px;
+  right: 10px;
+  border-radius: 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 400px) {
+
+  .homestayContainer{
+    grid-template-columns: 1fr; 
+    gap: 5%; 
+    margin-top: 50px;
+    place-items: center;
+  }
 }
 /* ----------------------------------------Untuk Homestay End---------------------------------------- */
 
@@ -742,13 +930,29 @@ transition: all 300ms ease;
 /* --------------------------------Untuk Souvenir-------------------------------- */
 
 /* Kotak gambar dan deskripsi Souvenir */
-.kotakSouvenir{
-  width: 25%;
+.souvenirTittle{
+  text-align: center; 
+  font-size: 250%; 
+  font-weight: bold; 
+  margin-top: 5%; 
+  margin-bottom: 5%; 
+}
+
+.souvenirContainer{
+  display:flex; 
+  flex-wrap:wrap; 
+  width: 80%;
+  margin-left: 15%; 
+}
+
+.souvenirImgContainer{
+  width: 300px;
   float: left;
   margin-right: 6%;
   box-shadow: 2px 4px gray;
   border: 2px solid gray;
   border-radius: 20px;
+  margin-bottom: 4%;
 }
 
 .checkButtonSouvenir{
@@ -778,10 +982,10 @@ transition: all 300ms ease;
 }
 
 .hargaSouvenir{
-  text-align: center;
+  text-align: left;
   color:green;
   font-weight: bold;
-  float: center
+  float: inline-start;
 }
 
 .wrapSouvenir{
@@ -818,6 +1022,52 @@ transition: all 300ms ease;
   color:white;
   border: 0px;
   border-radius: 10px;
+}
+
+.souvenirImg{
+  border-radius:5%; 
+  width: 296px; 
+  height: 250px; 
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+/* Media queries 600px*/
+@media screen and (max-width: 400px) {
+  .souvenirTittle{
+    font-size: 140%; 
+    margin-top: 10%; 
+    margin-bottom: 10%; 
+  }
+
+  .souvenirImgContainer{
+    width: 90%;
+    margin-right: 6%;
+    box-shadow: 2px 4px gray;
+    border: 2px solid gray;
+    border-radius: 20px;
+    margin-bottom: 15%;
+  }
+
+  .souvenirImg{
+    border-radius:5%; 
+    width: 100%; 
+  }
+
+  .hargaSouvenir{
+    text-align: left;
+    float:inline-start;
+  }
 }
   /* --------------------------------Untuk Souvenir End-------------------------------- */
 

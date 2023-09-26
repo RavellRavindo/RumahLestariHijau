@@ -7,15 +7,15 @@
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 {{-- Tulisan Besar Souvenir --}}
 
-<div style="text-align: center; font-size: 250%; font-weight: bold; margin-top: 10%; margin-bottom: 5%; color:#3bb143">
+<div class="souvenirTittle" style="color:#3bb143">
     Choose The Perfect <b style="color: #FF6700">Souvenir</b><br>for Your Family</div>
 
 {{-- Kotak Gambar dan Deskripsi Souvenir --}}
 <div class="sectionContainer">
-    <div style="display:flex; flex-wrap:wrap; width: 80%; margin-left: 15%; ">
-        @foreach ($souvenirs as $data)
-        <div class="kotakSouvenir" style="margin-bottom: 4%;">
-            <img src="{{Storage::url($data->photo)}}" style="border-radius:5%; width: 100%; height: 250px; object-fit: cover;">
+    <div class="souvenirContainer">
+        @foreach ($sou as $data)
+        <div class="souvenirImgContainer">
+            <img class="souvenirImg" src="{{Storage::url($data->photo)}}">
             <div style="padding: 4%;">
                 <div style="text-align: justify; margin-bottom: 3%">{{$data->name}}</div>
                 <div class="hargaSouvenir">Rp. {{$data->price}}</div>

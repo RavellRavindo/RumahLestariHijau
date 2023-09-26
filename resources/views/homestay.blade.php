@@ -4,14 +4,6 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-<style>
-
-@media only screen and (max-width: 600px){
-    .row .column img{
-        border-radius: 15px;
-    }
-}
-</style>
 
 <!-- Kotak 1 Start -->
 <div style="margin-top: 2%; margin-bottom: 4%; padding-left: 10%; padding-right: 10%; display: flex">
@@ -53,9 +45,17 @@
 
             <ul style="width : 25%">
                 <li style="list-style: none; margin-left: -60px; color: #25b448; display: flex;">
-                    <button type="submit" class="btn btn-primary mb-2"
+                    <!-- <button type="submit" class="btn btn-primary mb-2"
                         style="width : 200px; margin-top: 20px; margin-left: 50px; background: linear-gradient(to right, #f0572e, #f0312e); border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px">
-                        Search </button>
+                        Search </button> -->
+                    <div class="searchWrap-2">
+                        <form class="searchBox-2" action="/action_page.php">
+                            <input type="text" class="input" placeholder="Search Culinary.."  name="search2">
+                            <div class="btn">
+                                <button type="submit">Search</button>
+                            </div>
+                        </form>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -65,7 +65,7 @@
 <!-- Kotak 1 End -->
 
 <!-- Price Range Start -->
-<div class="sectionContainer"style="display: grid; grid-template-columns: 20% 90%; gap: 10%; margin-top: 50px;" id="homeStay">
+<div class="homestayContainer sectionContainer" id="homeStay">
     <ul>
         <li style="list-style: none">
             <P style="color: #25b448">
@@ -87,7 +87,7 @@
                 </b>
             </p>
 
-            <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
+            <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="radio" class="form-control" name="sort_by" id="1" placeholder="min"
                     style="width: 15px;" value="1">
                 <p style="margin-top: 2.2%; margin-left: 3%">
@@ -95,7 +95,7 @@
                 </p>
             </div>
 
-            <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
+            <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="radio" class="form-control" name="sort_by" id="2" placeholder="min"
                     style="width: 15px;" value="2">
                 <p style="margin-top: 2.2%; margin-left: 3%">
@@ -104,7 +104,7 @@
             </div>
 
 
-            <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
+            <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="radio" class="form-control" name="sort_by" id="3" placeholder="min"
                     style="width: 15px;" value="3">
                 <p style="margin-top: 2.2%; margin-left: 3%">
@@ -118,7 +118,7 @@
                 </b>
             </p>
 
-            <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
+            <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="radio" class="form-control" name="facilities" id="1" placeholder="min"
                     style="width: 15px;" value="1">
                 <p style="margin-top: 2.2%; margin-left: 3%">
@@ -126,7 +126,7 @@
                 </p>
             </div>
 
-            <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
+            <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="radio" class="form-control" name="facilities" id="2" placeholder="min"
                     style="width: 15px;" value="2">
                 <p style="margin-top: 2.2%; margin-left: 3%">
@@ -134,14 +134,14 @@
                 </p>
             </div>
 
-            <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
+            <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="radio" class="form-control" name="facilities" id="3" placeholder="min"
                     style="width: 15px;" value="3">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     AC
                 </p>
             </div>
-            <div style="width: 100%; margin-top: -5%; display: flex; align-items:center;">
+            <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="radio" class="form-control" name="facilities" id="4" placeholder="min"
                     style="width: 15px;" value="4">
                 <p style="margin-top: 2.2%; margin-left: 3%">
@@ -254,11 +254,11 @@
                 {{$data->like/1000}}K
                 <i class="fa fa-thumbs-up"></i>
                 <div style="text-align: right; translate: 0% -110%">
-                    <a href="https://api.whatsapp.com/send?phone=6285155488011&text=Saya%20Ingin%20Booking%20Tempat%20{{ $data->name }}" target="_blank"
+                     href="https://api.whatsapp.com/send?phone=6285155488011&text=Saya%20Ingin%20Booking%20Tempat%20{{ $data->name }}" target="_blank"
                         class="btn btn-success"
                         style="background: linear-gradient(to right, #27b448, #72b426); border-radius: 15px; padding: 1%; padding-right: 5%; padding-left: 5%; font-weight: bold; font-size: 125%">
                         Reserve
-                    </a>
+                    </>
                 </div>
     </div>
 
