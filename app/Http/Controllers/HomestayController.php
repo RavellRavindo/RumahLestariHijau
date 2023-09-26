@@ -59,4 +59,12 @@ class HomestayController extends Controller
             'filters' => $filterList
         ]);
     }
+
+    
+    public function homestayDetailPage($id)
+    {
+        return view('homestayDetail', [
+            'data' => Homestay::findOrFail($id)
+        ]);
+    }
 }

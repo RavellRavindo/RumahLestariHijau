@@ -105,7 +105,7 @@ class HomestaySeeder extends Seeder
                 'id' => 6,
                 'homestay_id' => 2,
                 'index' => 1,
-                'path' => 'homestay_img/HomestayB/thumb_seeder.jpg',
+                'path' => 'homestay_img/HomestayB/img1_20230921_054510.jpg',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -113,7 +113,7 @@ class HomestaySeeder extends Seeder
                 'id' => 7,
                 'homestay_id' => 2,
                 'index' => 2,
-                'path' => 'homestay_img/HomestayB/img1_seeder.jpg',
+                'path' => 'homestay_img/HomestayB/thumb_20230921_054510.jpg',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -121,7 +121,7 @@ class HomestaySeeder extends Seeder
                 'id' => 8,
                 'homestay_id' => 2,
                 'index' => 3,
-                'path' => 'homestay_img/HomestayB/img2_seeder.jpg',
+                'path' => 'homestay_img/HomestayB/thumb_20230921_054740.jpg',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -129,7 +129,7 @@ class HomestaySeeder extends Seeder
                 'id' => 9,
                 'homestay_id' => 2,
                 'index' => 4,
-                'path' => 'homestay_img/HomestayB/img3_seeder.jpg',
+                'path' => 'homestay_img/HomestayB/img4_20230921_070614.jpg',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -137,7 +137,7 @@ class HomestaySeeder extends Seeder
                 'id' => 10,
                 'homestay_id' => 2,
                 'index' => 5,
-                'path' => 'homestay_img/HomestayB/img4_seeder.jpg',
+                'path' => 'homestay_img/HomestayB/img4_20230921_070614.jpg',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],

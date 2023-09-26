@@ -30,6 +30,34 @@ class PromoSeeder extends Seeder
                 'photo' => "promo_img/SuperPromo_seeder.jpg",
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 3,
+                'name' => "11.11 Mega Promo",
+                'photo' => "promo_img/11.11MegaP_seeder.jpg",
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 4,
+                'name' => "Super Promo",
+                'photo' => "promo_img/SuperPromo_seeder.jpg",
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 5,
+                'name' => "11.11 Mega Promo",
+                'photo' => "promo_img/11.11MegaP_seeder.jpg",
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 6,
+                'name' => "Super Promo",
+                'photo' => "promo_img/SuperPromo_seeder.jpg",
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]
         ]);
     }

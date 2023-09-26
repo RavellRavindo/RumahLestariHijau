@@ -52,7 +52,7 @@
 
   <script>
       // Script Carousel 1
-      const carousel = document.querySelector('#carousel');
+      const carousel = document.querySelector('#carouselPromo');
       let isDown = false;
       let startX;
       let scrollLeft;

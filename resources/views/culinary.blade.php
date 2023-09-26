@@ -4,7 +4,7 @@
 
 @section('content')
 <!-------------------------- Sort-Start -------------------------------->
-<div class="sectionContainer" style="display: grid; grid-template-columns: 20% 80%; gap: 10%; margin-top: 80px;">
+<div class="culinaryContainer sectionContainer">
     <ul>
             <li style="list-style: none">
                 <P style="color: #25b448">
@@ -88,13 +88,13 @@
         <!-------------------------- Menu-Start -------------------------------->
         <li style="list-style: none; width:75%;">
             <div style="display:flex; justify-content:space-between;">
-                <div>
-                    <strong style="color: #25b448; font-size: 40px;">
+                <div class="culinarySubTittle">
+                    <strong>
                         What's
                     </strong>
-                    <strong style="color: #094222; font-size: 40px;">
+                    <span>
                         NEW!
-                    </strong>
+                    </span>
                 </div>
                 <div class="searchWrap">
                     <div class="searchBox">
@@ -108,15 +108,16 @@
                 <img src="/gambar/cul.svg" width="100%" style="border-radius: 10px; margin-top:20px; margin-bottom:20px; object-fit: cover;">
             </div>
 
-            <div id="list-item" style="display:inline-block; width: 100%;">
+            <div class="culinaryFoodContainer" id="list-item">
                 @foreach ($culinaries as $data)
-                <div style="width:30%; margin-left:2.5%; margin-bottom: 5%; display:inline-block;">
-                    <td><img src="{{Storage::url($data->photo)}}" alt="" style="border-radius:5%; width: 95%; height: 200px; object-fit: cover;"></td>
-                    <p style="font-weight: bold; margin-top: 2%;">{{$data->name}}</p>
-                    <button class="openbtnCulinary" onclick="openForm('{{ $data->id }}')">More</button>
+                <div class="culinaryImgContainer">
+                    <td><img class="culinaryImg" src="{{Storage::url($data->photo)}}" alt=""></td>
+                    <p>{{$data->name}}</p>
+                    <button class="openBtnCulinary" onclick="openForm('{{ $data->id }}')">More</button>
                 </div>
                 @endforeach
                 {!! $culinaries->links('pagination::bootstrap-5') !!}
+            </div>
         </li>
     </ul>
 </div>

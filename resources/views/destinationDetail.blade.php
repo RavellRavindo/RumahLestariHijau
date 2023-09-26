@@ -5,9 +5,9 @@
 @section('content')
 
 <div style=" height:fit-content; padding: 40px; ">
-    <div style="width: 60%; box-shadow: 1px 2px 4px 6px gray; padding: 3%; float: left; border-radius: 10px">
+    <div style="width: 60%; box-shadow: 1px 2px 3px 2px gray; padding: 3%; float: left; border-radius: 10px">
         <p style="text-align:center; font-size: 150%; font-weight: bold; color: green">{{$destination->name}}</p>
-        <img src="{{Storage::url($destination->photo)}}" style="width: 693px; height: 309px; object-fit: cover;">
+        <img src="{{Storage::url($destination->photo)}}" style="width: 693px; height: 309px; object-fit: cover; margin-bottom:2%;">
         <div class="ets">
             <button id="DescriptionButton" class="buttonDestinationDetail"
                 onclick="document.getElementById('Description').style.display='block'; document.getElementById('Rundown').style.display='none'; document.getElementById('Location').style.display='none'; document.getElementById('Price').style.display='none'">Description</button>
@@ -88,29 +88,20 @@
         }
 
     </style>
-    <div style="width: 35%; display:inline-block; padding:5%; margin-top: -2%">
-        <p style="font-weight: bold; color: green">Form Reserve Destination</p>
+    <div class="destinationDetailForm">
+        <p class="destinationDetailSubTittle">Form Reserve Destination</p>
         <p style="margin-bottom: 1%">Full Name</p>
-        <input type="text" id="name"
-            style="width: 100%; box-shadow:1px 6px 8px gray; border: none; background-color: #C0C0C0; margin-bottom: 3%; height: 40px; font-size: 25px; border-radius: 10px">
+        <input type="text" id="name">
         <p style="margin-bottom: 1%">Contact WA</p>
-        <input type="number" id="number"
-            style="width: 100%; box-shadow:1px 6px 8px gray; border: none; background-color: #C0C0C0; margin-bottom: 3%; height: 40px; font-size: 25px; border-radius: 10px">
+        <input type="number" id="number">
         <p style="margin-bottom: 1%">Number of Participants</p>
-        <input type="number" id="participant"
-            style="width: 100%; box-shadow:1px 6px 8px gray; border: none; background-color: #C0C0C0; margin-bottom: 3%; height: 40px; font-size: 25px; border-radius: 10px">
+        <input type="number" id="participant">
         <p style="margin-bottom: 1%">Choice of Tour Packages</p>
-        <input type="text" id="package"
-            style="width: 100%; box-shadow:1px 6px 8px gray; border: none; background-color: #C0C0C0; margin-bottom: 3%; height: 40px; font-size: 25px; border-radius: 10px">
+        <input type="text" id="package">
         <p style="margin-bottom: 1%">Date Choice</p>
-        <input type="date" id="date"
-            style="width: 100%; box-shadow:1px 6px 8px gray; border: none; background-color: #C0C0C0; margin-bottom: 3%; height: 40px; font-size: 25px; border-radius: 10px">
+        <input type="date" id="date">
         <p style="margin-bottom: 1%">Note</p>
-        <input type="text" id="note"
-            style="width: 100%; box-shadow:1px 6px 8px gray; border: none; background-color: #C0C0C0; margin-bottom: 3%; height: 160px; font-size: 25px; border-radius: 10px">
-        <!-- <a href="https://api.whatsapp.com/send?phone=628568758753&text=Ingin%20Destinasi"
-            style="background: linear-gradient(to bottom, red, orange); border: none; padding: 3%; padding-left: 10%; padding-right: 10%; float: right; border-radius: 15px; margin-top: 20%; margin-bottom: 75%; color: white">Reverse
-            Now</a> -->
+        <input type="text" id="note">
         <a href="#" id="reverse-button" style="background: linear-gradient(to bottom, red, orange); border: none; padding: 3%; padding-left: 10%; padding-right: 10%; float: right; border-radius: 15px; margin-top: 20%; margin-bottom: 75%; color: white">Reserve Now</a>
     </div>
 </div>

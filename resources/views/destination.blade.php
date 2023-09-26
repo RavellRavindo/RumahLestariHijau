@@ -9,7 +9,7 @@
     <p style="color:rgb(0, 87, 0); font-size: 150%">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quis amet animihic eveniet </p>
 </div>
 
-<div id="carousel">
+<div id="carouselDestination">
     {{---------------- LOOPING SPECIAL EVENT LIST ----------------}}
     @foreach ($destinations as $data)
 
@@ -39,11 +39,13 @@
     {{---------------- LOOPING OPEN TRIP LIST ----------------}}
     @foreach ($destinations as $data)
 
-    <div style="width: 30%; box-shadow: 1px 8px 8px 4px gray; padding: 1%; display: inline-block; margin: 1%">
+    <div style="width: 30%; box-shadow: 1px 1px 2px 4px gray; padding: 1%; display: inline-block; margin: 1%; border-radius: 2%;">
         <p style="text-align: center; font-weight: bold; color: green">{{$data->name}}</p>
-        <img src="{{Storage::url($data->photo)}}" style="width: 100%">
+        <img src="{{Storage::url($data->photo)}}" style="width: 100%; border-radius: 2%;">
         <p style="text-align: justify; padding: 3%; padding-top: 7%">{{$data->description}}</p>
-        <a href="{{route('destinationDetailPage', $data->id)}}"><button class="destinasiCheckDetail">Check Detail</button></a>
+        <a href="{{route('destinationDetailPage', $data->id)}}">
+            <button class="destinasiCheckDetail">Check Detail</button>
+        </a>
     </div>
     @endforeach
     {{---------------- LOOPING OPEN TRIP LIST END ----------------}}
@@ -51,7 +53,7 @@
 </div>
 
 <script>
-const carousel = document.querySelector('#carousel');
+const carousel = document.querySelector('#carouselDestination');
 let isDown = false;
 let startX;
 let scrollLeft;
