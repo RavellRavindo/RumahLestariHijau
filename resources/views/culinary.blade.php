@@ -87,7 +87,7 @@
 
         <!-------------------------- Menu-Start -------------------------------->
         <li style="list-style: none; width:75%;">
-            <div style="display:flex; justify-content:space-between;">
+            <div style="display:flex; justify-content:space-between">
                 <div class="culinarySubTittle">
                     <strong>
                         What's
@@ -104,6 +104,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             <div class="imgContainer">
                 <img src="/gambar/cul.svg" width="100%" style="border-radius: 10px; margin-top:20px; margin-bottom:20px; object-fit: cover;">
             </div>
@@ -138,7 +139,7 @@
             <b style="color:black; font-size: 200%">Menu Description</b>
         </div>
         <div class="cons">
-        <td><img src="{{Storage::url($data->photo)}}" alt="" style="border-radius:5%; width: 45%; height: 230px; object-fit: cover; margin-top:4%;"></td>
+        <td><img class="culinaryOverlayImg" src="{{Storage::url($data->photo)}}" alt=""></td>
             <div style="text-align: center; width: 400px">
                 <h3>{{$data->name}}</h3>
                 <p style="text-align: justify">

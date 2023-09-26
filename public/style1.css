@@ -838,7 +838,7 @@ transition: all 300ms ease;
   display: grid; 
   grid-template-columns: 20% 80%; 
   gap: 10%; 
-  margin-top: 8%;
+  margin-top: 5%;
 }
 
 .culinarySubTittle strong{
@@ -976,8 +976,8 @@ transition: all 300ms ease;
 }
 .rates{
     position:absolute;
-    right:10px;
-    top:20px;
+    right:30px;
+    top:40px;
 }
 .closebtnCulinary{
   position:absolute;
@@ -1028,6 +1028,15 @@ transition: all 300ms ease;
   top: 14%;
   right: 15%;
 } */
+
+.culinaryOverlayImg{
+  margin-left:2%; 
+  border-radius:5%; 
+  width: 45%; 
+  height: 230px; 
+  object-fit: cover; 
+  margin-top:4%;
+}
 
 @media screen and (max-width: 1200px) {
 
@@ -1082,6 +1091,15 @@ transition: all 300ms ease;
 
   .openBtnCulinary{
     margin-bottom: 10%;
+  }
+
+  .culinaryOverlayImg{
+    margin-left:2%; 
+    border-radius:5%; 
+    width: 45%; 
+    height: 230px; 
+    object-fit: cover; 
+    margin-top:4%;
   }
 
 
@@ -1195,6 +1213,22 @@ transition: all 300ms ease;
   object-fit: cover;
 }
 
+.souvenirOverlayImg{
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 50%; 
+  display: block; 
+  border-radius: 10px; 
+  margin-bottom: 5%
+}
+
+.souvenirOverlayPrice{
+  text-align: center; 
+  color: green; 
+  font-weight: bold; 
+  float: center
+}
+
 @media screen and (max-width: 1200px) {
 }
 
@@ -1231,6 +1265,36 @@ transition: all 300ms ease;
   .hargaSouvenir{
     text-align: left;
     float:inline-start;
+  }
+
+  .wrapSouvenir{
+    width:80%;
+    height: 40%;
+    padding-left: 7%;
+    padding-right: 0%;
+    margin-top: 35%;
+  }
+
+  .souvenirOverlayImg{
+    margin: 10% 10% 10% 10%;
+    width: 70%; 
+  }
+
+  .souvenirOverlayPrice{
+    text-align:start; 
+    float:left;
+    margin-top: 4.5%;
+  }
+
+  .buyNowSouvenir{
+    margin-top: 2%;
+    margin-right: 8%;
+  }
+
+  .buyNowSouvenir:hover{
+    margin-top: 2%;
+    margin-right: 8%;
+
   }
 }
   /* --------------------------------Untuk Souvenir End-------------------------------- */
