@@ -49,10 +49,10 @@
                         style="width : 200px; margin-top: 20px; margin-left: 50px; background: linear-gradient(to right, #f0572e, #f0312e); border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px">
                         Search </button> -->
                     <div class="searchWrap-2">
-                        <form class="searchBox-2" action="/action_page.php">
-                            <input type="text" class="input" placeholder="Search Culinary.."  name="search2">
+                        <form class="searchBox-2">
+                            <input type="text" class="input" placeholder="Search Culinary.." id="searchBox" name="q">
                             <div class="btn">
-                                <button type="submit">Search</button>
+                                <button onclick="search()">Search</button>
                             </div>
                         </form>
                     </div>

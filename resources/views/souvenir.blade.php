@@ -13,7 +13,7 @@
 {{-- Kotak Gambar dan Deskripsi Souvenir --}}
 <div class="sectionContainer">
     <div class="souvenirContainer">
-        @foreach ($sou as $data)
+        @foreach ($souvenirs as $data)
         <div class="souvenirImgContainer">
             <img class="souvenirImg" src="{{Storage::url($data->photo)}}">
             <div style="padding: 4%;">
