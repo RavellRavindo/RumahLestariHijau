@@ -61,20 +61,6 @@
         name = "myOverlay " + id;
         document.getElementById(name).style.display = "none";
     }
-    // $(document).ready(function () {
-
-    //     // $("#openModal").click(function(){
-    //     //     $("#modal_div").show();
-    //     // });
-
-    //     window.onclick = function (event) {
-    //         // document.getElementById(name).style.display = "none";
-    //         if (event.target.id != "image_in_modal_div") {
-    //             $("#modal_div").hide();
-    //         }
-    //     }
-
-    // });
 
 </script>
 @endsection
