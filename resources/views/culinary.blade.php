@@ -114,7 +114,10 @@
                 <div class="culinaryImgContainer">
                     <td><img class="culinaryImg" src="{{Storage::url($data->photo)}}" alt=""></td>
                     <p>{{$data->name}}</p>
-                    <button class="openBtnCulinary" onclick="openForm('{{ $data->id }}')">More</button>
+                    <div class="culBtn">
+                        <button class="openBtnCulinary" onclick="openForm('{{ $data->id }}')">More</button>
+                        <p class="culinaryPrice">Rp.{{$data->price}}</p>
+                    </div>
                 </div>
                 @endforeach
                 {!! $culinaries->links('pagination::bootstrap-5') !!}
@@ -132,8 +135,10 @@
         </span>
 
         <span class="closebtnCulinary" onclick="closeForm('{{$data->id}}')" title="Close"> X </span>
-        <div class="rates">
-            {{$data->like/1000}}K <i class="fa fa-thumbs-up"></i>
+        <div id="likeBtn"  class="rates" onclick="likeIncrease()">
+            <!-- <form action="" method="post"> -->
+                {{$data->like/1000}}K <i class="fa fa-thumbs-up"></i>
+            <!-- </form> -->
         </div>
         <div style="text-align: center">
             <b style="color:black; font-size: 200%">Menu Description</b>
@@ -158,19 +163,27 @@
     </div>
 </div>
 @endforeach
-{{-- <div style="margin-top: 5%; margin-left: 10%"><b>Annonymous</b></div>
-            <i style="margin-left: 10%" class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-            <i class="fa fa-star-o"></i>
-            <div style="margin-top: 1%; margin-left: 10%; margin-right: 50%; text-align: justify">Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Ducimus harum quasi cupiditate eveniet eos dicta officia qui
-                nemo nostrum, soluta facere sapiente, veniam ipsam consectetur laudantium iste blanditiis at. Eum!
-</div> --}}
-
 
 <script>
+
+// const likeBtn = document.getElementById('likeBtn');
+
+// likeBtn.setAttribute('style','background-color: black;');
+
+// likeBtn.addEventListener('click', function(){
+//     document.querySelector('rates').style.backgroundColor = 'red';
+// })
+
+// likeBtn.addEventListener('click', function() {
+//     setAttribute('style','color: red;');
+// })
+
+// function likeIncrease(){
+//   console.log('ke click');
+//   counter.textContent = Number(counter.textContent) + 1;
+// }
+
+
 function openForm(id) {
     console.log(id);
     namess = "myOverlay" + id;

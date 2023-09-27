@@ -92,8 +92,8 @@
     </main>
 
     <!-- Footer  -->
-    <footer style="background: linear-gradient(rgb(42 180 70), rgb(98 180 38)); margin-top:2%; padding-bottom:2%;" id="footer">
-        <div class="" style="max-width: 100%; margin: auto; display: flex">
+    <footer class="footer" id="footer">
+        <div class="footerContainer">
                 <ul>
                 <li style="list-style: none;">
                     <div style="font-size: 100%; margin-bottom: 1%; margin-top: 5%; margin-left:8%;">

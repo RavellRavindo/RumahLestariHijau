@@ -831,6 +831,30 @@ transition: all 300ms ease;
   display: flex
 }
 
+.homestayDetailContent{
+  display: flex;
+}
+
+.homestayInfo{
+  list-style: none; 
+  width: 40%
+}
+
+.homestayOffers{
+  display: flex; 
+  width: 100%; 
+  translate: -5% 0%
+}
+
+.homestayOffer{
+  font-size: 200%;
+}
+
+.homestayOfferContainer{
+  width: 20%; 
+  text-align:center
+}
+
 @media screen and (max-width: 400px) {
 
   .homestayContainer{
@@ -871,6 +895,28 @@ transition: all 300ms ease;
   .mainMenu{
     display: none;
   }
+
+  .row .column img {
+    padding: 5px 5px;
+    border-radius: 12px;
+    }
+
+    .homestayDetailContent{
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .homestayInfo{
+      width: 90%;
+    }
+
+    .homestayOffer{
+      font-size: 110%;
+    }
+
+    .homestayOfferContainer{
+      width: 35%;
+    }
 }
 /* ----------------------------------------Untuk Homestay End---------------------------------------- */
 
@@ -1084,6 +1130,17 @@ transition: all 300ms ease;
   margin-top:4%;
 }
 
+.culBtn{
+  display: flex;
+  justify-content: space-between;
+}
+
+.culinaryPrice{
+  padding-top: 4%;
+  padding-right: 10%;
+  font-size: 100%;
+}
+
 @media screen and (max-width: 1200px) {
 
 }
@@ -1163,6 +1220,16 @@ transition: all 300ms ease;
   .culMenu{
     margin-top: 2%;
 
+  }
+
+  .culinaryImg{
+    height: 120px;
+  }
+
+  .culinaryPrice{
+    padding-top: 4%;
+    padding-right: 2%;
+    font-size: 80%;
   }
 }
 
@@ -1502,6 +1569,10 @@ transition: all 300ms ease;
     border-radius: 2%;
   }
 
+  .ets{
+    margin-bottom: 2%;
+  }
+
   .buttonDestinationDetail {
     width: 20%;
     padding: 2%;
@@ -1509,7 +1580,7 @@ transition: all 300ms ease;
     border: none;
     background: linear-gradient(to bottom, green, lime);
     color: white;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .buttonDestinationDetail:active,
@@ -1554,7 +1625,7 @@ transition: all 300ms ease;
 
   .destinationDetailForm{
     width: 100%; 
-    margin-top: 5%;
+    margin-top: 20%;
   }
 
   .destinationDetailContent{
@@ -1565,5 +1636,39 @@ transition: all 300ms ease;
     width: 100%; 
     border-radius: 3%;
   }
+
+  .ets{
+    margin-bottom: 5%;
+  }
+
+  .buttonDestinationDetail {
+    width: 100%;
+}
+
+.buttonDestinationDetail:active,
+.buttonDestinationDetail:hover {
+    width: 100%;
+}
+
 }
   /* destinationDetail End*/
+
+  .footer{
+    background: linear-gradient(rgb(42 180 70), rgb(98 180 38)); 
+    margin-top:2%; 
+    padding-bottom:2%;
+  }
+
+  .footerContainer{
+    max-width: 100%; 
+    margin: auto; 
+    display: flex
+  }
+
+@media screen and (max-width:400%){
+  .footerContainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: #fff;
+  }
+}

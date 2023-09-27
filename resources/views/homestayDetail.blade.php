@@ -41,21 +41,21 @@
     </div>
 
 
-    <div class = "row mb-5">
+    <div class ="homestayDetailImgContainer row mb-5">
         <div class="column">
-            <img style="width: 800px; height:500px" src="{{Storage::url($data->homestayPhoto[0]->path)}}">
+            <img style="width: 100%; height:100%" src="{{Storage::url($data->homestayPhoto[0]->path)}}">
         </div>
 
         <div class="column">
             @isset ($data->homestayPhoto[1])
             <div class = "row">
                 <div class="column">
-                    <img src="{{Storage::url($data->homestayPhoto[1]->path)}}" style="width: 380px; height:250px">
+                    <img src="{{Storage::url($data->homestayPhoto[1]->path)}}" style="width: 100%; height:100%">
                 </div>
 
                 @isset ($data->homestayPhoto[2])
                 <div class="column">
-                    <img src="{{Storage::url($data->homestayPhoto[2]->path)}}" style="width: 380px; height:250px">
+                    <img src="{{Storage::url($data->homestayPhoto[2]->path)}}" style="width: 100%; height:100%">
                 </div>
                 @endisset
             </div>
@@ -64,13 +64,13 @@
             @isset ($data->homestayPhoto[3])
             <div class = "row">
                 <div class="column">
-                    <img src="{{Storage::url($data->homestayPhoto[3]->path)}}" style="width: 380px; height:250px">
+                    <img src="{{Storage::url($data->homestayPhoto[3]->path)}}" style="width: 100%; height:100%">
                 </div>
             @endisset
 
             @isset ($data->homestayPhoto[4])
                 <div class="column">
-                    <img src="{{Storage::url($data->homestayPhoto[4]->path)}}" style="width: 380px; height:250px">
+                    <img src="{{Storage::url($data->homestayPhoto[4]->path)}}" style="width: 100%; height:100%">
                 </div>
             </div>
             @endisset
@@ -78,35 +78,35 @@
         </div>
     </div>
 
-    <div style="display: flex;">
-        <ul style="list-style: none; width: 40%">
+    <div class="homestayDetailContent">
+        <ul class="homestayInfo">
             <li>
                 <b>
                     <p style="margin: 1%; font-size: 125%">Entire hotel hosted by {{$data->owner}}</p>
-                    <p style="margin-bottom: 7%">{{$data->guest}} guest - {{$data->bedroom}} bedrooms - {{$data->bed}}
-                        beds - {{$data->bath}} baths</p>
+                    <p style="margin-bottom: 7%; font-weight: normal;">{{$data->guest}} guest - {{$data->bedroom}} bedrooms - {{$data->bed}}
+                        beds - {{$data->has_bath}} baths</p>
                     <p style="font-size: 125%">What this places offers</p>
-                    <div style="display: flex; width: 100%; translate: -5% 0%">
-                        @if ($data->wifi==1)
-                        <div style="width: 20%; text-align:center">
-                            <i class="fa fa-wifi" style="font-size: 250%"></i>
+                    <div class="homestayOffers">
+                        @if ($data->has_wifi==1)
+                        <div class="homestayOfferContainer">
+                            <i class="homestayOffer fa fa-wifi"></i>
                             <p>Wifi</p>
                         </div>
                         @endif
-                        @if ($data->parking==1)
-                        <div style="width: 20%; text-align:center">
-                            <i style="font-size: 250%" class="fa fa-product-hunt"></i>
+                        @if ($data->has_parking==1)
+                        <div class="homestayOfferContainer">
+                            <i class="homestayOffer fa fa-product-hunt"></i>
                             <p>Parking</p>
                         </div>
                         @endif
-                        @if ($data->restaurant==1)
-                        <div style="width: 20%; text-align:center">
-                            <i style="font-size: 250%" class="fa fa-cutlery"></i>
+                        @if ($data->has_restaurant==1)
+                        <div class="homestayOfferContainer">
+                            <i class="homestayOffer fa fa-cutlery"></i>
                             <p>Restaurant</p>
                         </div>
                         @endif
-                        @if ($data->ac==1)
-                        <div style="width: 20%; text-align:center">
+                        @if ($data->has_ac==1)
+                        <div class="homestayOfferContainer">
                             <img width="27%" src="/gambar/Vector.svg" alt="">
                             <p>AC</p>
                         </div>
@@ -115,7 +115,7 @@
                 </b>
             </li>
         </ul>
-        <ul style="list-style: none; width: 60%">
+        <ul style="list-style: none; width: 100%">
             <table style="width: 100%" cellpadding="10">
                 <tr style="font-size: 150%">
                     <th class="NearbyPlace">Nearby Place</th>
