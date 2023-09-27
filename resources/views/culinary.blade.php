@@ -138,9 +138,9 @@
         <div style="text-align: center">
             <b style="color:black; font-size: 200%">Menu Description</b>
         </div>
-        <div class="cons">
-        <td><img class="culinaryOverlayImg" src="{{Storage::url($data->photo)}}" alt=""></td>
-            <div style="text-align: center; width: 400px">
+        <div class="culOverlayImgContainer">
+        <td><img class="culOverlayImg" src="{{Storage::url($data->photo)}}" alt=""></td>
+            <div class="culMenu" >
                 <h3>{{$data->name}}</h3>
                 <p style="text-align: justify">
                     {{$data->description}}
@@ -148,7 +148,7 @@
             </div>
         </div>
         <form>
-            <div class="con2">
+            <div class="culOverlayBtn">
                 <div>
                     Rp. {{$data->price}}
                     <a href="https://api.whatsapp.com/send?phone=6285155488011&text=Saya%20Ingin%20Memesan%20Makanan%20{{ $data->name }}" target="_blank"><button style="cursor: pointer;" type="button">Order Food</button></a>

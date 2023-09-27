@@ -33,6 +33,7 @@ Route::get('/homestay', [HomestayController::class, 'homestayPage'])->name('home
 Route::get('/homestay/{id}', [HomestayController::class, 'homestayDetailPage'])->name('homestayDetailPage');
 
 Route::get('/culinary', [CulinaryController::class, 'culinaryPage'])->name('culinaryPage');
+
 Route::get('/souvenir', [SouvenirController::class, 'souvenirPage'])->name('souvenirPage');
 Route::get('/promo', [PromoController::class, 'promoPage'])->name('promoPage');
 

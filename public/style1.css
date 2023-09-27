@@ -12,6 +12,49 @@ width: 78%;
 margin: 0 auto;
 }
 
+
+/* --------------------------------------- Untuk Login ----------------------------------- */
+
+.signUpHere {
+  color: green;
+  font-weight: bold;
+  text-decoration: none
+}
+
+.signUpHere:hover {
+  color: red;
+  font-weight: bold;
+  text-decoration: none
+}
+
+.loginContainer{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 55%;
+  width: 457px;
+  text-align: center; 
+  box-shadow: 5px 12px 12px gray;
+}
+
+.loginImg{
+  height:350px; 
+  width: 100%
+}
+
+@media screen and (max-width: 400px) {
+  .loginContainer{
+    width: 80%;
+  }
+
+  .loginImg{
+    height: 300px;
+    margin-bottom: 2%;
+  }
+}
+
+/* --------------------------------------- Untuk Login End ----------------------------------- */
+
 /* --------------------------------------- Untuk Home ----------------------------------- */
 
 form.example input[type=text] {
@@ -989,30 +1032,29 @@ transition: all 300ms ease;
   cursor: pointer;
   color: red;
 }
-.cons {
+.culOverlayImgContainer {
     display: flex;
     justify-content: center;
     margin-top: 10px;
 }
-.cons img{
-    margin-right: 150px;
+.culOverlayImgContainer img{
+    margin-right: 80px;
 }
 
-
-.con2{
+.culOverlayBtn{
     margin: 30px 0;
     display: flex;
     justify-content: flex-end;
 }
-.cons h3{
+.culOverlayImgContainer h3{
     font-weight: bold;
     font-size: 20px;
 }
-.cons p{
+.culOverlayImgContainer p{
     font-weight: normal;
     font-size: 14px;
 }
-.con2 button{
+.culOverlayBtn button{
     border: none;
     padding: 10px 30px;
     margin-left: 30px;
@@ -1023,13 +1065,17 @@ transition: all 300ms ease;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+.culMenu{
+  text-align: center; width: 400px
+}
+
 /* .ratingCulinary{
   position: absolute;
   top: 14%;
   right: 15%;
 } */
 
-.culinaryOverlayImg{
+.culOverlayImg{
   margin-left:2%; 
   border-radius:5%; 
   width: 45%; 
@@ -1085,24 +1131,39 @@ transition: all 300ms ease;
     margin-bottom: 5%;
   }
 
-  .culinaryImg{
-    height: 100px;
-  }
-
   .openBtnCulinary{
     margin-bottom: 10%;
   }
 
-  .culinaryOverlayImg{
-    margin-left:2%; 
-    border-radius:5%; 
-    width: 45%; 
-    height: 230px; 
-    object-fit: cover; 
-    margin-top:4%;
+  .wrapCulinary{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 35%;
+    left: 50%;
+    width:80%;
+    box-sizing: border-box;
+    padding: 30px 20px;
   }
 
+  .culOverlayImgContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 10px;
+    place-items: center;
+  }
 
+  .culOverlayImg{
+    width: 50%;
+  }
+
+  .culOverlayImgContainer img{
+    margin-right: 0;
+  }
+  
+  .culMenu{
+    margin-top: 2%;
+
+  }
 }
 
 /* --------------------------------Untuk Culinary End-------------------------------- */
@@ -1299,7 +1360,7 @@ transition: all 300ms ease;
 }
   /* --------------------------------Untuk Souvenir End-------------------------------- */
 
-  /* Untuk Destinasi Start */
+ /* --------------------------------Untuk Destination Start-------------------------------- */
   .destinasiImage{
     width: 300px;
     height: 350px;
@@ -1314,7 +1375,15 @@ transition: all 300ms ease;
     color: white;
   }
 
-  .destinasiCheckDetail{
+  .destinationTittleContainer{
+    text-align: center; 
+    font-weight: bold; 
+    padding: 2%; 
+    padding-left: 20%; 
+    padding-right: 20%
+  }
+
+  .destinationCheckDetail{
     font-weight: bold;
     color: white;
     background: green;
@@ -1330,10 +1399,108 @@ transition: all 300ms ease;
     width: 100%;
     padding: 5%;
 }
-  /* Untuk Destinasi End */
+
+.destinationSubTittle{
+  color:rgb(17, 187, 17); 
+  font-size: 200%
+}
+
+.destinationDesc{
+  color:rgb(0, 87, 0); 
+  font-size: 150%
+}
+
+.destinationSubTittle-2{
+  color: green; 
+  font-size: 250%; 
+  margin-top: 5%
+}
+
+.destinationDesc-2{
+  color: rgb(0, 59, 0); 
+  font-size: 200%
+}
+
+.destinationList-2{
+  padding: 5%; 
+  padding-left: 7%
+}
+
+.destinationContainer-2{
+  width: 30%; 
+  box-shadow: 1px 1px 2px 4px gray; 
+  padding: 1%; 
+  display: inline-block; 
+  margin: 1%; 
+  border-radius: 2%;
+}
+
+@media screen and (max-width: 400px){
+
+  .destinationTittleContainer{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+
+  .destinationSubTittle{
+    font-size: 160%;
+  }
+
+  .destinationDesc{
+    font-size: 110%;
+  }
+
+  .destinationSubTittle-2{
+    margin-top: 10%;
+    font-size: 160%; 
+  }
+
+  .destinationDesc-2{
+    font-size: 110%;
+  }
+
+  .destinationList{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .destinationContainer-2{
+    width: 100%;
+    margin-bottom: 10%;
+  }
+
+  .destinationCheckDetail{
+    width: 95%;
+    margin-left: 2.5%;
+    margin-bottom: 2%;
+    padding: 5%;
+  }
+
+}
+  /* --------------------------------Untuk Destination End-------------------------------- */
 
 
   /* destinationDetail */
+  .destinationDetailContainer{
+    height:fit-content; 
+    padding: 40px; 
+  }
+
+  .destinationDetailContent{
+    width: 60%; 
+    box-shadow: 1px 2px 3px 2px gray; 
+    padding: 3%; 
+    float: left; 
+    border-radius: 10px
+  }
+
+  .destinationDetailImg{
+    width: 100%; 
+    height: 309px; 
+    object-fit: cover; 
+    margin-bottom:2%;
+    border-radius: 2%;
+  }
 
   .buttonDestinationDetail {
     width: 20%;
@@ -1379,4 +1546,24 @@ transition: all 300ms ease;
   color: green
 }
 
+@media screen and (max-width: 400px) {
+  .destinationDetailContainer{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .destinationDetailForm{
+    width: 100%; 
+    margin-top: 5%;
+  }
+
+  .destinationDetailContent{
+    width: 100%;
+  }
+
+  .destinationDetailImg{
+    width: 100%; 
+    border-radius: 3%;
+  }
+}
   /* destinationDetail End*/

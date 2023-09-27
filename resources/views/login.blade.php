@@ -19,29 +19,8 @@
 </head>
 
 <body>
-    <style>
-        .signUpHere {
-            color: green;
-            font-weight: bold;
-            text-decoration: none
-        }
-
-        .signUpHere:hover {
-            color: red;
-            font-weight: bold;
-            text-decoration: none
-        }
-
-    </style>
-
-    <div style="
-            position: absolute;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 55%;
-            width: 457px;
-            text-align: center; box-shadow: 5px 12px 12px gray">
-        <img src="gambar/logo_white.jpeg" style="height:350px; width: 100%">
+    <div class="loginContainer">
+        <img class="loginImg" src="gambar/logo_white.jpeg">
         <form method="POST" action="/login">
             @csrf
 

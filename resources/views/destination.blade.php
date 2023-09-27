@@ -4,9 +4,9 @@
 
 @section('content')
 
-<div style="text-align: center; font-weight: bold; padding: 2%; padding-left: 20%; padding-right: 20%">
-    <p style="color:rgb(17, 187, 17); font-size: 200%">Special Event</p>
-    <p style="color:rgb(0, 87, 0); font-size: 150%">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quis amet animihic eveniet </p>
+<div class="destinationTittleContainer">
+    <p class="destinationSubTittle">Special Event</p>
+    <p class="destinationDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque quis amet animihic eveniet </p>
 </div>
 
 <div id="carouselDestination">
@@ -26,25 +26,25 @@
         </div>
     </div>
     @endforeach
-    {{---------------- LOOPING SPECIAL EVENT LIST END ----------------}}
+    {{---------------- LOOPING SPECIAL EVENT LIST END ----- -----------}}
 
 </div>
 
-<div style="text-align:center; font-weight: bold">
-    <p style="color: green; font-size: 250%; margin-top: 5%">Open Trip <u>KEPULAUAN SERIBU</u></p>
-    <p style="color: rgb(0, 59, 0); font-size: 200%">Lestari Liveboard, Your second home at sea</p>
+<div style="text-align:center; font-weight: bold; padding-left: 10%; padding-right:10%;">
+    <p class="destinationSubTittle-2">Open Trip <u>KEPULAUAN SERIBU</u></p>
+    <p class="destinationDesc-2">Lestari Liveboard, Your second home at sea</p>
 </div>
 
-<div style="padding: 5%; padding-left: 7%">
+<div class="destinationList-2">
     {{---------------- LOOPING OPEN TRIP LIST ----------------}}
     @foreach ($destinations as $data)
 
-    <div style="width: 30%; box-shadow: 1px 1px 2px 4px gray; padding: 1%; display: inline-block; margin: 1%; border-radius: 2%;">
+    <div class="destinationContainer-2">
         <p style="text-align: center; font-weight: bold; color: green">{{$data->name}}</p>
         <img src="{{Storage::url($data->photo)}}" style="width: 100%; border-radius: 2%;">
         <p style="text-align: justify; padding: 3%; padding-top: 7%">{{$data->description}}</p>
         <a href="{{route('destinationDetailPage', $data->id)}}">
-            <button class="destinasiCheckDetail">Check Detail</button>
+            <button class="destinationCheckDetail">Check Detail</button>
         </a>
     </div>
     @endforeach

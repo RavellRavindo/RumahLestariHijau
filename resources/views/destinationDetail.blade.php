@@ -4,10 +4,10 @@
 
 @section('content')
 
-<div style=" height:fit-content; padding: 40px; ">
-    <div style="width: 60%; box-shadow: 1px 2px 3px 2px gray; padding: 3%; float: left; border-radius: 10px">
+<div class="destinationDetailContainer">
+    <div class="destinationDetailContent">
         <p style="text-align:center; font-size: 150%; font-weight: bold; color: green">{{$destination->name}}</p>
-        <img src="{{Storage::url($destination->photo)}}" style="width: 693px; height: 309px; object-fit: cover; margin-bottom:2%;">
+        <img class="destinationDetailImg" src="{{Storage::url($destination->photo)}}">
         <div class="ets">
             <button id="DescriptionButton" class="buttonDestinationDetail"
                 onclick="document.getElementById('Description').style.display='block'; document.getElementById('Rundown').style.display='none'; document.getElementById('Location').style.display='none'; document.getElementById('Price').style.display='none'">Description</button>
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <!-- <div id="Price" style="display:none">
+        <div id="Price" style="display:none">
             <table>
                 <tr>
                     <td>Jumlah Peserta Tour</td>
@@ -66,7 +66,7 @@
                 </tr>
                 @endforeach
             </table>
-        </div> -->
+        </div>
     </div>
     <style>
         table {
