@@ -1626,6 +1626,7 @@ transition: all 300ms ease;
   .destinationDetailForm{
     width: 100%; 
     margin-top: 20%;
+    margin-bottom: 0%;
   }
 
   .destinationDetailContent{

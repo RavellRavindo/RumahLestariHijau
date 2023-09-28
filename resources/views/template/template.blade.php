@@ -102,7 +102,7 @@
                         </b>
                     </div>
                     <p style="color: white; margin-left:8%; margin-right:40%;">
-                    <img src="/gambar/location-pointer.png" style="width: 5%;">
+                        <img src="/gambar/location-pointer.png" style="width: 5%;">
                         Pulau Pramuka, Pulau Panggang, Kepulauan Seribu Utara, Kab. Administrasi Kepulauan Seribu, Daerah Khusus Ibukota Jakarta 14530
                     </p>
                 </li>
