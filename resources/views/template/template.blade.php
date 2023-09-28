@@ -94,67 +94,41 @@
     <!-- Footer  -->
     <footer class="footer" id="footer">
         <div class="footerContainer">
-                <ul>
-                <li style="list-style: none;">
-                    <div style="font-size: 100%; margin-bottom: 1%; margin-top: 5%; margin-left:8%;">
-                        <b>
-                        Office Address
-                        </b>
-                    </div>
-                    <p style="color: white; margin-left:8%; margin-right:40%;">
-                        <img src="/gambar/location-pointer.png" style="width: 5%;">
-                        Pulau Pramuka, Pulau Panggang, Kepulauan Seribu Utara, Kab. Administrasi Kepulauan Seribu, Daerah Khusus Ibukota Jakarta 14530
-                    </p>
+            <ul class="contact-info">
+                <li>
+                    <b>Office Address</b><br>
+                    <img src="/gambar/location-pointer.png">
+                    Pulau Pramuka, Pulau Panggang, Kepulauan Seribu Utara, Kab. Administrasi Kepulauan Seribu, Daerah Khusus Ibukota Jakarta 14530
                 </li>
-
-                <li style="list-style: none;">
-                    <div style="font-size: 100%; margin-bottom: 1%; margin-top: -1%; margin-left:8%;">
-                        <b>
-                        Email
-                        </b>
-                    </div>
-                    <p style="color: white; margin-left:8%;">
-                    <img src="/gambar/email.png" style="width: 3%;">
+                <li>
+                    <b>Email</b><br>
+                    <img src="/gambar/email.png">
                     rumahliterasihijau@gmail.com
-                    </p>
                 </li>
+                <li>
+                    <b>Contact Person</b><br>
+                    <img src="/gambar/phone-receiver-silhouette.png">
+                    081202938495
+                </li>
+            </ul>
 
-                <li style="list-style: none;">
-                    <div style="font-size: 100%; margin-bottom: 1%; margin-top: -1%; margin-left:8%;">
-                        <b>
-                        Contact Person
-                        </b>
-                    </div>
-                    <p style="color: white; margin-left:8%;">
-                    <img src="/gambar/phone-receiver-silhouette.png" style="width: 3%">
-                        081202938495
-                    </p>
+            <ul class="subscribe">
+                <li>
+                    <b>SIGN UP AND SAVE</b>
+                </li>
+                <li>
+                    Subscribe to get special offers, free giveaway, and once in a lifetime deals
+                </li>
+                <li>
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Enter Your Email">
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-primary mb-2">Subscribe</button>
                 </li>
             </ul>
 
             <ul>
-                <li style="list-style: none;">
-                    <P style="margin-bottom: 1%; margin-top: 15%; color: white; text-align: center; margin-right:35%;">
-                        <b>
-                            SIGN UP AND SAVE
-                        </b>
-                    </P>
-                </li>
-
-                <li style="list-style: none;">
-                    <P style="margin-bottom: 1%; margin-top: 1.5%; color: white; text-align: left; margin-right:25%;">
-                        Subscribe to get special offers, free giveaway, and once in a lifetime deals
-                    </P>
-                </li>
-
-                <div style="width: 100%; margin-top: 4%;">
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="Enter Your Email" style="float: left; width: 45%; background: #094222; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;">
-                    <button type="submit" class="btn btn-primary mb-2" style="clear: both; width: 25%; background: linear-gradient(to right, #f0572e, #f0312e); border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;">Subscribe</button>
-                </div>
-            </ul>
-
-            <ul>
-                <div class="rounded-social-buttons col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <div class="rounded-social-buttons">
                     <a class="social-button whatsapp" href="https://api.whatsapp.com/send/?phone=6281202938495&text&type=phone_number&app_absent=0"><i class="fab fa-whatsapp"></i></a>
                     <a class="social-button instagram" href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                     <a class="social-button facebook" href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
@@ -162,10 +136,10 @@
             </ul>
         </div>
 
-        <p style="color: white; border-top: 1% solid; text-align: center; margin-bottom:0%;">
+        <p class="copyright">
             ©2022 Powered by Rumah Lestari Hijau. All Right Reserved.
         </p>
-    <footer>
+    </footer>
 </body>
 </html>
 

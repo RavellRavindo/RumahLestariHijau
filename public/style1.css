@@ -1654,22 +1654,104 @@ transition: all 300ms ease;
 }
   /* destinationDetail End*/
 
-  .footer{
-    background: linear-gradient(rgb(42 180 70), rgb(98 180 38)); 
-    margin-top:2%; 
-    padding-bottom:2%;
+  .footer {
+    background: linear-gradient(rgb(42 180 70), rgb(98 180 38));
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footerContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 0;
+}
+
+/* Styles for the contact info */
+.contact-info {
+    text-align: left;
+    margin: 5px 0;
+}
+
+.contact-info b {
+    font-weight: bold;
+}
+
+.contact-info img {
+    width: 20px;
+    vertical-align: middle;
+}
+
+/* Styles for the subscribe section */
+.subscribe {
+    text-align: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin: 15px 0;
+}
+
+.subscribe b {
+    font-weight: bold;
+}
+
+.subscribe p {
+    margin: 5px 0;
+}
+
+.subscribe input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    background: #094222;
+    color: white;
+    border: none;
+}
+
+.subscribe button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    background: linear-gradient(to right, #f0572e, #f0312e);
+    color: white;
+    border: none;
+}
+
+/* Styles for social buttons */
+.social-button {
+    font-size: 20px;
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Copyright text */
+.copyright {
+    border-top: 1px solid white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+@media (max-width: 400px) {
+  .footerContainer {
+      flex-direction: column;
+      align-items: center;
   }
 
-  .footerContainer{
-    max-width: 100%; 
-    margin: auto; 
-    display: flex
+  .contact-info {
+      text-align: center;
   }
 
-@media screen and (max-width:400%){
-  .footerContainer{
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: #fff;
-  }
+  .subscribe {
+    padding-left: 0px;
+    padding-right: 0px;
+    }
 }
