@@ -29,8 +29,8 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="owner">Homestay Host</label>
-        <input id="owner" type="text" class="form-control" name='owner' value="{{$homestay->host}}" placeholder="owner">
+        <label for="host">Homestay Host</label>
+        <input id="host" type="text" class="form-control" name='host' value="{{$homestay->host}}" placeholder="host">
         @error('host')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -171,26 +171,32 @@
     <div class="form-group">
         <p>Resource</p>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="wifi" name="wifi" @if ($homestay->wifi==1)
+            <input class="form-check-input" type="checkbox" id="wifi" name="wifi" @if ($homestay->has_wifi==1)
             checked
-            @endif value="1">
+            @endif>
             <label class="form-check-label" for="wifi">Wifi</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="parking" name="parking" @if ($homestay->parking==1)
+            <input class="form-check-input" type="checkbox" id="parking" name="parking" @if ($homestay->has_parking==1)
             checked
-            @endif value="1">
+            @endif>
             <label class="form-check-label" for="parking">Parking</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="restaurant" name="restaurant" @if($homestay->restaurant==1)
+            <input class="form-check-input" type="checkbox" id="restaurant" name="restaurant" @if($homestay->has_restaurant==1)
             checked
-            @endif value="1">
+            @endif>
             <label class="form-check-label" for="restaurant">Restaurant</label>
         </div>
         <div class="form-check form-check-inline">
+<<<<<<< HEAD
             <input class="form-check-input" type="checkbox" id="3" name="ac" @if ($homestay->ac==1)
             checked @endif>
+=======
+            <input class="form-check-input" type="checkbox" id="ac" name="ac" @if ($homestay->has_ac==1)
+            checked
+            @endif>
+>>>>>>> 60a5990176d1decb0f29db97f85e4044621387ec
             <label class="form-check-label" for="ac">AC</label>
         </div>
     </div>

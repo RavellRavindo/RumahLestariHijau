@@ -59,7 +59,6 @@
     </div>
 
     <button type="submit" class="btn btn-primary">{{ __('Edit Culinary') }}</button>
-    @endif
 </form>
 
 
