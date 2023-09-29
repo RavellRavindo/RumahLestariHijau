@@ -61,51 +61,6 @@
         @enderror
     </div>
 
-    <!--
-    @foreach ($price as $destination)
-    <div class="form-group">
-        <label for="person{{$loop->index+1}}"> Price Destination for </label>
-
-        <div id="parent" style="display: flex;">
-            <div id="left" style="flex-basis: 50%; flex-grow: 1; flex-shrink: 10; border: 1px;">
-                <input id="minp{{$loop->index+1}}" type="number" class="form-control" name='minp{{$loop->index+1}}'
-                style='width:10em' placeholder="100000" value="{{$price[$loop->index]->min_person}}">
-            </div>
-            -
-            <div id="right" style="flex-basis: 50%; flex-grow: 1; flex-shrink: 1; border: 1px;">
-                <input id="maxp{{$loop->index+1}}" type="number" class="form-control" name='maxp{{$loop->index+1}}'
-                style='width:10em' placeholder="100000" value="{{$price[$loop->index]->max_person}}">
-            </div>
-            Pax
-        </div>
-
-        <input id="price{{$loop->index+1}}" type="number" class="form-control" name='price{{$loop->index+1}}'
-            placeholder="100000" value="{{$price[$loop->index]->price}}">
-
-        @error('price{{$loop->index+1}}')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
-    @endforeach
-
-    <div class="form-group">
-        <label for="personnew"> Left if empty if dont want. Add new Price Destination for </label>
-
-        <div id="parent" style="display: flex;">
-            <div id="left" style="flex-basis: 50%; flex-grow: 1; flex-shrink: 10; border: 1px;">
-                <input id="minpnew" type="number" class="form-control" name='minpnew'
-                style='width:10em' placeholder="2">
-            </div>
-            -
-            <div id="right" style="flex-basis: 50%; flex-grow: 1; flex-shrink: 1; border: 1px;">
-                <input id="maxpnew" type="number" class="form-control" name='maxpnew'
-                style='width:10em' placeholder="3">
-            </div>
-            Pax
-        </div>
-    </div>
-    -->
-
     <button type="submit" class="btn btn-primary">{{ __('Edit Destination') }}</button>
 </form>
 

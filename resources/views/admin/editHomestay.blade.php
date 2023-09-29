@@ -29,8 +29,8 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="host">Homestay Host</label>
-        <input id="host" type="text" class="form-control" name='host' value="{{$homestay->host}}" placeholder="Host">
+        <label for="owner">Homestay Host</label>
+        <input id="owner" type="text" class="form-control" name='owner' value="{{$homestay->host}}" placeholder="owner">
         @error('host')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
@@ -206,34 +206,10 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="upload">Upload Gambar 1</label>
-        <input id="upload" type="file" class="form-control" name='upload' placeholder="Example input"
+        <label for="upload">Upload Foto Homestay</label>
+        <input id="upload" type="file" multiple class="form-control" name='upload' placeholder="Example input"
             accept=".png,.jpg,.jpeg">
         @error('upload')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="form-group">
-        <label for="upload2">Upload Gambar 2</label>
-        <input id="upload2" type="file" class="form-control" name='upload2' placeholder="Example input"
-            accept=".png,.jpg,.jpeg">
-        @error('upload2')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="form-group">
-        <label for="upload3">Upload Gambar 3</label>
-        <input id="upload3" type="file" class="form-control" name='upload3' placeholder="Example input"
-            accept=".png,.jpg,.jpeg">
-        @error('upload3')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-    </div>
-    <div class="form-group">
-        <label for="upload4">Upload Gambar 4</label>
-        <input id="upload4" type="file" class="form-control" name='upload4' placeholder="Example input"
-            accept=".png,.jpg,.jpeg">
-        @error('upload4')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('type');
             $table->string('description');
-            $table->double('rating');
+            $table->double('rating')->default(0);
+            $table->integer('like');
             $table->integer('price');
             $table->string('photo');
             $table->timestamps();

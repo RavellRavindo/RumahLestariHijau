@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Homestay;
+use App\Models\HomestayPhoto;
 use App\Models\Culinary;
 use App\Models\Destination;
 use App\Models\Souvenir;
 use App\Models\Promo;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -57,11 +58,11 @@ class AdminController extends Controller
     public function addTable($table)
     {
         switch ($table) {
-        case 'homestay':    return $this->addHomestay($id);
-        case 'culinary':    return $this->addCulinary($id);
-        case 'destination': return $this->addDestination($id);
-        case 'souvenir':    return $this->addSouvenir($id);
-        case 'promo':       return $this->addPromo($id);
+        case 'homestay':    return $this->addHomestay();
+        case 'culinary':    return $this->addCulinary();
+        case 'destination': return $this->addDestination();
+        case 'souvenir':    return $this->addSouvenir();
+        case 'promo':       return $this->addPromo();
         default:            return response([], 404);
         }
     }
@@ -107,8 +108,8 @@ class AdminController extends Controller
         $attr = request()->validate([
             'name'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
             'location'  => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'host'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'address'   => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'owner'     => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'address'   => 'required|regex:/^[a-zA-Z0-9 \.,]+$/u|max:255',
             'rating'    => 'required',
             'like'      => 'required',
             'price'     => 'required',
@@ -117,29 +118,29 @@ class AdminController extends Controller
             'bed'       => 'required',
             'bath'      => 'required',
             'thumbnail' => 'required',
-            'images'    => 'required'
+            'upload'    => 'required'
         ]);
 
         $thumb  = request()->file('thumbnail');
-        $images = request()->file('images');
+        $images = request()->file('upload');
 
         $hs                 = new Homestay();
-        $hs->name           = $attr->name;
-        $hs->location       = $attr->location;
-        $hs->host           = $attr->host;
-        $hs->address        = $attr->address;
-        $hs->rating         = $attr->rating;
-        $hs->like           = $attr->like;
-        $hs->price          = $attr->price;
-        $hs->guest          = $attr->guest;
-        $hs->bedroom        = $attr->bedroom;
-        $hs->bed            = $attr->bed;
-        $hs->bath           = $attr->bath;
+        $hs->name           = $attr['name'];
+        $hs->location       = $attr['location'];
+        $hs->owner          = $attr['owner'];
+        $hs->address        = $attr['address'];
+        $hs->rating         = $attr['rating'];
+        $hs->like           = $attr['like'];
+        $hs->price          = $attr['price'];
+        $hs->guest          = $attr['guest'];
+        $hs->bedroom        = $attr['bedroom'];
+        $hs->bed            = $attr['bed'];
+        $hs->bath           = $attr['bath'];
 
-        $hs->has_wifi       = $attr->has_wifi;
-        $hs->has_parking    = $attr->has_parking;
-        $hs->has_restaurant = $attr->has_restaurant;
-        $hs->has_ac         = $attr->has_ac;
+        $hs->has_wifi       = $attr['has_wifi'] ?? false;
+        $hs->has_parking    = $attr['has_parking'] ?? false;
+        $hs->has_restaurant = $attr['has_restaurant'] ?? false;
+        $hs->has_ac         = $attr['has_ac'] ?? false;
         $hs->save();
 
         $photo              = new HomestayPhoto();
@@ -149,6 +150,7 @@ class AdminController extends Controller
         $photo->save();
 
         foreach ($images as $key => $img) {
+            if (! $img) continue;
             $photo              = new HomestayPhoto();
             $photo->homestay_id = $hs->id;
             $photo->index       = $key + 1;
@@ -166,7 +168,7 @@ class AdminController extends Controller
         $attr = request()->validate([
             'name'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
             'location'  => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'host'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'owner'     => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
             'address'   => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
             'rating'    => 'required',
             'like'      => 'required',
@@ -176,34 +178,34 @@ class AdminController extends Controller
             'bed'       => 'required',
             'bath'      => 'required',
             'thumbnail' => 'required',
-            'images'    => 'required'
+            'upload'    => 'required'
         ]);
 
         $thumb  = request()->file('thumbnail');
-        $images = request()->file('images');
+        $images = request()->file('upload');
 
-        $hs->name           = $attr->name;
-        $hs->location       = $attr->location;
-        $hs->host           = $attr->host;
-        $hs->address        = $attr->address;
-        $hs->rating         = $attr->rating;
-        $hs->like           = $attr->like;
-        $hs->price          = $attr->price;
-        $hs->guest          = $attr->guest;
-        $hs->bedroom        = $attr->bedroom;
-        $hs->bed            = $attr->bed;
-        $hs->bath           = $attr->bath;
+        $hs->name           = $attr['name'];
+        $hs->location       = $attr['location'];
+        $hs->owner          = $attr['owner'];
+        $hs->address        = $attr['address'];
+        $hs->rating         = $attr['rating'];
+        $hs->like           = $attr['like'];
+        $hs->price          = $attr['price'];
+        $hs->guest          = $attr['guest'];
+        $hs->bedroom        = $attr['bedroom'];
+        $hs->bed            = $attr['bed'];
+        $hs->bath           = $attr['bath'];
 
-        $hs->has_wifi       = $attr->has_wifi;
-        $hs->has_parking    = $attr->has_parking;
-        $hs->has_restaurant = $attr->has_restaurant;
-        $hs->has_ac         = $attr->has_ac;
+        $hs->has_wifi       = $attr['has_wifi'] ?? false;
+        $hs->has_parking    = $attr['has_parking'] ?? false;
+        $hs->has_restaurant = $attr['has_restaurant'] ?? false;
+        $hs->has_ac         = $attr['has_ac'] ?? false;
         $hs->save();
 
-        foreach ($hs->homestay_photo as $photo) {
+        foreach ($hs->homestayPhoto as $photo) {
             $this->deleteImage($photo->path);
         }
-        $hs->homestay_photo->each->delete();
+        $hs->homestayPhoto->each->delete();
 
         $photo              = new HomestayPhoto();
         $photo->homestay_id = $hs->id;
@@ -212,7 +214,6 @@ class AdminController extends Controller
         $photo->save();
 
         foreach ($images as $key => $img) {
-            $photo              = new HomestayPhoto();
             $photo->homestay_id = $hs->id;
             $photo->index       = $key + 1;
             $photo->path        = $this->saveImage($img);
@@ -226,19 +227,82 @@ class AdminController extends Controller
     {
         $hs = Homestay::find($id);
 
-        $hs->nearby_place->each->delete();
-        $hs->popular_place->each->delete();
+        $hs->nearbyPlace->each->delete();
+        $hs->popularPlace->each->delete();
 
-        foreach ($hs->homestay_photo as $photo) {
+        foreach ($hs->homestayPhoto as $photo) {
             $this->deleteImage($photo->path);
         }
 
-        $hs->homestay_photo->each->delete();
-        $hs->comment_list->each->delete();
+        $hs->homestayPhoto->each->delete();
+        $hs->commentList->each->delete();
 
         $hs->delete();
 
         return redirect()->back()->with('success', 'Homestay deleted successfully');
+    }
+
+    public function addCulinary()
+    {
+        $attr = request()->validate([
+            'name' => 'required|min:7|max:255',
+            'description'=>'required|min:10|max:600',
+            'type' => 'required|in:main_course,side_dish',
+            'like' => 'required',
+            'price' => 'required',
+            'image' => 'required|image',
+        ]);
+
+        $savedImage = $this->saveImage(request()->file('image'));
+
+        $data = new Culinary();
+        $data->name = $attr['name'];
+        $data->description = $attr['description'];
+        $data->type = $attr['type'];
+        $data->like = $attr['like'];
+        $data->price = $attr['price'];
+        $data->photo = $savedImage;
+        $data->save();
+
+        return redirect('/admin/culinary/');
+    }
+
+    public function editCulinary($id)
+    {
+        $attr = request()->validate([
+            'name' => 'required|min:7|max:255',
+            'description'=>'required|min:10|max:600',
+            'type' => 'required|in:main_course,side_dish',
+            'image' => 'image',
+        ]);
+
+        $data = Culinary::find($id);
+        $savedImage = $this->saveImage(request()->file('image'));
+
+        $data->name = $attr['name'];
+        $data->description = $attr['description'];
+        $data->type = $attr['type'];
+        $data->like = $attr['like'];
+        $data->price = $attr['price'];
+        $data->photo = $savedImage;
+        $data->save();
+
+        $this->deleteCulinaryTypeIfUnused($oldCulinaryType);
+        Storage::delete($data->photo);
+
+        return redirect('/admin/culinary/');
+    }
+
+    public function deleteCulinary($id)
+    {
+        $data = Culinary::find($id);
+        $oldCulinaryType = $data->culinaryType();
+
+        Storage::delete($data->photo);
+        $data->delete();
+        $this->deleteCulinaryTypeIfUnused($oldCulinaryType);
+
+        return redirect()->back()->with('success', 'Culinary deleted successfully');
     }
 
     public function addDestination()
@@ -252,25 +316,25 @@ class AdminController extends Controller
             'price' => 'required'
         ]);
 
-        $savedImage = $this->saveImage($attr->file('image'));
+        $savedImage = $this->saveImage(request()->file('image'));
 
         $data = new Destination();
-        $data->name = $attr->name;
-        $data->description = $attr->description;
-        $data->rundown = $attr->rundown;
-        $data->address = $attr->address;
-        $data->price = $attr->price;
+        $data->name = $attr['name'];
+        $data->description = $attr['description'];
+        $data->rundown = $attr['rundown'];
+        $data->address = $attr['address'];
+        $data->price = $attr['price'];
         $data->photo = $savedImage;
         $data->save();
 
         // $dprice = new DestinationPrice();
         // $dprice->destination_id = $data->id;
-        // $dprice->min_person = $request->minpnew;
-        // $dprice->max_person = $request->maxpnew;
-        // $dprice->price = $request->pricenew;
+        // $dprice->min_person = $attr['minpnew'];
+        // $dprice->max_person = $attr['maxpnew'];
+        // $dprice->price = $attr['pricenew'];
         // $dprice->save();
 
-        return redirect('/admin/destination/' . $data->id);
+        return redirect('/admin/destination/');
     }
 
     public function editDestination($id)
@@ -285,19 +349,19 @@ class AdminController extends Controller
         ]);
 
         $data = Destination::find($id);
-        $savedImage = $this->saveImage($attr->file('image'));
+        $savedImage = $this->saveImage(request()->file('image'));
 
         Storage::delete($data->photo);
 
-        $data->name = $attr->name;
-        $data->description = $attr->description;
-        $data->rundown = $attr->rundown;
-        $data->address = $attr->address;
-        $data->price = $attr->price;
+        $data->name = $attr['name'];
+        $data->description = $attr['description'];
+        $data->rundown = $attr['rundown'];
+        $data->address = $attr['address'];
+        $data->price = $attr['price'];
         $data->photo = $savedImage;
         $data->save();
 
-        return redirect('/admin/destination/' . $data->id);
+        return redirect('/admin/destination/');
     }
 
     public function deleteDestination($id)
@@ -309,66 +373,6 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Destination deleted successfully');
     }
 
-    public function addCulinary()
-    {
-        $attr = request()->validate([
-            'name' => 'required|min:7|max:255',
-            'description'=>'required|min:10|max:600',
-            'like' => 'required',
-            'price' => 'required',
-            'image' => 'required|image',
-        ]);
-
-        $savedImage = $this->saveImage($attr->file('image'));
-
-        $data = new Culinary();
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->like = $request->like;
-        $data->price = $request->price;
-        $data->photo = $savedImage;
-        $data->save();
-
-        return redirect('/admin/culinary/' . $data->id);
-    }
-
-    public function editCulinary($id)
-    {
-        $attr = request()->validate([
-            'name' => 'required|min:7|max:255',
-            'description'=>'required|min:10|max:600',
-            'like' => 'required',
-            'image' => 'image',
-        ]);
-
-        $data = Culinary::find($id);
-        $savedImage = $this->saveImage($attr->file('image'));
-
-        Storage::delete($data->photo);
-
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->like = $request->like;
-        $data->price = $request->price;
-        $data->photo = $savedImage;
-        $data->save();
-
-        return redirect('/admin/culinary/' . $data->id);
-    }
-
-    // Photo culinary tiba" ada banyak (:
-    public function deleteCulinary($id){
-        $data = Culinary::find($id);
-        foreach ($data->photo as $key) {
-            Storage::delete($key->path);
-        }
-        $data->photo->each->delete();
-        $data->comment_list->each->delete();
-        $data->delete();
-
-        return redirect()->back()->with('success', 'Culinary deleted successfully');
-    }
-
     public function addSouvenir()
     {
         $attr = request()->validate([
@@ -378,12 +382,12 @@ class AdminController extends Controller
             'price'=>'required',
         ]);
 
-        $savedImage = $this->saveImage($attr->file('image'));
+        $savedImage = $this->saveImage(request()->file('image'));
 
         $data = new Souvenir();
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->price = $request->price;
+        $data->name = $attr['name'];
+        $data->description = $attr['description'];
+        $data->price = $attr['price'];
         $data->photo = $savedImage;
         $data->save();
 
@@ -399,17 +403,17 @@ class AdminController extends Controller
         ]);
 
         $data = Souvenir::find($id);
-        $savedImage = $this->saveImage($attr->file('image'));
+        $savedImage = $this->saveImage(request()->file('image'));
 
         Storage::delete($data->photo);
 
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->price = $request->price;
+        $data->name = $attr['name'];
+        $data->description = $attr['description'];
+        $data->price = $attr['price'];
         $data->photo = $savedImage;
         $data->save();
 
-        return redirect('/tableSouvenir');
+        return redirect('/admin/souvenir');
     }
 
     public function deleteSouvenir($id)
@@ -428,10 +432,10 @@ class AdminController extends Controller
             'image'=>'required',
         ]);
 
-        $savedImage = $this->saveImage($attr->file('image'));
+        $savedImage = $this->saveImage(request()->file('image'));
 
         $data = new Promo();
-        $data->name = $request->name;
+        $data->name = $attr['name'];
         $data->photo = $savedImage;
         $data->save();
 
@@ -444,10 +448,10 @@ class AdminController extends Controller
             'name'=>'required',
         ]);
 
-        $savedImage = $this->saveImage($attr->file('image'));
+        $savedImage = $this->saveImage(request()->file('image'));
 
         $data = Promo::find($id);
-        $data->name = $request->name;
+        $data->name = $attr['name'];
         $data->photo = $savedImage;
         $data->save();
 
