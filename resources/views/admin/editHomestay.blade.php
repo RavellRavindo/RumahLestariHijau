@@ -171,27 +171,27 @@
     <div class="form-group">
         <p>Resource</p>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="wifi" name="wifi" @if ($homestay->wifi==1)
+            <input class="form-check-input" type="checkbox" id="wifi" name="wifi" @if ($homestay->has_wifi==1)
             checked
-            @endif value="1">
+            @endif>
             <label class="form-check-label" for="wifi">Wifi</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="parking" name="parking" @if ($homestay->parking==1)
+            <input class="form-check-input" type="checkbox" id="parking" name="parking" @if ($homestay->has_parking==1)
             checked
-            @endif value="1">
+            @endif>
             <label class="form-check-label" for="parking">Parking</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="restaurant" name="restaurant" @if($homestay->restaurant==1)
+            <input class="form-check-input" type="checkbox" id="restaurant" name="restaurant" @if($homestay->has_restaurant==1)
             checked
-            @endif value="1">
+            @endif>
             <label class="form-check-label" for="restaurant">Restaurant</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="ac" name="ac" @if ($homestay->ac==1)
+            <input class="form-check-input" type="checkbox" id="ac" name="ac" @if ($homestay->has_ac==1)
             checked
-            @endif value="1">
+            @endif>
             <label class="form-check-label" for="ac">AC</label>
         </div>
     </div>
