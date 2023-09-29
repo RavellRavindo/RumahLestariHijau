@@ -29,8 +29,8 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="owner">Homestay Host</label>
-        <input id="owner" type="text" class="form-control" name='owner' value="{{$homestay->host}}" placeholder="owner">
+        <label for="host">Homestay Host</label>
+        <input id="host" type="text" class="form-control" name='host' value="{{$homestay->host}}" placeholder="host">
         @error('host')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror

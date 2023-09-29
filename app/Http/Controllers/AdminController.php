@@ -106,10 +106,10 @@ class AdminController extends Controller
     public function addHomestay()
     {
         $attr = request()->validate([
-            'name'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'location'  => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'owner'     => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'address'   => 'required|regex:/^[a-zA-Z0-9 \.,]+$/u|max:255',
+            'name'      => 'required|max:255',
+            'location'  => 'required|max:255',
+            'host'      => 'required|max:255',
+            'address'   => 'required|max:255',
             'rating'    => 'required',
             'like'      => 'required',
             'price'     => 'required',
@@ -127,7 +127,7 @@ class AdminController extends Controller
         $hs                 = new Homestay();
         $hs->name           = $attr['name'];
         $hs->location       = $attr['location'];
-        $hs->owner          = $attr['owner'];
+        $hs->host           = $attr['host'];
         $hs->address        = $attr['address'];
         $hs->rating         = $attr['rating'];
         $hs->like           = $attr['like'];
@@ -166,10 +166,10 @@ class AdminController extends Controller
         $hs = Homestay::findOrFail($id);
 
         $attr = request()->validate([
-            'name'      => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'location'  => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'owner'     => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
-            'address'   => 'required|regex:/^[a-zA-Z \.,]+$/u|max:255',
+            'name'      => 'required|max:255',
+            'location'  => 'required|max:255',
+            'host'      => 'required|max:255',
+            'address'   => 'required|max:255',
             'rating'    => 'required',
             'like'      => 'required',
             'price'     => 'required',
@@ -186,7 +186,7 @@ class AdminController extends Controller
 
         $hs->name           = $attr['name'];
         $hs->location       = $attr['location'];
-        $hs->owner          = $attr['owner'];
+        $hs->host           = $attr['host'];
         $hs->address        = $attr['address'];
         $hs->rating         = $attr['rating'];
         $hs->like           = $attr['like'];

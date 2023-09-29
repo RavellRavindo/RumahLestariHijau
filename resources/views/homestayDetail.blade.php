@@ -82,7 +82,7 @@
         <ul class="homestayInfo">
             <li>
                 <b>
-                    <p style="margin: 1%; font-size: 125%">Entire hotel hosted by {{$data->owner}}</p>
+                    <p style="margin: 1%; font-size: 125%">Entire hotel hosted by {{$data->host}}</p>
                     <p style="margin-bottom: 7%; font-weight: normal;">{{$data->guest}} guest - {{$data->bedroom}} bedrooms - {{$data->bed}}
                         beds - {{$data->has_bath}} baths</p>
                     <p style="font-size: 125%">What this places offers</p>
