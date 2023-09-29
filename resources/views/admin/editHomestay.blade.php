@@ -189,9 +189,8 @@
             <label class="form-check-label" for="restaurant">Restaurant</label>
         </div>
         <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="ac" name="ac" @if ($homestay->ac==1)
-            checked
-            @endif value="1">
+            <input class="form-check-input" type="checkbox" id="3" name="ac" @if ($homestay->ac==1)
+            checked @endif>
             <label class="form-check-label" for="ac">AC</label>
         </div>
     </div>
