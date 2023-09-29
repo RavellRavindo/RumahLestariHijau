@@ -28,6 +28,13 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
+    <div class="form-group">
+        <label for="type">Price Culinary</label>
+        <input id="type" type="text" class="form-control" name='type' placeholder="main_course" value="{{$culinary->type}}">
+        @error('price')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+    </div>
 
     <div class="form-group">
         <label for="price">Price Culinary</label>

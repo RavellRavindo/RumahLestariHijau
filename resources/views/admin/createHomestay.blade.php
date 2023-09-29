@@ -23,9 +23,9 @@
         @enderror
     </div>
     <div class="form-group">
-        <label for="host">Homestay Host</label>
-        <input id="host" type="text" class="form-control" name='host' placeholder="Host">
-        @error('host')
+        <label for="owner">Homestay Host</label>
+        <input id="owner" type="text" class="form-control" name='owner' placeholder="owner">
+        @error('owner')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
@@ -92,7 +92,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
-
+{{--
     <strong>Nearby Place 1</strong><br>
     <div class="form-group">
         <label for="nearbyplace1">Place name</label>
@@ -214,7 +214,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
     </div>
-
+--}}
     <div class="form-group">
         <p>Resource</p>
         <div class="form-check form-check-inline">
