@@ -117,7 +117,7 @@
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="checkbox" class="query form-control" {{ in_array("wifi", $filters) ? "checked" : ""}} name="filter" value="wifi" id="1" placeholder="min"
-                    style="width: 15px;" value="1">
+                    style="width: 15px;">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     Wifi
                 </p>
@@ -125,7 +125,7 @@
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="checkbox" class="query form-control" {{ in_array("parking", $filters) ? "checked" : ""}} name="filter" value="parking" id="2" placeholder="min"
-                    style="width: 15px;" value="2">
+                    style="width: 15px;">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     Parking
                 </p>
@@ -133,14 +133,14 @@
 
             <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="checkbox" class="query form-control" {{ in_array("ac", $filters) ? "checked" : ""}} name="filter" value="ac" id="3" placeholder="min"
-                    style="width: 15px;" value="3">
+                    style="width: 15px;">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     AC
                 </p>
             </div>
             <div style="width: 100%; margin-top: -5%; display: flex;">
                 <input type="checkbox" class="query form-control" {{ in_array("restaurant", $filters) ? "checked" : ""}} name="filter" value="restaurant" id="4" placeholder="min"
-                    style="width: 15px;" value="4">
+                    style="width: 15px;">
                 <p style="margin-top: 2.2%; margin-left: 3%">
                     Restaurant
                 </p>
