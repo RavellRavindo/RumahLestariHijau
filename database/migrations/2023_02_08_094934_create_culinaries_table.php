@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('description');
             $table->double('rating')->default(0);
-            $table->integer('like');
+            $table->integer('like')->default(0);
             $table->integer('price');
             $table->string('photo');
             $table->timestamps();

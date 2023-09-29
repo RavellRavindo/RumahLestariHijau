@@ -12,7 +12,7 @@
 </style>
 
 
-<form method='POST' enctype="multipart/form-data" action="{{ route('adminEditTable', ['promo', $souvenir->id]) }}">
+<form method='POST' enctype="multipart/form-data" action="{{ route('adminEditTable', ['souvenir', $souvenir->id]) }}">
     @csrf
     <div class="form-group">
         <label for="name">Name Souvenir</label>

@@ -158,7 +158,7 @@ class AdminController extends Controller
             $photo->save();
         }
 
-        return redirect('/admin/homestay/' . $hs->id);
+        return redirect('/admin/homestay/');
     }
 
     public function editHomestay($id)
@@ -220,7 +220,7 @@ class AdminController extends Controller
             $photo->save();
         }
 
-        return redirect('/admin/homestay/' . $hs->id);
+        return redirect('/admin/homestay/');
     }
 
     public function deleteHomestay($id)
@@ -282,12 +282,10 @@ class AdminController extends Controller
         $data->name = $attr['name'];
         $data->description = $attr['description'];
         $data->type = $attr['type'];
-        $data->like = $attr['like'];
         $data->price = $attr['price'];
         $data->photo = $savedImage;
         $data->save();
 
-        $this->deleteCulinaryTypeIfUnused($oldCulinaryType);
         Storage::delete($data->photo);
 
         return redirect('/admin/culinary/');
@@ -296,11 +294,9 @@ class AdminController extends Controller
     public function deleteCulinary($id)
     {
         $data = Culinary::find($id);
-        $oldCulinaryType = $data->culinaryType();
 
         Storage::delete($data->photo);
         $data->delete();
-        $this->deleteCulinaryTypeIfUnused($oldCulinaryType);
 
         return redirect()->back()->with('success', 'Culinary deleted successfully');
     }
